@@ -44,7 +44,7 @@ function SpellCard({ spell }: { spell: Spell }) {
       </AccordionTrigger>
       <AccordionContent>
         <div className="space-y-2 text-sm">
-          <div className="text-muted-foreground grid grid-cols-2 gap-x-4 gap-y-1">
+          <div className="text-muted-foreground grid grid-cols-1 gap-x-4 gap-y-1 sm:grid-cols-2">
             <span>Incantation: {spell.castingTime}</span>
             <span>Portée: {spell.range}</span>
             <span>Composantes: {spell.components}</span>

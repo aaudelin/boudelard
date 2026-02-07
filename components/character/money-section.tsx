@@ -86,7 +86,8 @@ export function MoneySection({
               onChange={(e: ChangeEvent<HTMLInputElement>) => handleGoldChange(e.target.value)}
               className={cn(
                 "h-10 text-center font-semibold text-lg",
-                "bg-yellow-50 border-yellow-200 dark:bg-yellow-950/20 dark:border-yellow-800"
+                "bg-yellow-50 border-yellow-200 dark:bg-yellow-950/20 dark:border-yellow-800",
+                "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               )}
             />
             <Button
@@ -122,7 +123,8 @@ export function MoneySection({
               onChange={(e: ChangeEvent<HTMLInputElement>) => handleSilverChange(e.target.value)}
               className={cn(
                 "h-10 text-center font-semibold text-lg",
-                "bg-slate-50 border-slate-200 dark:bg-slate-950/20 dark:border-slate-700"
+                "bg-slate-50 border-slate-200 dark:bg-slate-950/20 dark:border-slate-700",
+                "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               )}
             />
             <Button
