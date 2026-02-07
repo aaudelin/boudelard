@@ -53,14 +53,6 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black">
       <div className="mx-auto max-w-lg px-4 py-6">
-        <Link
-          href="/"
-          className="mb-4 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Retour aux personnages
-        </Link>
-
         <div className="space-y-4">
           <CharacterHeader character={character} />
           <CombatStats character={character} />

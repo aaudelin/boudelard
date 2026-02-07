@@ -118,6 +118,6 @@ export const spellSchoolLabels: Record<string, string> = {
 };
 
 export function getSpellLevelLabel(level: number): string {
-  if (level === 0) return "Tour de magie";
+  if (level === 0) return "Sorts Mineurs";
   return `Niveau ${level}`;
 }

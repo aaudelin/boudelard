@@ -79,7 +79,7 @@ export function SpellcastingSection({ spellcasting }: SpellcastingSectionProps) 
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="grid grid-cols-3 gap-2 text-center">
+        <div className="flex flex-wrap justify-center gap-2 text-center">
           <div className="rounded-lg border p-2">
             <div className="text-muted-foreground text-xs">Caractéristique</div>
             <div className="font-semibold">{abilityName}</div>
@@ -122,10 +122,12 @@ export function SpellcastingSection({ spellcasting }: SpellcastingSectionProps) 
         {Object.entries(groupedSpells)
           .sort(([a], [b]) => Number(a) - Number(b))
           .map(([level, spells]) => (
-            <div key={level}>
-              <h4 className="mb-2 font-medium">
-                {getSpellLevelLabel(Number(level))}
-              </h4>
+            <div key={level} className="space-y-2">
+              <div className="sticky top-0 z-10 -mx-4 px-4 py-2 bg-muted/80 backdrop-blur-sm border-l-4 border-primary">
+                <h4 className="font-semibold text-sm tracking-wide">
+                  {getSpellLevelLabel(Number(level))}
+                </h4>
+              </div>
               <Accordion type="multiple" className="w-full">
                 {spells.map((spell) => (
                   <SpellCard key={spell.name} spell={spell} />
