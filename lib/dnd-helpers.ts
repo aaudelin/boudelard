@@ -29,23 +29,23 @@ export const abilityAbbreviations: Record<string, string> = {
 
 export const skillLabels: Record<string, string> = {
   acrobatics: "Acrobatie",
-  animalHandling: "Dressage",
   arcana: "Arcanes",
   athletics: "Athlétisme",
-  deception: "Tromperie",
+  stealth: "Discrétion",
+  animalHandling: "Dressage",
+  sleightOfHand: "Escamotage",
   history: "Histoire",
-  insight: "Perspicacité",
   intimidation: "Intimidation",
   investigation: "Investigation",
   medicine: "Médecine",
   nature: "Nature",
   perception: "Perception",
-  performance: "Représentation",
+  insight: "Perspicacité",
   persuasion: "Persuasion",
   religion: "Religion",
-  sleightOfHand: "Escamotage",
-  stealth: "Discrétion",
+  performance: "Représentation",
   survival: "Survie",
+  deception: "Tromperie",
 };
 
 export const skillAbilities: Record<string, string> = {

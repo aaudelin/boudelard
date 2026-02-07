@@ -14,25 +14,26 @@ interface SkillsListProps {
 }
 
 export function SkillsList({ skills }: SkillsListProps) {
+  // Sorted by French label (skillLabels) alphabetically
   const skillKeys = [
-    "acrobatics",
-    "animalHandling",
-    "arcana",
-    "athletics",
-    "deception",
-    "history",
-    "insight",
-    "intimidation",
-    "investigation",
-    "medicine",
-    "nature",
-    "perception",
-    "performance",
-    "persuasion",
-    "religion",
-    "sleightOfHand",
-    "stealth",
-    "survival",
+    "acrobatics",      // Acrobatie
+    "arcana",          // Arcanes
+    "athletics",       // Athlétisme
+    "stealth",         // Discrétion
+    "animalHandling",  // Dressage
+    "sleightOfHand",   // Escamotage
+    "history",         // Histoire
+    "intimidation",    // Intimidation
+    "investigation",   // Investigation
+    "medicine",        // Médecine
+    "nature",          // Nature
+    "perception",      // Perception
+    "insight",         // Perspicacité
+    "persuasion",      // Persuasion
+    "religion",        // Religion
+    "performance",     // Représentation
+    "survival",        // Survie
+    "deception",       // Tromperie
   ] as const;
 
   return (
