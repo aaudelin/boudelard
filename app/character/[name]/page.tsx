@@ -7,17 +7,19 @@ import {
 } from "@/lib/character-state";
 import { CharacterHeader } from "@/components/character/character-header";
 import { AbilityScores } from "@/components/character/ability-scores";
-import { CombatStats } from "@/components/character/combat-stats";
 import { SavingThrows } from "@/components/character/saving-throws";
 import { SkillsList } from "@/components/character/skills-list";
 import { Proficiencies } from "@/components/character/proficiencies";
 import { EquipmentList } from "@/components/character/equipment-list";
 import { AttacksSection } from "@/components/character/attacks-section";
 import { FeaturesTraits } from "@/components/character/features-traits";
-import { SpellcastingSection } from "@/components/character/spellcasting-section";
-import { MoneySection } from "@/components/character/money-section";
 import { RestActions } from "@/components/character/rest-actions";
 import { CharacterStateWrapper } from "@/components/character/character-state-wrapper";
+import {
+  StatefulCombatStats,
+  StatefulSpellcastingSection,
+  StatefulMoneySection,
+} from "@/components/character/character-stateful-sections";
 import {
   Accordion,
   AccordionContent,
@@ -86,103 +88,89 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
             initialSilver={character.equipment.currency.silver}
             initialSpellSlots={character.spellcasting?.spellSlots ?? []}
           >
-            {(state) => (
-              <>
-                <CombatStats
-                  armorClass={character.armorClass}
-                  passivePerception={character.passivePerception}
-                  initiative={character.initiative}
-                  speed={character.speed}
-                  hitPoints={state.hitPoints}
-                  proficiencyBonus={character.proficiencyBonus}
-                  onHitPointsChange={state.onHitPointsChange}
-                />
-                <AbilityScores abilities={character.abilities} />
+            <StatefulCombatStats
+              armorClass={character.armorClass}
+              passivePerception={character.passivePerception}
+              initiative={character.initiative}
+              speed={character.speed}
+              proficiencyBonus={character.proficiencyBonus}
+            />
+            <AbilityScores abilities={character.abilities} />
 
-                <Accordion
-                  type="multiple"
-                  defaultValue={["attacks", "spells", "saves-skills"]}
-                  className="space-y-4"
-                >
-                  <AccordionItem value="attacks" className="border-none">
-                    <div className="rounded-lg border bg-card">
-                      <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                        <span className="text-lg font-semibold">
-                          Attaques et Sorts
-                        </span>
-                      </AccordionTrigger>
-                      <AccordionContent className="px-6 pb-4">
-                        <div className="space-y-4">
-                          <AttacksSection attacks={character.attacks} />
-                          {character.spellcasting && (
-                            <SpellcastingSection
-                              spellcasting={character.spellcasting}
-                              spellSlots={state.spellSlots}
-                              onSpellSlotsChange={state.onSpellSlotsChange}
-                            />
-                          )}
-                        </div>
-                      </AccordionContent>
+            <Accordion
+              type="multiple"
+              defaultValue={["attacks", "spells", "saves-skills"]}
+              className="space-y-4"
+            >
+              <AccordionItem value="attacks" className="border-none">
+                <div className="rounded-lg border bg-card">
+                  <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                    <span className="text-lg font-semibold">
+                      Attaques et Sorts
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pb-4">
+                    <div className="space-y-4">
+                      <AttacksSection attacks={character.attacks} />
+                      <StatefulSpellcastingSection
+                        spellcasting={character.spellcasting}
+                      />
                     </div>
-                  </AccordionItem>
+                  </AccordionContent>
+                </div>
+              </AccordionItem>
 
-                  <AccordionItem value="saves-skills" className="border-none">
-                    <div className="rounded-lg border bg-card">
-                      <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                        <span className="text-lg font-semibold">
-                          Jets de sauvegarde et Compétences
-                        </span>
-                      </AccordionTrigger>
-                      <AccordionContent className="px-6 pb-4">
-                        <div className="space-y-4">
-                          <SavingThrows savingThrows={character.savingThrows} />
-                          <SkillsList skills={character.skills} />
-                        </div>
-                      </AccordionContent>
+              <AccordionItem value="saves-skills" className="border-none">
+                <div className="rounded-lg border bg-card">
+                  <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                    <span className="text-lg font-semibold">
+                      Jets de sauvegarde et Compétences
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pb-4">
+                    <div className="space-y-4">
+                      <SavingThrows savingThrows={character.savingThrows} />
+                      <SkillsList skills={character.skills} />
                     </div>
-                  </AccordionItem>
+                  </AccordionContent>
+                </div>
+              </AccordionItem>
 
-                  <AccordionItem value="features" className="border-none">
-                    <div className="rounded-lg border bg-card">
-                      <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                        <span className="text-lg font-semibold">Capacités</span>
-                      </AccordionTrigger>
-                      <AccordionContent className="px-6 pb-4">
-                        <FeaturesTraits features={character.featuresAndTraits} />
-                      </AccordionContent>
-                    </div>
-                  </AccordionItem>
+              <AccordionItem value="features" className="border-none">
+                <div className="rounded-lg border bg-card">
+                  <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                    <span className="text-lg font-semibold">Capacités</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pb-4">
+                    <FeaturesTraits features={character.featuresAndTraits} />
+                  </AccordionContent>
+                </div>
+              </AccordionItem>
 
-                  <AccordionItem value="equipment" className="border-none">
-                    <div className="rounded-lg border bg-card">
-                      <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                        <span className="text-lg font-semibold">Équipement</span>
-                      </AccordionTrigger>
-                      <AccordionContent className="px-6 pb-4">
-                        <div className="space-y-4">
-                          <EquipmentList equipment={character.equipment} />
-                          <Proficiencies proficiencies={character.proficiencies} />
-                        </div>
-                      </AccordionContent>
+              <AccordionItem value="equipment" className="border-none">
+                <div className="rounded-lg border bg-card">
+                  <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                    <span className="text-lg font-semibold">Équipement</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pb-4">
+                    <div className="space-y-4">
+                      <EquipmentList equipment={character.equipment} />
+                      <Proficiencies proficiencies={character.proficiencies} />
                     </div>
-                  </AccordionItem>
-                  <AccordionItem value="money" className="border-none">
-                    <div className="rounded-lg border bg-card">
-                      <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                        <span className="text-lg font-semibold">Bourse</span>
-                      </AccordionTrigger>
-                      <AccordionContent className="px-6 pb-4">
-                        <MoneySection
-                          gold={state.gold}
-                          silver={state.silver}
-                          onMoneyChange={state.onMoneyChange}
-                        />
-                      </AccordionContent>
-                    </div>
-                  </AccordionItem>
-                </Accordion>
-              </>
-            )}
+                  </AccordionContent>
+                </div>
+              </AccordionItem>
+              <AccordionItem value="money" className="border-none">
+                <div className="rounded-lg border bg-card">
+                  <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                    <span className="text-lg font-semibold">Bourse</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pb-4">
+                    <StatefulMoneySection />
+                  </AccordionContent>
+                </div>
+              </AccordionItem>
+            </Accordion>
           </CharacterStateWrapper>
         </div>
       </div>

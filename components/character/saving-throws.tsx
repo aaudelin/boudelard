@@ -24,7 +24,7 @@ export function SavingThrows({ savingThrows }: SavingThrowsProps) {
         <CardTitle className="text-lg">Jets de sauvegarde</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-1 gap-2">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {abilityKeys.map((key) => {
             const save = savingThrows[key];
             return (

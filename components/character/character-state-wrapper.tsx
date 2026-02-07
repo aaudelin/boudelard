@@ -1,9 +1,17 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback, ReactNode } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  ReactNode,
+  createContext,
+  useContext,
+} from "react";
 import { HitPoints, SpellSlot } from "@/types/character";
 
-interface CharacterEditableState {
+export interface CharacterEditableState {
   hitPoints: HitPoints;
   gold: number;
   silver: number;
@@ -13,13 +21,27 @@ interface CharacterEditableState {
   onSpellSlotsChange: (slots: SpellSlot[]) => void;
 }
 
+const CharacterStateContext = createContext<CharacterEditableState | null>(
+  null
+);
+
+export function useCharacterState() {
+  const context = useContext(CharacterStateContext);
+  if (!context) {
+    throw new Error(
+      "useCharacterState must be used within a CharacterStateWrapper"
+    );
+  }
+  return context;
+}
+
 interface CharacterStateWrapperProps {
   characterId: string;
   initialHitPoints: HitPoints;
   initialGold: number;
   initialSilver: number;
   initialSpellSlots: SpellSlot[];
-  children: (state: CharacterEditableState) => ReactNode;
+  children: ReactNode;
 }
 
 interface PendingChanges {
@@ -28,7 +50,7 @@ interface PendingChanges {
   spellSlots?: { level: number; expended: number }[];
 }
 
-const SAVE_INTERVAL_MS = 2000;
+const SAVE_INTERVAL_MS = 10000;
 
 export function CharacterStateWrapper({
   characterId,
@@ -133,5 +155,9 @@ export function CharacterStateWrapper({
     onSpellSlotsChange: handleSpellSlotsChange,
   };
 
-  return <>{children(state)}</>;
+  return (
+    <CharacterStateContext.Provider value={state}>
+      {children}
+    </CharacterStateContext.Provider>
+  );
 }
