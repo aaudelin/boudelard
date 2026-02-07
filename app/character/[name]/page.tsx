@@ -11,6 +11,7 @@ import { EquipmentList } from "@/components/character/equipment-list";
 import { AttacksSection } from "@/components/character/attacks-section";
 import { FeaturesTraits } from "@/components/character/features-traits";
 import { SpellcastingSection } from "@/components/character/spellcasting-section";
+import { MoneySection } from "@/components/character/money-section";
 import {
   Accordion,
   AccordionContent,
@@ -126,6 +127,12 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
               </div>
             </AccordionItem>
           </Accordion>
+
+          <MoneySection
+            characterId={character.id}
+            initialGold={character.equipment.currency.gold}
+            initialSilver={character.equipment.currency.silver}
+          />
         </div>
       </div>
     </div>

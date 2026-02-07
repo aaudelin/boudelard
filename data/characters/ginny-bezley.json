@@ -21,49 +21,156 @@
     "hitDiceRemaining": 2
   },
   "abilities": {
-    "strength": { "value": 16, "modifier": 3 },
-    "dexterity": { "value": 10, "modifier": 0 },
-    "constitution": { "value": 14, "modifier": 2 },
-    "intelligence": { "value": 10, "modifier": 0 },
-    "wisdom": { "value": 16, "modifier": 3 },
-    "charisma": { "value": 10, "modifier": 0 }
+    "strength": {
+      "value": 16,
+      "modifier": 3
+    },
+    "dexterity": {
+      "value": 10,
+      "modifier": 0
+    },
+    "constitution": {
+      "value": 14,
+      "modifier": 2
+    },
+    "intelligence": {
+      "value": 10,
+      "modifier": 0
+    },
+    "wisdom": {
+      "value": 16,
+      "modifier": 3
+    },
+    "charisma": {
+      "value": 10,
+      "modifier": 0
+    }
   },
   "savingThrows": {
-    "strength": { "proficient": false, "modifier": 3 },
-    "dexterity": { "proficient": false, "modifier": 0 },
-    "constitution": { "proficient": false, "modifier": 2 },
-    "intelligence": { "proficient": false, "modifier": 0 },
-    "wisdom": { "proficient": true, "modifier": 5 },
-    "charisma": { "proficient": true, "modifier": 2 }
+    "strength": {
+      "proficient": false,
+      "modifier": 3
+    },
+    "dexterity": {
+      "proficient": false,
+      "modifier": 0
+    },
+    "constitution": {
+      "proficient": false,
+      "modifier": 2
+    },
+    "intelligence": {
+      "proficient": false,
+      "modifier": 0
+    },
+    "wisdom": {
+      "proficient": true,
+      "modifier": 5
+    },
+    "charisma": {
+      "proficient": true,
+      "modifier": 2
+    }
   },
   "skills": {
-    "acrobatics": { "proficient": false, "modifier": 0 },
-    "animalHandling": { "proficient": false, "modifier": 3 },
-    "arcana": { "proficient": false, "modifier": 0 },
-    "athletics": { "proficient": false, "modifier": 3 },
-    "deception": { "proficient": false, "modifier": 0 },
-    "history": { "proficient": true, "modifier": 2 },
-    "insight": { "proficient": true, "modifier": 5 },
-    "intimidation": { "proficient": false, "modifier": 0 },
-    "investigation": { "proficient": false, "modifier": 0 },
-    "medicine": { "proficient": false, "modifier": 3 },
-    "nature": { "proficient": false, "modifier": 0 },
-    "perception": { "proficient": false, "modifier": 3 },
-    "performance": { "proficient": false, "modifier": 0 },
-    "persuasion": { "proficient": false, "modifier": 0 },
-    "religion": { "proficient": true, "modifier": 2 },
-    "sleightOfHand": { "proficient": false, "modifier": 0 },
-    "stealth": { "proficient": false, "modifier": 0 },
-    "survival": { "proficient": false, "modifier": 3 }
+    "acrobatics": {
+      "proficient": false,
+      "modifier": 0
+    },
+    "animalHandling": {
+      "proficient": false,
+      "modifier": 3
+    },
+    "arcana": {
+      "proficient": false,
+      "modifier": 0
+    },
+    "athletics": {
+      "proficient": false,
+      "modifier": 3
+    },
+    "deception": {
+      "proficient": false,
+      "modifier": 0
+    },
+    "history": {
+      "proficient": true,
+      "modifier": 2
+    },
+    "insight": {
+      "proficient": true,
+      "modifier": 5
+    },
+    "intimidation": {
+      "proficient": false,
+      "modifier": 0
+    },
+    "investigation": {
+      "proficient": false,
+      "modifier": 0
+    },
+    "medicine": {
+      "proficient": false,
+      "modifier": 3
+    },
+    "nature": {
+      "proficient": false,
+      "modifier": 0
+    },
+    "perception": {
+      "proficient": false,
+      "modifier": 3
+    },
+    "performance": {
+      "proficient": false,
+      "modifier": 0
+    },
+    "persuasion": {
+      "proficient": false,
+      "modifier": 0
+    },
+    "religion": {
+      "proficient": true,
+      "modifier": 2
+    },
+    "sleightOfHand": {
+      "proficient": false,
+      "modifier": 0
+    },
+    "stealth": {
+      "proficient": false,
+      "modifier": 0
+    },
+    "survival": {
+      "proficient": false,
+      "modifier": 3
+    }
   },
   "proficiencies": {
-    "armor": ["Armures légères", "Armures intermédiaires", "Armures lourdes", "Boucliers"],
-    "weapons": ["Armes courantes", "Armes de guerre"],
+    "armor": [
+      "Armures légères",
+      "Armures intermédiaires",
+      "Armures lourdes",
+      "Boucliers"
+    ],
+    "weapons": [
+      "Armes courantes",
+      "Armes de guerre"
+    ],
     "tools": [],
-    "languages": ["Commun", "Céleste", "Commun des profondeurs", "Infernal"]
+    "languages": [
+      "Commun",
+      "Céleste",
+      "Commun des profondeurs",
+      "Infernal"
+    ]
   },
   "equipment": {
-    "items": ["Masse d'armes", "Chemise de mailles", "Bouclier"],
+    "items": [
+      "Masse d'armes",
+      "Chemise de mailles",
+      "Bouclier"
+    ],
     "currency": {
       "copper": 0,
       "silver": 0,
@@ -107,7 +214,11 @@
     "spellSaveDC": 13,
     "spellAttackBonus": 5,
     "spellSlots": [
-      { "level": 1, "total": 3, "expended": 0 }
+      {
+        "level": 1,
+        "total": 3,
+        "expended": 0
+      }
     ],
     "cantripsKnown": [
       {
