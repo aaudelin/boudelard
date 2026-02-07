@@ -1,16 +1,60 @@
-import { Character } from "@/types/character";
+"use client";
+
+import { useState } from "react";
+import { HitPoints } from "@/types/character";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button";
 import { formatModifier } from "@/lib/dnd-helpers";
-import { Shield, Eye, Zap, Footprints } from "lucide-react";
+import { Shield, Eye, Zap, Footprints, Minus, Plus } from "lucide-react";
 
 interface CombatStatsProps {
-  character: Character;
+  characterId: string;
+  armorClass: number;
+  passivePerception: number;
+  initiative: number;
+  speed: number;
+  initialHitPoints: HitPoints;
+  proficiencyBonus: number;
 }
 
-export function CombatStats({ character }: CombatStatsProps) {
-  const hpPercentage =
-    (character.hitPoints.current / character.hitPoints.maximum) * 100;
+export function CombatStats({
+  characterId,
+  armorClass,
+  passivePerception,
+  initiative,
+  speed,
+  initialHitPoints,
+  proficiencyBonus,
+}: CombatStatsProps) {
+  const [hitPoints, setHitPoints] = useState(initialHitPoints);
+  const [isSaving, setIsSaving] = useState(false);
+
+  const hpPercentage = (hitPoints.current / hitPoints.maximum) * 100;
+
+  const updateHP = async (newCurrent: number) => {
+    const clampedHP = Math.max(0, Math.min(newCurrent, hitPoints.maximum));
+    setHitPoints((prev) => ({ ...prev, current: clampedHP }));
+
+    setIsSaving(true);
+    try {
+      await fetch(`/api/characters/${characterId}/stats`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ hitPoints: { current: clampedHP } }),
+      });
+    } catch (error) {
+      console.error("Failed to save HP:", error);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const getHPColor = () => {
+    if (hpPercentage <= 25) return "bg-red-500";
+    if (hpPercentage <= 50) return "bg-yellow-500";
+    return "bg-green-500";
+  };
 
   return (
     <Card>
@@ -19,40 +63,64 @@ export function CombatStats({ character }: CombatStatsProps) {
           <div className="flex flex-col items-center">
             <Shield className="text-muted-foreground mb-1 h-5 w-5" />
             <span className="text-muted-foreground text-xs">CA</span>
-            <span className="text-2xl font-bold">{character.armorClass}</span>
+            <span className="text-2xl font-bold">{armorClass}</span>
           </div>
           <div className="flex flex-col items-center">
             <Eye className="mb-1 h-5 w-5 text-purple-500" />
             <span className="text-muted-foreground text-xs">Percep.</span>
-            <span className="text-2xl font-bold">
-              {character.passivePerception}
-            </span>
+            <span className="text-2xl font-bold">{passivePerception}</span>
           </div>
           <div className="flex flex-col items-center">
             <Zap className="mb-1 h-5 w-5 text-yellow-500" />
             <span className="text-muted-foreground text-xs">Init</span>
             <span className="text-2xl font-bold">
-              {formatModifier(character.initiative)}
+              {formatModifier(initiative)}
             </span>
           </div>
           <div className="flex flex-col items-center">
             <Footprints className="text-muted-foreground mb-1 h-5 w-5" />
             <span className="text-muted-foreground text-xs">Vitesse</span>
-            <span className="text-2xl font-bold">{character.speed}m</span>
+            <span className="text-2xl font-bold">{speed}m</span>
           </div>
         </div>
 
         <div className="mt-4">
-          <div className="mb-1 flex justify-between text-sm">
-            <span>Points de vie</span>
-            <span>
-              {character.hitPoints.current} / {character.hitPoints.maximum}
-            </span>
+          <div className="mb-2 flex items-center justify-between">
+            <span className="text-sm font-medium">Points de vie</span>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="icon"
+                className="h-8 w-8"
+                onClick={() => updateHP(hitPoints.current - 1)}
+                disabled={hitPoints.current <= 0}
+              >
+                <Minus className="h-4 w-4" />
+              </Button>
+              <span className="min-w-[4rem] text-center font-mono text-sm font-semibold">
+                {hitPoints.current} / {hitPoints.maximum}
+              </span>
+              <Button
+                variant="outline"
+                size="icon"
+                className="h-8 w-8"
+                onClick={() => updateHP(hitPoints.current + 1)}
+                disabled={hitPoints.current >= hitPoints.maximum}
+              >
+                <Plus className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
-          <Progress value={hpPercentage} className="h-3" />
+          <Progress
+            value={hpPercentage}
+            className="h-3"
+            indicatorClassName={getHPColor()}
+          />
           <div className="text-muted-foreground mt-1 flex justify-between text-xs">
-            <span>Dés de vie: {character.hitPoints.hitDice}</span>
-            <span>Bonus de maîtrise: +{character.proficiencyBonus}</span>
+            <span>Dés de vie: {hitPoints.hitDice}</span>
+            <span>
+              {isSaving ? "Sauvegarde..." : `Bonus de maîtrise: +${proficiencyBonus}`}
+            </span>
           </div>
         </div>
       </CardContent>

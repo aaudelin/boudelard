@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { getCharacterBySlug, getAllCharacterSlugs } from "@/lib/characters";
 import { CharacterHeader } from "@/components/character/character-header";
 import { AbilityScores } from "@/components/character/ability-scores";
@@ -12,13 +11,13 @@ import { AttacksSection } from "@/components/character/attacks-section";
 import { FeaturesTraits } from "@/components/character/features-traits";
 import { SpellcastingSection } from "@/components/character/spellcasting-section";
 import { MoneySection } from "@/components/character/money-section";
+import { RestActions } from "@/components/character/rest-actions";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ArrowLeft } from "lucide-react";
 
 interface CharacterPageProps {
   params: Promise<{ name: string }>;
@@ -56,7 +55,21 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
       <div className="mx-auto max-w-lg px-4 py-6">
         <div className="space-y-4">
           <CharacterHeader character={character} />
-          <CombatStats character={character} />
+
+          <RestActions
+            characterId={character.id}
+            characterClass={character.class}
+          />
+
+          <CombatStats
+            characterId={character.id}
+            armorClass={character.armorClass}
+            passivePerception={character.passivePerception}
+            initiative={character.initiative}
+            speed={character.speed}
+            initialHitPoints={character.hitPoints}
+            proficiencyBonus={character.proficiencyBonus}
+          />
           <AbilityScores abilities={character.abilities} />
 
           <Accordion
@@ -76,6 +89,7 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
                     <AttacksSection attacks={character.attacks} />
                     {character.spellcasting && (
                       <SpellcastingSection
+                        characterId={character.id}
                         spellcasting={character.spellcasting}
                       />
                     )}
@@ -83,7 +97,6 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
                 </AccordionContent>
               </div>
             </AccordionItem>
-
 
             <AccordionItem value="saves-skills" className="border-none">
               <div className="rounded-lg border bg-card">
@@ -111,7 +124,6 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
                 </AccordionContent>
               </div>
             </AccordionItem>
-
 
             <AccordionItem value="equipment" className="border-none">
               <div className="rounded-lg border bg-card">

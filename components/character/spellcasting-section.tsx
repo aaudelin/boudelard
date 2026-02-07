@@ -1,4 +1,7 @@
-import { Spellcasting, Spell } from "@/types/character";
+"use client";
+
+import { useState } from "react";
+import { Spellcasting, Spell, SpellSlot } from "@/types/character";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Accordion,
@@ -7,16 +10,19 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
   formatModifier,
   abilityLabels,
   getSpellLevelLabel,
 } from "@/lib/dnd-helpers";
-import { Wand2, Target, Shield } from "lucide-react";
+import { Wand2, Target, Shield, Minus, Plus } from "lucide-react";
 
 interface SpellcastingSectionProps {
+  characterId: string;
   spellcasting: Spellcasting;
+  onSlotsChange?: (slots: SpellSlot[]) => void;
 }
 
 function SpellCard({ spell }: { spell: Spell }) {
@@ -53,7 +59,82 @@ function SpellCard({ spell }: { spell: Spell }) {
   );
 }
 
-export function SpellcastingSection({ spellcasting }: SpellcastingSectionProps) {
+interface SpellSlotEditorProps {
+  characterId: string;
+  slot: SpellSlot;
+  onUpdate: (level: number, expended: number) => void;
+}
+
+function SpellSlotEditor({ characterId, slot, onUpdate }: SpellSlotEditorProps) {
+  const remaining = slot.total - slot.expended;
+
+  const useSlot = async () => {
+    if (remaining > 0) {
+      const newExpended = slot.expended + 1;
+      onUpdate(slot.level, newExpended);
+
+      await fetch(`/api/characters/${characterId}/stats`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          spellSlots: [{ level: slot.level, expended: newExpended }],
+        }),
+      });
+    }
+  };
+
+  const recoverSlot = async () => {
+    if (slot.expended > 0) {
+      const newExpended = slot.expended - 1;
+      onUpdate(slot.level, newExpended);
+
+      await fetch(`/api/characters/${characterId}/stats`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          spellSlots: [{ level: slot.level, expended: newExpended }],
+        }),
+      });
+    }
+  };
+
+  return (
+    <div className="flex items-center gap-2 rounded-lg border p-2">
+      <span className="text-xs text-muted-foreground min-w-[3rem]">
+        Niv. {slot.level}
+      </span>
+      <Button
+        variant="ghost"
+        size="icon"
+        className="h-6 w-6"
+        onClick={useSlot}
+        disabled={remaining <= 0}
+      >
+        <Minus className="h-3 w-3" />
+      </Button>
+      <span className="font-mono text-sm font-semibold min-w-[2.5rem] text-center">
+        {remaining}/{slot.total}
+      </span>
+      <Button
+        variant="ghost"
+        size="icon"
+        className="h-6 w-6"
+        onClick={recoverSlot}
+        disabled={slot.expended <= 0}
+      >
+        <Plus className="h-3 w-3" />
+      </Button>
+    </div>
+  );
+}
+
+export function SpellcastingSection({
+  characterId,
+  spellcasting,
+  onSlotsChange,
+}: SpellcastingSectionProps) {
+  const [spellSlots, setSpellSlots] = useState(spellcasting.spellSlots);
+
   const abilityName =
     abilityLabels[spellcasting.spellcastingAbility] ||
     spellcasting.spellcastingAbility;
@@ -69,6 +150,14 @@ export function SpellcastingSection({ spellcasting }: SpellcastingSectionProps) 
     if (!groupedSpells[spell.level]) groupedSpells[spell.level] = [];
     groupedSpells[spell.level].push(spell);
   });
+
+  const handleSlotUpdate = (level: number, expended: number) => {
+    const newSlots = spellSlots.map((s) =>
+      s.level === level ? { ...s, expended } : s
+    );
+    setSpellSlots(newSlots);
+    onSlotsChange?.(newSlots);
+  };
 
   return (
     <Card>
@@ -102,16 +191,19 @@ export function SpellcastingSection({ spellcasting }: SpellcastingSectionProps) 
           </div>
         </div>
 
-        {spellcasting.spellSlots.length > 0 && (
+        {spellSlots.length > 0 && (
           <div>
             <h4 className="text-muted-foreground mb-2 text-sm font-medium">
               Emplacements de sorts
             </h4>
             <div className="flex flex-wrap gap-2">
-              {spellcasting.spellSlots.map((slot) => (
-                <Badge key={slot.level} variant="secondary">
-                  Niv. {slot.level}: {slot.total - slot.expended}/{slot.total}
-                </Badge>
+              {spellSlots.map((slot) => (
+                <SpellSlotEditor
+                  key={slot.level}
+                  characterId={characterId}
+                  slot={slot}
+                  onUpdate={handleSlotUpdate}
+                />
               ))}
             </div>
           </div>
