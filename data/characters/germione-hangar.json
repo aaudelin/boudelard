@@ -1,0 +1,246 @@
+{
+  "id": "germione-hangar",
+  "name": "Germione Hangar",
+  "level": 2,
+  "class": "wizard",
+  "subclass": "evocation",
+  "race": "Humain",
+  "background": "sage",
+  "alignment": "Neutre",
+  "experiencePoints": 0,
+  "proficiencyBonus": 2,
+  "inspiration": false,
+  "armorClass": 12,
+  "initiative": 2,
+  "speed": 9,
+  "hitPoints": {
+    "maximum": 16,
+    "current": 16,
+    "temporary": 0,
+    "hitDice": "2d6",
+    "hitDiceRemaining": 2
+  },
+  "abilities": {
+    "strength": { "value": 9, "modifier": -1 },
+    "dexterity": { "value": 14, "modifier": 2 },
+    "constitution": { "value": 16, "modifier": 3 },
+    "intelligence": { "value": 16, "modifier": 3 },
+    "wisdom": { "value": 13, "modifier": 1 },
+    "charisma": { "value": 9, "modifier": -1 }
+  },
+  "savingThrows": {
+    "strength": { "proficient": false, "modifier": -1 },
+    "dexterity": { "proficient": false, "modifier": 2 },
+    "constitution": { "proficient": false, "modifier": 3 },
+    "intelligence": { "proficient": true, "modifier": 5 },
+    "wisdom": { "proficient": true, "modifier": 3 },
+    "charisma": { "proficient": false, "modifier": -1 }
+  },
+  "skills": {
+    "acrobatics": { "proficient": false, "modifier": 2 },
+    "animalHandling": { "proficient": false, "modifier": 1 },
+    "arcana": { "proficient": true, "modifier": 5 },
+    "athletics": { "proficient": false, "modifier": -1 },
+    "deception": { "proficient": false, "modifier": -1 },
+    "history": { "proficient": true, "modifier": 5 },
+    "insight": { "proficient": false, "modifier": 1 },
+    "intimidation": { "proficient": false, "modifier": -1 },
+    "investigation": { "proficient": true, "modifier": 5 },
+    "medicine": { "proficient": true, "modifier": 3 },
+    "nature": { "proficient": false, "modifier": 3 },
+    "perception": { "proficient": false, "modifier": 1 },
+    "performance": { "proficient": false, "modifier": -1 },
+    "persuasion": { "proficient": false, "modifier": -1 },
+    "religion": { "proficient": false, "modifier": 3 },
+    "sleightOfHand": { "proficient": false, "modifier": 2 },
+    "stealth": { "proficient": false, "modifier": 2 },
+    "survival": { "proficient": false, "modifier": 1 }
+  },
+  "proficiencies": {
+    "armor": [],
+    "weapons": ["Dague", "Fléchette", "Fronde", "Bâton", "Arbalète légère"],
+    "tools": [],
+    "languages": ["Commun", "Abyssal", "Primordial", "Sylvestre"]
+  },
+  "equipment": {
+    "items": [
+      "Bâton",
+      "Sacoche à composantes",
+      "Grimoire",
+      "Sac à dos",
+      "Livre",
+      "Encre (2 bouteilles)",
+      "Plume d'écriture (2)",
+      "Parchemin (10)",
+      "Vêtements communs"
+    ],
+    "currency": {
+      "copper": 0,
+      "silver": 0,
+      "electrum": 0,
+      "gold": 0,
+      "platinum": 0
+    }
+  },
+  "attacks": [
+    {
+      "name": "Bâton",
+      "attackBonus": 1,
+      "damage": "1d6-1",
+      "damageType": "contondant",
+      "properties": ["Polyvalent (1d8)"]
+    }
+  ],
+  "featuresAndTraits": [
+    {
+      "name": "Restauration arcanique",
+      "source": "Magicien",
+      "description": "Une fois par jour pendant un repos court, vous récupérez des emplacements de sorts dont le total est égal ou inférieur à la moitié de votre niveau de magicien (maximum niveau 5)."
+    },
+    {
+      "name": "Évocateur érudit",
+      "source": "Magicien (Évocation)",
+      "description": "Le temps et l'or nécessaires pour copier un sort d'évocation dans votre grimoire sont divisés par deux."
+    },
+    {
+      "name": "Façonneur de sorts",
+      "source": "Magicien (Évocation)",
+      "description": "Quand vous lancez un sort d'évocation qui affecte d'autres créatures, vous pouvez choisir un nombre de créatures égal à 1 + niveau du sort. Ces créatures réussissent automatiquement leurs jets de sauvegarde et ne subissent aucun dégât."
+    },
+    {
+      "name": "Chercheur",
+      "source": "Sage",
+      "description": "Vous savez où chercher pour trouver n'importe quelle information."
+    }
+  ],
+  "spellcasting": {
+    "spellcastingAbility": "intelligence",
+    "spellSaveDC": 13,
+    "spellAttackBonus": 5,
+    "spellSlots": [
+      { "level": 1, "total": 3, "expended": 0 }
+    ],
+    "cantripsKnown": [
+      {
+        "name": "Illusion mineure",
+        "level": 0,
+        "school": "illusion",
+        "castingTime": "1 action",
+        "range": "9 mètres",
+        "components": "S, M",
+        "duration": "1 minute",
+        "description": "Vous créez un son ou une image d'un objet à portée pendant la durée du sort."
+      },
+      {
+        "name": "Rayon de givre",
+        "level": 0,
+        "school": "evocation",
+        "castingTime": "1 action",
+        "range": "18 mètres",
+        "components": "V, S",
+        "duration": "Instantanée",
+        "description": "Un rayon de lumière bleutée glaciale file vers une créature à portée. Effectuez une attaque de sort à distance. En cas de réussite, elle subit 1d8 dégâts de froid et sa vitesse est réduite de 3 mètres jusqu'au début de votre prochain tour."
+      },
+      {
+        "name": "Message",
+        "level": 0,
+        "school": "transmutation",
+        "castingTime": "1 action",
+        "range": "36 mètres",
+        "components": "V, S, M",
+        "duration": "1 round",
+        "description": "Vous chuchotez un message à une créature à portée. La cible (et uniquement la cible) entend le message et peut répondre par un chuchotement."
+      }
+    ],
+    "spellsKnown": [
+      {
+        "name": "Armure de mage",
+        "level": 1,
+        "school": "abjuration",
+        "castingTime": "1 action",
+        "range": "Contact",
+        "components": "V, S, M",
+        "duration": "8 heures",
+        "description": "Vous touchez une créature consentante qui ne porte pas d'armure. Une force magique protectrice l'entoure jusqu'à la fin du sort. La CA de base de la cible devient 13 + son modificateur de Dextérité."
+      },
+      {
+        "name": "Bouclier",
+        "level": 1,
+        "school": "abjuration",
+        "castingTime": "1 réaction",
+        "range": "Personnelle",
+        "components": "V, S",
+        "duration": "1 round",
+        "description": "Une barrière de force invisible vous protège. Jusqu'au début de votre prochain tour, vous gagnez +5 à la CA et ne subissez aucun dégât de projectile magique."
+      },
+      {
+        "name": "Déguisement",
+        "level": 1,
+        "school": "illusion",
+        "castingTime": "1 action",
+        "range": "Personnelle",
+        "components": "V, S",
+        "duration": "1 heure",
+        "description": "Vous changez votre apparence jusqu'à la fin du sort ou jusqu'à ce que vous utilisiez une action pour y mettre fin."
+      },
+      {
+        "name": "Projectile magique",
+        "level": 1,
+        "school": "evocation",
+        "castingTime": "1 action",
+        "range": "36 mètres",
+        "components": "V, S",
+        "duration": "Instantanée",
+        "description": "Vous créez trois fléchettes de force magique. Chaque fléchette touche automatiquement une créature de votre choix et inflige 1d4+1 dégâts de force."
+      },
+      {
+        "name": "Fou rire de Tasha",
+        "level": 1,
+        "school": "enchantment",
+        "castingTime": "1 action",
+        "range": "9 mètres",
+        "components": "V, S, M",
+        "duration": "Concentration, jusqu'à 1 minute",
+        "description": "Une créature de votre choix doit réussir un JS Sagesse ou tomber à terre, devenant incapable d'agir et de se relever pendant la durée du sort.",
+        "concentration": true
+      },
+      {
+        "name": "Mains brûlantes",
+        "level": 1,
+        "school": "evocation",
+        "castingTime": "1 action",
+        "range": "Personnelle (cône de 4,50 mètres)",
+        "components": "V, S",
+        "duration": "Instantanée",
+        "description": "Des flammes jaillissent de vos doigts tendus. Chaque créature dans un cône de 4,50 mètres doit effectuer un JS Dextérité. Une créature subit 3d6 dégâts de feu en cas d'échec, ou la moitié en cas de réussite."
+      },
+      {
+        "name": "Orbe chromatique",
+        "level": 1,
+        "school": "evocation",
+        "castingTime": "1 action",
+        "range": "27 mètres",
+        "components": "V, S, M",
+        "duration": "Instantanée",
+        "description": "Vous lancez une sphère d'énergie de 10 cm de diamètre vers une créature. Choisissez acide, froid, feu, foudre, poison ou tonnerre. Effectuez une attaque de sort à distance. En cas de réussite, la cible subit 3d8 dégâts du type choisi."
+      },
+      {
+        "name": "Nappe de brouillard",
+        "level": 1,
+        "school": "conjuration",
+        "castingTime": "1 action",
+        "range": "36 mètres",
+        "components": "V, S",
+        "duration": "Concentration, jusqu'à 1 heure",
+        "description": "Vous créez une sphère de brouillard de 6 mètres de rayon centrée sur un point à portée. La zone est à visibilité nulle.",
+        "concentration": true
+      }
+    ]
+  },
+  "personalityTraits": "",
+  "ideals": "",
+  "bonds": "",
+  "flaws": "",
+  "backstory": "Sage (Bibliothécaire)",
+  "image": "/germione-profile.jpeg"
+}

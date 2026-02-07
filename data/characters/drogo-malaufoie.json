@@ -1,0 +1,177 @@
+{
+  "id": "drogo-malaufoie",
+  "name": "Drogo Malaufoie",
+  "level": 2,
+  "class": "warlock",
+  "subclass": "hexblade",
+  "race": "Humain",
+  "background": "entertainer",
+  "alignment": "Neutre",
+  "experiencePoints": 0,
+  "proficiencyBonus": 2,
+  "inspiration": false,
+  "armorClass": 14,
+  "initiative": 3,
+  "speed": 9,
+  "hitPoints": {
+    "maximum": 17,
+    "current": 17,
+    "temporary": 0,
+    "hitDice": "2d8",
+    "hitDiceRemaining": 2
+  },
+  "abilities": {
+    "strength": { "value": 10, "modifier": 0 },
+    "dexterity": { "value": 16, "modifier": 3 },
+    "constitution": { "value": 14, "modifier": 2 },
+    "intelligence": { "value": 10, "modifier": 0 },
+    "wisdom": { "value": 11, "modifier": 0 },
+    "charisma": { "value": 16, "modifier": 3 }
+  },
+  "savingThrows": {
+    "strength": { "proficient": false, "modifier": 0 },
+    "dexterity": { "proficient": false, "modifier": 3 },
+    "constitution": { "proficient": false, "modifier": 2 },
+    "intelligence": { "proficient": false, "modifier": 0 },
+    "wisdom": { "proficient": true, "modifier": 2 },
+    "charisma": { "proficient": true, "modifier": 5 }
+  },
+  "skills": {
+    "acrobatics": { "proficient": true, "modifier": 5 },
+    "animalHandling": { "proficient": false, "modifier": 0 },
+    "arcana": { "proficient": false, "modifier": 0 },
+    "athletics": { "proficient": false, "modifier": 0 },
+    "deception": { "proficient": true, "modifier": 5 },
+    "history": { "proficient": false, "modifier": 0 },
+    "insight": { "proficient": false, "modifier": 0 },
+    "intimidation": { "proficient": true, "modifier": 5 },
+    "investigation": { "proficient": false, "modifier": 0 },
+    "medicine": { "proficient": false, "modifier": 0 },
+    "nature": { "proficient": false, "modifier": 0 },
+    "perception": { "proficient": false, "modifier": 0 },
+    "performance": { "proficient": true, "modifier": 5 },
+    "persuasion": { "proficient": false, "modifier": 3 },
+    "religion": { "proficient": false, "modifier": 0 },
+    "sleightOfHand": { "proficient": false, "modifier": 3 },
+    "stealth": { "proficient": false, "modifier": 3 },
+    "survival": { "proficient": false, "modifier": 0 }
+  },
+  "proficiencies": {
+    "armor": ["Armures légères", "Armures intermédiaires", "Boucliers"],
+    "weapons": ["Armes courantes", "Armes de guerre"],
+    "tools": ["Kit de déguisement", "Chalemie"],
+    "languages": ["Commun", "Draconique"]
+  },
+  "equipment": {
+    "items": ["Dague", "Armure de cuir"],
+    "currency": {
+      "copper": 0,
+      "silver": 0,
+      "electrum": 0,
+      "gold": 15,
+      "platinum": 0
+    }
+  },
+  "attacks": [
+    {
+      "name": "Dague",
+      "attackBonus": 5,
+      "damage": "1d4+3",
+      "damageType": "perforant",
+      "range": "Corps à corps ou 6m/18m",
+      "properties": ["Finesse", "Légère", "Lancer"]
+    }
+  ],
+  "featuresAndTraits": [
+    {
+      "name": "Malédiction de la lame maudite",
+      "source": "Occultiste (Lame maudite)",
+      "description": "Bonus aux dégâts égal au bonus de maîtrise. Critique sur 19 ou 20. Regain de PV égal au niveau + modificateur de Charisme quand la cible maudite meurt."
+    },
+    {
+      "name": "Magie de pacte",
+      "source": "Occultiste",
+      "description": "Récupère les emplacements de sorts après un repos court."
+    },
+    {
+      "name": "À la demande du public",
+      "source": "Artiste",
+      "description": "Représentation gratuite en échange de nourriture et d'un abri."
+    },
+    {
+      "name": "Décharge occulte",
+      "source": "Occultiste",
+      "description": "Tour de magie d'attaque. Dégâts de force + modificateur de Charisme. Peut repousser l'ennemi."
+    }
+  ],
+  "spellcasting": {
+    "spellcastingAbility": "charisma",
+    "spellSaveDC": 13,
+    "spellAttackBonus": 5,
+    "spellSlots": [
+      { "level": 1, "total": 2, "expended": 0 }
+    ],
+    "cantripsKnown": [
+      {
+        "name": "Décharge occulte",
+        "level": 0,
+        "school": "evocation",
+        "castingTime": "1 action",
+        "range": "36 mètres",
+        "components": "V, S",
+        "duration": "Instantanée",
+        "description": "Un rayon d'énergie crépitante file vers une créature à portée. Effectuez une attaque de sort à distance contre la cible. En cas de réussite, elle subit 1d10 dégâts de force."
+      },
+      {
+        "name": "Amis",
+        "level": 0,
+        "school": "enchantment",
+        "castingTime": "1 action",
+        "range": "Personnelle",
+        "components": "S, M",
+        "duration": "Concentration, jusqu'à 1 minute",
+        "description": "Vous avez l'avantage aux jets de Charisme contre une créature de votre choix qui n'est pas hostile envers vous.",
+        "concentration": true
+      }
+    ],
+    "spellsKnown": [
+      {
+        "name": "Maléfice",
+        "level": 1,
+        "school": "enchantment",
+        "castingTime": "1 action bonus",
+        "range": "27 mètres",
+        "components": "V, S, M",
+        "duration": "Concentration, jusqu'à 1 heure",
+        "description": "Vous maudissez une créature. Jusqu'à la fin du sort, vous infligez 1d6 dégâts nécrotiques supplémentaires à chaque attaque contre la cible.",
+        "concentration": true
+      },
+      {
+        "name": "Représailles infernales",
+        "level": 1,
+        "school": "evocation",
+        "castingTime": "1 réaction",
+        "range": "18 mètres",
+        "components": "V, S",
+        "duration": "Instantanée",
+        "description": "Quand vous subissez des dégâts d'une créature à portée, vous pouvez riposter avec des flammes infernales infligeant 2d10 dégâts de feu (JS Dextérité pour moitié)."
+      },
+      {
+        "name": "Tentacules de Hadar",
+        "level": 1,
+        "school": "conjuration",
+        "castingTime": "1 action",
+        "range": "Personnelle (rayon de 3 mètres)",
+        "components": "V, S",
+        "duration": "Instantanée",
+        "description": "Des tentacules sombres jaillissent de vous. Chaque créature dans un rayon de 3 mètres doit réussir un JS Force ou subir 2d6 dégâts nécrotiques et ne peut pas utiliser de réaction jusqu'à son prochain tour."
+      }
+    ]
+  },
+  "personalityTraits": "",
+  "ideals": "",
+  "bonds": "",
+  "flaws": "",
+  "backstory": "Artiste (Conteur)",
+  "image": "/drogo-profile.jpeg"
+}
