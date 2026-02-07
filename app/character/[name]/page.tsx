@@ -68,7 +68,7 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
 
           <Accordion
             type="multiple"
-            defaultValue={["attacks", "spells"]}
+            defaultValue={["attacks", "spells", "saves-skills"]}
             className="space-y-4"
           >
             <AccordionItem value="attacks" className="border-none">
@@ -91,16 +91,6 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
               </div>
             </AccordionItem>
 
-            <AccordionItem value="features" className="border-none">
-              <div className="rounded-lg border bg-card">
-                <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                  <span className="text-lg font-semibold">Capacités</span>
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-4">
-                  <FeaturesTraits features={character.featuresAndTraits} />
-                </AccordionContent>
-              </div>
-            </AccordionItem>
 
             <AccordionItem value="saves-skills" className="border-none">
               <div className="rounded-lg border bg-card">
@@ -117,6 +107,18 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
                 </AccordionContent>
               </div>
             </AccordionItem>
+
+            <AccordionItem value="features" className="border-none">
+              <div className="rounded-lg border bg-card">
+                <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                  <span className="text-lg font-semibold">Capacités</span>
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-4">
+                  <FeaturesTraits features={character.featuresAndTraits} />
+                </AccordionContent>
+              </div>
+            </AccordionItem>
+
 
             <AccordionItem value="equipment" className="border-none">
               <div className="rounded-lg border bg-card">
