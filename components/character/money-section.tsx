@@ -81,92 +81,84 @@ export function MoneySection({
   };
 
   return (
-    <Card>
-      <CardHeader className="pb-3">
-        <CardTitle className="flex items-center gap-2 text-lg">
-          <Coins className="h-5 w-5" />
-          Bourse
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="flex gap-4">
-          {/* Gold (PO) */}
-          <div className="flex-1">
-            <div className="mb-1 text-center text-xs font-medium text-muted-foreground">
-              PO (Or)
-            </div>
-            <div className="flex items-center gap-1">
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-10 w-10 shrink-0"
-                onClick={() => adjustGold(-1)}
-                disabled={gold <= 0}
-              >
-                <Minus className="h-4 w-4" />
-              </Button>
-              <Input
-                type="number"
-                min="0"
-                value={gold}
-                onChange={(e) => handleGoldChange(e.target.value)}
-                className={cn(
-                  "h-10 text-center font-semibold text-lg",
-                  "bg-yellow-50 border-yellow-200 dark:bg-yellow-950/20 dark:border-yellow-800"
-                )}
-              />
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-10 w-10 shrink-0"
-                onClick={() => adjustGold(1)}
-              >
-                <Plus className="h-4 w-4" />
-              </Button>
-            </div>
+    <div>
+      <div className="flex gap-4">
+        {/* Gold (PO) */}
+        <div className="flex-1">
+          <div className="mb-1 text-center text-xs font-medium text-muted-foreground">
+            PO (Or)
           </div>
-
-          {/* Silver (PA) */}
-          <div className="flex-1">
-            <div className="mb-1 text-center text-xs font-medium text-muted-foreground">
-              PA (Argent)
-            </div>
-            <div className="flex items-center gap-1">
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-10 w-10 shrink-0"
-                onClick={() => adjustSilver(-1)}
-                disabled={silver <= 0 && gold <= 0}
-              >
-                <Minus className="h-4 w-4" />
-              </Button>
-              <Input
-                type="number"
-                min="0"
-                value={silver}
-                onChange={(e) => handleSilverChange(e.target.value)}
-                className={cn(
-                  "h-10 text-center font-semibold text-lg",
-                  "bg-slate-50 border-slate-200 dark:bg-slate-950/20 dark:border-slate-700"
-                )}
-              />
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-10 w-10 shrink-0"
-                onClick={() => adjustSilver(1)}
-              >
-                <Plus className="h-4 w-4" />
-              </Button>
-            </div>
+          <div className="flex items-center gap-1">
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-10 w-10 shrink-0"
+              onClick={() => adjustGold(-1)}
+              disabled={gold <= 0}
+            >
+              <Minus className="h-4 w-4" />
+            </Button>
+            <Input
+              type="number"
+              min="0"
+              value={gold}
+              onChange={(e) => handleGoldChange(e.target.value)}
+              className={cn(
+                "h-10 text-center font-semibold text-lg",
+                "bg-yellow-50 border-yellow-200 dark:bg-yellow-950/20 dark:border-yellow-800"
+              )}
+            />
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-10 w-10 shrink-0"
+              onClick={() => adjustGold(1)}
+            >
+              <Plus className="h-4 w-4" />
+            </Button>
           </div>
         </div>
 
-        <div className="mt-3 text-center text-xs text-muted-foreground">
-          Total: {totalInSilver} PA {isSaving && "(sauvegarde...)"}
+        {/* Silver (PA) */}
+        <div className="flex-1">
+          <div className="mb-1 text-center text-xs font-medium text-muted-foreground">
+            PA (Argent)
+          </div>
+          <div className="flex items-center gap-1">
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-10 w-10 shrink-0"
+              onClick={() => adjustSilver(-1)}
+              disabled={silver <= 0 && gold <= 0}
+            >
+              <Minus className="h-4 w-4" />
+            </Button>
+            <Input
+              type="number"
+              min="0"
+              value={silver}
+              onChange={(e) => handleSilverChange(e.target.value)}
+              className={cn(
+                "h-10 text-center font-semibold text-lg",
+                "bg-slate-50 border-slate-200 dark:bg-slate-950/20 dark:border-slate-700"
+              )}
+            />
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-10 w-10 shrink-0"
+              onClick={() => adjustSilver(1)}
+            >
+              <Plus className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+
+      <div className="mt-3 text-center text-xs text-muted-foreground">
+        Total: {totalInSilver} PA {isSaving && "(sauvegarde...)"}
+      </div>
+    </div>
   );
 }

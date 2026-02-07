@@ -59,75 +59,6 @@ function SpellCard({ spell }: { spell: Spell }) {
   );
 }
 
-interface SpellSlotEditorProps {
-  characterId: string;
-  slot: SpellSlot;
-  onUpdate: (level: number, expended: number) => void;
-}
-
-function SpellSlotEditor({ characterId, slot, onUpdate }: SpellSlotEditorProps) {
-  const remaining = slot.total - slot.expended;
-
-  const useSlot = async () => {
-    if (remaining > 0) {
-      const newExpended = slot.expended + 1;
-      onUpdate(slot.level, newExpended);
-
-      await fetch(`/api/characters/${characterId}/stats`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          spellSlots: [{ level: slot.level, expended: newExpended }],
-        }),
-      });
-    }
-  };
-
-  const recoverSlot = async () => {
-    if (slot.expended > 0) {
-      const newExpended = slot.expended - 1;
-      onUpdate(slot.level, newExpended);
-
-      await fetch(`/api/characters/${characterId}/stats`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          spellSlots: [{ level: slot.level, expended: newExpended }],
-        }),
-      });
-    }
-  };
-
-  return (
-    <div className="flex items-center gap-2 rounded-lg border p-2">
-      <span className="text-xs text-muted-foreground min-w-[3rem]">
-        Niv. {slot.level}
-      </span>
-      <Button
-        variant="ghost"
-        size="icon"
-        className="h-6 w-6"
-        onClick={useSlot}
-        disabled={remaining <= 0}
-      >
-        <Minus className="h-3 w-3" />
-      </Button>
-      <span className="font-mono text-sm font-semibold min-w-[2.5rem] text-center">
-        {remaining}/{slot.total}
-      </span>
-      <Button
-        variant="ghost"
-        size="icon"
-        className="h-6 w-6"
-        onClick={recoverSlot}
-        disabled={slot.expended <= 0}
-      >
-        <Plus className="h-3 w-3" />
-      </Button>
-    </div>
-  );
-}
-
 export function SpellcastingSection({
   characterId,
   spellcasting,
@@ -191,42 +122,77 @@ export function SpellcastingSection({
           </div>
         </div>
 
-        {spellSlots.length > 0 && (
-          <div>
-            <h4 className="text-muted-foreground mb-2 text-sm font-medium">
-              Emplacements de sorts
-            </h4>
-            <div className="flex flex-wrap gap-2">
-              {spellSlots.map((slot) => (
-                <SpellSlotEditor
-                  key={slot.level}
-                  characterId={characterId}
-                  slot={slot}
-                  onUpdate={handleSlotUpdate}
-                />
-              ))}
-            </div>
-          </div>
-        )}
-
         <Separator />
 
         {Object.entries(groupedSpells)
           .sort(([a], [b]) => Number(a) - Number(b))
-          .map(([level, spells]) => (
-            <div key={level} className="space-y-2">
-              <div className="sticky top-0 z-10 -mx-4 px-4 py-2 bg-muted/80 backdrop-blur-sm border-l-4 border-primary">
-                <h4 className="font-semibold text-sm tracking-wide">
-                  {getSpellLevelLabel(Number(level))}
-                </h4>
+          .map(([level, spells]) => {
+            const levelNum = Number(level);
+            const slot = spellSlots.find((s) => s.level === levelNum);
+            const remaining = slot ? slot.total - slot.expended : 0;
+
+            return (
+              <div key={level} className="space-y-2">
+                <div className="sticky top-0 z-10 -mx-4 px-4 py-2 bg-muted/80 backdrop-blur-sm border-l-4 border-primary flex items-center justify-between">
+                  <h4 className="font-semibold text-sm tracking-wide">
+                    {getSpellLevelLabel(levelNum)}
+                  </h4>
+                  {slot && (
+                    <div className="flex items-center gap-1">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-6 w-6"
+                        onClick={() => {
+                          if (remaining > 0) {
+                            handleSlotUpdate(slot.level, slot.expended + 1);
+                            fetch(`/api/characters/${characterId}/stats`, {
+                              method: "PATCH",
+                              headers: { "Content-Type": "application/json" },
+                              body: JSON.stringify({
+                                spellSlots: [{ level: slot.level, expended: slot.expended + 1 }],
+                              }),
+                            });
+                          }
+                        }}
+                        disabled={remaining <= 0}
+                      >
+                        <Minus className="h-3 w-3" />
+                      </Button>
+                      <span className="font-mono text-sm font-semibold min-w-[2.5rem] text-center">
+                        {remaining}/{slot.total}
+                      </span>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-6 w-6"
+                        onClick={() => {
+                          if (slot.expended > 0) {
+                            handleSlotUpdate(slot.level, slot.expended - 1);
+                            fetch(`/api/characters/${characterId}/stats`, {
+                              method: "PATCH",
+                              headers: { "Content-Type": "application/json" },
+                              body: JSON.stringify({
+                                spellSlots: [{ level: slot.level, expended: slot.expended - 1 }],
+                              }),
+                            });
+                          }
+                        }}
+                        disabled={slot.expended <= 0}
+                      >
+                        <Plus className="h-3 w-3" />
+                      </Button>
+                    </div>
+                  )}
+                </div>
+                <Accordion type="multiple" className="w-full">
+                  {spells.map((spell) => (
+                    <SpellCard key={spell.name} spell={spell} />
+                  ))}
+                </Accordion>
               </div>
-              <Accordion type="multiple" className="w-full">
-                {spells.map((spell) => (
-                  <SpellCard key={spell.name} spell={spell} />
-                ))}
-              </Accordion>
-            </div>
-          ))}
+            );
+          })}
       </CardContent>
     </Card>
   );

@@ -138,13 +138,21 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
                 </AccordionContent>
               </div>
             </AccordionItem>
+            <AccordionItem value="money" className="border-none">
+              <div className="rounded-lg border bg-card">
+                <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                  <span className="text-lg font-semibold">Bourse</span>
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-4">
+                  <MoneySection
+                    characterId={character.id}
+                    initialGold={character.equipment.currency.gold}
+                    initialSilver={character.equipment.currency.silver}
+                  />
+                </AccordionContent>
+              </div>
+            </AccordionItem>
           </Accordion>
-
-          <MoneySection
-            characterId={character.id}
-            initialGold={character.equipment.currency.gold}
-            initialSilver={character.equipment.currency.silver}
-          />
         </div>
       </div>
     </div>

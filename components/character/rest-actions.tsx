@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
 
@@ -11,7 +10,6 @@ interface RestActionsProps {
 }
 
 export function RestActions({ characterId, characterClass }: RestActionsProps) {
-  const router = useRouter();
   const [isResting, setIsResting] = useState<"short" | "long" | null>(null);
 
   const handleRest = async (type: "short" | "long") => {
@@ -24,12 +22,11 @@ export function RestActions({ characterId, characterClass }: RestActionsProps) {
       });
 
       if (response.ok) {
-        // Refresh the page to get updated data
-        router.refresh();
+        // Hard refresh to get updated data
+        window.location.reload();
       }
     } catch (error) {
       console.error("Failed to rest:", error);
-    } finally {
       setIsResting(null);
     }
   };
