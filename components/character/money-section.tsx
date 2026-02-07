@@ -1,52 +1,24 @@
 "use client";
 
-import { useState, useEffect, useCallback, ChangeEvent } from "react";
+import { ChangeEvent } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Minus, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useDebouncedUpdate } from "@/hooks/use-debounced-update";
 
 interface MoneySectionProps {
-  characterId: string;
-  initialGold: number;
-  initialSilver: number;
+  gold: number;
+  silver: number;
+  onMoneyChange: (gold: number, silver: number) => void;
 }
 
 export function MoneySection({
-  characterId,
-  initialGold,
-  initialSilver,
+  gold,
+  silver,
+  onMoneyChange,
 }: MoneySectionProps) {
-  const [gold, setGold] = useState(initialGold);
-  const [silver, setSilver] = useState(initialSilver);
-
-  // Sync local state when props change (e.g., accordion reopen)
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- Intentional prop sync pattern
-    setGold(initialGold);
-    setSilver(initialSilver);
-  }, [initialGold, initialSilver]);
-
   // D&D conversion: 1 PO = 10 PA
   const totalInSilver = gold * 10 + silver;
-
-  const saveMoney = useCallback(
-    async (values: { gold: number; silver: number }) => {
-      try {
-        await fetch(`/api/characters/${characterId}/money`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(values),
-        });
-      } catch (error) {
-        console.error("Failed to save money:", error);
-      }
-    },
-    [characterId]
-  );
-
-  const debouncedSaveMoney = useDebouncedUpdate(saveMoney);
 
   const updateMoney = (newGold: number, newSilver: number) => {
     // Normalize: convert excess silver to gold
@@ -68,12 +40,7 @@ export function MoneySection({
     if (normalizedGold < 0) normalizedGold = 0;
     if (normalizedSilver < 0) normalizedSilver = 0;
 
-    // Optimistic UI update
-    setGold(normalizedGold);
-    setSilver(normalizedSilver);
-
-    // Debounced API call
-    debouncedSaveMoney({ gold: normalizedGold, silver: normalizedSilver });
+    onMoneyChange(normalizedGold, normalizedSilver);
   };
 
   const handleGoldChange = (value: string) => {

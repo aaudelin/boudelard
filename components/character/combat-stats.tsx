@@ -1,65 +1,36 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
 import { HitPoints } from "@/types/character";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { formatModifier } from "@/lib/dnd-helpers";
 import { Shield, Eye, Zap, Footprints, Minus, Plus } from "lucide-react";
-import { useDebouncedUpdate } from "@/hooks/use-debounced-update";
 
 interface CombatStatsProps {
-  characterId: string;
   armorClass: number;
   passivePerception: number;
   initiative: number;
   speed: number;
-  initialHitPoints: HitPoints;
+  hitPoints: HitPoints;
   proficiencyBonus: number;
+  onHitPointsChange: (hitPoints: HitPoints) => void;
 }
 
 export function CombatStats({
-  characterId,
   armorClass,
   passivePerception,
   initiative,
   speed,
-  initialHitPoints,
+  hitPoints,
   proficiencyBonus,
+  onHitPointsChange,
 }: CombatStatsProps) {
-  const [hitPoints, setHitPoints] = useState(initialHitPoints);
-
-  // Sync local state when props change (e.g., accordion reopen)
-  useEffect(() => {
-    setHitPoints(initialHitPoints);
-  }, [initialHitPoints]);
-
   const hpPercentage = (hitPoints.current / hitPoints.maximum) * 100;
-
-  const saveHP = useCallback(
-    async (current: number) => {
-      try {
-        await fetch(`/api/characters/${characterId}/stats`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ hitPoints: { current } }),
-        });
-      } catch (error) {
-        console.error("Failed to save HP:", error);
-      }
-    },
-    [characterId]
-  );
-
-  const debouncedSaveHP = useDebouncedUpdate(saveHP);
 
   const updateHP = (newCurrent: number) => {
     const clampedHP = Math.max(0, Math.min(newCurrent, hitPoints.maximum));
-    // Optimistic UI update
-    setHitPoints((prev) => ({ ...prev, current: clampedHP }));
-    // Debounced API call
-    debouncedSaveHP(clampedHP);
+    onHitPointsChange({ ...hitPoints, current: clampedHP });
   };
 
   const getHPColor = () => {

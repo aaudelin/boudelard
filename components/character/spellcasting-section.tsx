@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
 import { Spellcasting, Spell, SpellSlot } from "@/types/character";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -20,9 +19,9 @@ import {
 import { Wand2, Target, Shield, Minus, Plus } from "lucide-react";
 
 interface SpellcastingSectionProps {
-  characterId: string;
-  spellcasting: Spellcasting;
-  onSlotsChange?: (slots: SpellSlot[]) => void;
+  spellcasting: Omit<Spellcasting, "spellSlots">;
+  spellSlots: SpellSlot[];
+  onSpellSlotsChange: (slots: SpellSlot[]) => void;
 }
 
 function SpellCard({ spell }: { spell: Spell }) {
@@ -60,27 +59,10 @@ function SpellCard({ spell }: { spell: Spell }) {
 }
 
 export function SpellcastingSection({
-  characterId,
   spellcasting,
-  onSlotsChange,
+  spellSlots,
+  onSpellSlotsChange,
 }: SpellcastingSectionProps) {
-  const [spellSlots, setSpellSlots] = useState(spellcasting.spellSlots);
-  const debounceTimers = useRef<Map<number, NodeJS.Timeout>>(new Map());
-
-  // Sync local state when props change (e.g., accordion reopen)
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- Intentional prop sync pattern
-    setSpellSlots(spellcasting.spellSlots);
-  }, [spellcasting.spellSlots]);
-
-  // Cleanup timers on unmount
-  useEffect(() => {
-    const timers = debounceTimers.current;
-    return () => {
-      timers.forEach((timer) => clearTimeout(timer));
-    };
-  }, []);
-
   const abilityName =
     abilityLabels[spellcasting.spellcastingAbility] ||
     spellcasting.spellcastingAbility;
@@ -97,43 +79,11 @@ export function SpellcastingSection({
     groupedSpells[spell.level].push(spell);
   });
 
-  const saveSlotUpdate = useCallback(
-    async (level: number, expended: number) => {
-      try {
-        await fetch(`/api/characters/${characterId}/stats`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            spellSlots: [{ level, expended }],
-          }),
-        });
-      } catch (error) {
-        console.error("Failed to save spell slots:", error);
-      }
-    },
-    [characterId]
-  );
-
   const handleSlotUpdate = (level: number, expended: number) => {
-    // Optimistic UI update
     const newSlots = spellSlots.map((s) =>
       s.level === level ? { ...s, expended } : s
     );
-    setSpellSlots(newSlots);
-    onSlotsChange?.(newSlots);
-
-    // Per-level debouncing
-    const existingTimer = debounceTimers.current.get(level);
-    if (existingTimer) {
-      clearTimeout(existingTimer);
-    }
-
-    const timer = setTimeout(() => {
-      saveSlotUpdate(level, expended);
-      debounceTimers.current.delete(level);
-    }, 400);
-
-    debounceTimers.current.set(level, timer);
+    onSpellSlotsChange(newSlots);
   };
 
   return (

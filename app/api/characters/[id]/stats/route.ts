@@ -78,6 +78,14 @@ export async function PATCH(
       stateUpdates.spellSlots = newSlots;
     }
 
+    // Update money
+    if (updates.money !== undefined) {
+      stateUpdates.money = {
+        gold: Math.max(0, updates.money.gold ?? state.money.gold),
+        silver: Math.max(0, updates.money.silver ?? state.money.silver),
+      };
+    }
+
     const newState = await updateCharacterState(id, stateUpdates);
     if (!newState) {
       return NextResponse.json(
