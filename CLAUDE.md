@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-- `npm run dev` - Start development server (http://localhost:3000)
-- `npm run build` - Build for production
-- `npm run lint` - Run ESLint
+- `pnpm run dev` - Start development server (http://localhost:3000)
+- `pnpm run build` - Build for production
+- `pnpm run lint` - Run ESLint
 
 ## Architecture
 
