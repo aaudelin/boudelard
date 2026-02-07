@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState, useEffect, useCallback, ChangeEvent } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Coins, Minus, Plus } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useDebouncedUpdate } from "@/hooks/use-debounced-update";
 
 interface MoneySectionProps {
   characterId: string;
@@ -20,12 +20,35 @@ export function MoneySection({
 }: MoneySectionProps) {
   const [gold, setGold] = useState(initialGold);
   const [silver, setSilver] = useState(initialSilver);
-  const [isSaving, setIsSaving] = useState(false);
+
+  // Sync local state when props change (e.g., accordion reopen)
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Intentional prop sync pattern
+    setGold(initialGold);
+    setSilver(initialSilver);
+  }, [initialGold, initialSilver]);
 
   // D&D conversion: 1 PO = 10 PA
   const totalInSilver = gold * 10 + silver;
 
-  const updateMoney = async (newGold: number, newSilver: number) => {
+  const saveMoney = useCallback(
+    async (values: { gold: number; silver: number }) => {
+      try {
+        await fetch(`/api/characters/${characterId}/money`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(values),
+        });
+      } catch (error) {
+        console.error("Failed to save money:", error);
+      }
+    },
+    [characterId]
+  );
+
+  const debouncedSaveMoney = useDebouncedUpdate(saveMoney);
+
+  const updateMoney = (newGold: number, newSilver: number) => {
     // Normalize: convert excess silver to gold
     let normalizedGold = newGold;
     let normalizedSilver = newSilver;
@@ -45,21 +68,12 @@ export function MoneySection({
     if (normalizedGold < 0) normalizedGold = 0;
     if (normalizedSilver < 0) normalizedSilver = 0;
 
+    // Optimistic UI update
     setGold(normalizedGold);
     setSilver(normalizedSilver);
 
-    setIsSaving(true);
-    try {
-      await fetch(`/api/characters/${characterId}/money`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ gold: normalizedGold, silver: normalizedSilver }),
-      });
-    } catch (error) {
-      console.error("Failed to save money:", error);
-    } finally {
-      setIsSaving(false);
-    }
+    // Debounced API call
+    debouncedSaveMoney({ gold: normalizedGold, silver: normalizedSilver });
   };
 
   const handleGoldChange = (value: string) => {
@@ -102,7 +116,7 @@ export function MoneySection({
               type="number"
               min="0"
               value={gold}
-              onChange={(e) => handleGoldChange(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => handleGoldChange(e.target.value)}
               className={cn(
                 "h-10 text-center font-semibold text-lg",
                 "bg-yellow-50 border-yellow-200 dark:bg-yellow-950/20 dark:border-yellow-800"
@@ -138,7 +152,7 @@ export function MoneySection({
               type="number"
               min="0"
               value={silver}
-              onChange={(e) => handleSilverChange(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => handleSilverChange(e.target.value)}
               className={cn(
                 "h-10 text-center font-semibold text-lg",
                 "bg-slate-50 border-slate-200 dark:bg-slate-950/20 dark:border-slate-700"
@@ -157,7 +171,7 @@ export function MoneySection({
       </div>
 
       <div className="mt-3 text-center text-xs text-muted-foreground">
-        Total: {totalInSilver} PA {isSaving && "(sauvegarde...)"}
+        Total: {totalInSilver} PA
       </div>
     </div>
   );

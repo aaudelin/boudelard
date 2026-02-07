@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { HitPoints } from "@/types/character";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { formatModifier } from "@/lib/dnd-helpers";
 import { Shield, Eye, Zap, Footprints, Minus, Plus } from "lucide-react";
+import { useDebouncedUpdate } from "@/hooks/use-debounced-update";
 
 interface CombatStatsProps {
   characterId: string;
@@ -28,26 +29,37 @@ export function CombatStats({
   proficiencyBonus,
 }: CombatStatsProps) {
   const [hitPoints, setHitPoints] = useState(initialHitPoints);
-  const [isSaving, setIsSaving] = useState(false);
+
+  // Sync local state when props change (e.g., accordion reopen)
+  useEffect(() => {
+    setHitPoints(initialHitPoints);
+  }, [initialHitPoints]);
 
   const hpPercentage = (hitPoints.current / hitPoints.maximum) * 100;
 
-  const updateHP = async (newCurrent: number) => {
-    const clampedHP = Math.max(0, Math.min(newCurrent, hitPoints.maximum));
-    setHitPoints((prev) => ({ ...prev, current: clampedHP }));
+  const saveHP = useCallback(
+    async (current: number) => {
+      try {
+        await fetch(`/api/characters/${characterId}/stats`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ hitPoints: { current } }),
+        });
+      } catch (error) {
+        console.error("Failed to save HP:", error);
+      }
+    },
+    [characterId]
+  );
 
-    setIsSaving(true);
-    try {
-      await fetch(`/api/characters/${characterId}/stats`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ hitPoints: { current: clampedHP } }),
-      });
-    } catch (error) {
-      console.error("Failed to save HP:", error);
-    } finally {
-      setIsSaving(false);
-    }
+  const debouncedSaveHP = useDebouncedUpdate(saveHP);
+
+  const updateHP = (newCurrent: number) => {
+    const clampedHP = Math.max(0, Math.min(newCurrent, hitPoints.maximum));
+    // Optimistic UI update
+    setHitPoints((prev) => ({ ...prev, current: clampedHP }));
+    // Debounced API call
+    debouncedSaveHP(clampedHP);
   };
 
   const getHPColor = () => {
@@ -119,7 +131,7 @@ export function CombatStats({
           <div className="text-muted-foreground mt-1 flex justify-between text-xs">
             <span>Dés de vie: {hitPoints.hitDice}</span>
             <span>
-              {isSaving ? "Sauvegarde..." : `Bonus de maîtrise: +${proficiencyBonus}`}
+              {`Bonus de maîtrise: +${proficiencyBonus}`}
             </span>
           </div>
         </div>

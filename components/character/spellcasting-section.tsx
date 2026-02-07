@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Spellcasting, Spell, SpellSlot } from "@/types/character";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -65,6 +65,21 @@ export function SpellcastingSection({
   onSlotsChange,
 }: SpellcastingSectionProps) {
   const [spellSlots, setSpellSlots] = useState(spellcasting.spellSlots);
+  const debounceTimers = useRef<Map<number, NodeJS.Timeout>>(new Map());
+
+  // Sync local state when props change (e.g., accordion reopen)
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Intentional prop sync pattern
+    setSpellSlots(spellcasting.spellSlots);
+  }, [spellcasting.spellSlots]);
+
+  // Cleanup timers on unmount
+  useEffect(() => {
+    const timers = debounceTimers.current;
+    return () => {
+      timers.forEach((timer) => clearTimeout(timer));
+    };
+  }, []);
 
   const abilityName =
     abilityLabels[spellcasting.spellcastingAbility] ||
@@ -82,12 +97,43 @@ export function SpellcastingSection({
     groupedSpells[spell.level].push(spell);
   });
 
+  const saveSlotUpdate = useCallback(
+    async (level: number, expended: number) => {
+      try {
+        await fetch(`/api/characters/${characterId}/stats`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            spellSlots: [{ level, expended }],
+          }),
+        });
+      } catch (error) {
+        console.error("Failed to save spell slots:", error);
+      }
+    },
+    [characterId]
+  );
+
   const handleSlotUpdate = (level: number, expended: number) => {
+    // Optimistic UI update
     const newSlots = spellSlots.map((s) =>
       s.level === level ? { ...s, expended } : s
     );
     setSpellSlots(newSlots);
     onSlotsChange?.(newSlots);
+
+    // Per-level debouncing
+    const existingTimer = debounceTimers.current.get(level);
+    if (existingTimer) {
+      clearTimeout(existingTimer);
+    }
+
+    const timer = setTimeout(() => {
+      saveSlotUpdate(level, expended);
+      debounceTimers.current.delete(level);
+    }, 400);
+
+    debounceTimers.current.set(level, timer);
   };
 
   return (
@@ -146,20 +192,13 @@ export function SpellcastingSection({
                         onClick={() => {
                           if (remaining > 0) {
                             handleSlotUpdate(slot.level, slot.expended + 1);
-                            fetch(`/api/characters/${characterId}/stats`, {
-                              method: "PATCH",
-                              headers: { "Content-Type": "application/json" },
-                              body: JSON.stringify({
-                                spellSlots: [{ level: slot.level, expended: slot.expended + 1 }],
-                              }),
-                            });
                           }
                         }}
                         disabled={remaining <= 0}
                       >
                         <Minus className="h-3 w-3" />
                       </Button>
-                      <span className="font-mono text-sm font-semibold min-w-[2.5rem] text-center">
+                      <span className="font-mono text-sm font-semibold min-w-10 text-center">
                         {remaining}/{slot.total}
                       </span>
                       <Button
@@ -169,13 +208,6 @@ export function SpellcastingSection({
                         onClick={() => {
                           if (slot.expended > 0) {
                             handleSlotUpdate(slot.level, slot.expended - 1);
-                            fetch(`/api/characters/${characterId}/stats`, {
-                              method: "PATCH",
-                              headers: { "Content-Type": "application/json" },
-                              body: JSON.stringify({
-                                spellSlots: [{ level: slot.level, expended: slot.expended - 1 }],
-                              }),
-                            });
                           }
                         }}
                         disabled={slot.expended <= 0}
