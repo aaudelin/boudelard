@@ -40,28 +40,6 @@ export function EquipmentList({ equipment }: EquipmentListProps) {
             </ul>
           </div>
         </div>
-
-        <Separator />
-
-        <div className="flex items-start gap-2">
-          <Coins className="text-muted-foreground mt-0.5 h-4 w-4 shrink-0" />
-          <div className="flex-1">
-            <span className="text-muted-foreground mb-2 block text-sm font-medium">
-              Monnaie
-            </span>
-            {currencyItems.length > 0 ? (
-              <div className="flex flex-wrap gap-2">
-                {currencyItems.map((c) => (
-                  <Badge key={c.key} variant="outline">
-                    {c.value} {c.label}
-                  </Badge>
-                ))}
-              </div>
-            ) : (
-              <span className="text-muted-foreground text-sm">Aucune</span>
-            )}
-          </div>
-        </div>
       </CardContent>
     </Card>
   );

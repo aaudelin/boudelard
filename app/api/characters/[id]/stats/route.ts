@@ -1,5 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 import { Character } from "@/types/character";
 
@@ -55,6 +56,8 @@ export async function PATCH(
     }
 
     await fs.writeFile(filePath, JSON.stringify(character, null, 2), "utf-8");
+
+    revalidatePath(`/character/${id}`);
 
     return NextResponse.json({ success: true, character });
   } catch (error) {
