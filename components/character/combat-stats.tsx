@@ -2,7 +2,7 @@ import { Character } from "@/types/character";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { formatModifier } from "@/lib/dnd-helpers";
-import { Shield, Heart, Zap, Footprints } from "lucide-react";
+import { Shield, Eye, Zap, Footprints } from "lucide-react";
 
 interface CombatStatsProps {
   character: Character;
@@ -22,10 +22,10 @@ export function CombatStats({ character }: CombatStatsProps) {
             <span className="text-2xl font-bold">{character.armorClass}</span>
           </div>
           <div className="flex flex-col items-center">
-            <Heart className="mb-1 h-5 w-5 text-red-500" />
-            <span className="text-muted-foreground text-xs">PV</span>
+            <Eye className="mb-1 h-5 w-5 text-purple-500" />
+            <span className="text-muted-foreground text-xs">Percep.</span>
             <span className="text-2xl font-bold">
-              {character.hitPoints.current}
+              {character.passivePerception}
             </span>
           </div>
           <div className="flex flex-col items-center">

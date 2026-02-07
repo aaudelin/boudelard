@@ -13,6 +13,7 @@
   "armorClass": 16,
   "initiative": 0,
   "speed": 9,
+  "passivePerception": 13,
   "hitPoints": {
     "maximum": 17,
     "current": 17,

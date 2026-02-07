@@ -140,6 +140,7 @@ export interface Character {
   armorClass: number;
   initiative: number;
   speed: number;
+  passivePerception: number;
   hitPoints: HitPoints;
   abilities: Abilities;
   savingThrows: SavingThrows;
