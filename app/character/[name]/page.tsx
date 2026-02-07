@@ -1,5 +1,10 @@
 import { notFound } from "next/navigation";
 import { getCharacterBySlug, getAllCharacterSlugs } from "@/lib/characters";
+import {
+  getCharacterState,
+  initializeCharacterState,
+  mergeCharacterWithState,
+} from "@/lib/character-state";
 import { CharacterHeader } from "@/components/character/character-header";
 import { AbilityScores } from "@/components/character/ability-scores";
 import { CombatStats } from "@/components/character/combat-stats";
@@ -18,6 +23,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+
+// Force dynamic rendering to always fetch fresh state from Redis
+export const dynamic = "force-dynamic";
 
 interface CharacterPageProps {
   params: Promise<{ name: string }>;
@@ -44,11 +52,20 @@ export async function generateMetadata({ params }: CharacterPageProps) {
 
 export default async function CharacterPage({ params }: CharacterPageProps) {
   const { name } = await params;
-  const character = await getCharacterBySlug(name);
+  const staticCharacter = await getCharacterBySlug(name);
 
-  if (!character) {
+  if (!staticCharacter) {
     notFound();
   }
+
+  // Get dynamic state from Redis (or initialize from static data)
+  let state = await getCharacterState(staticCharacter.id);
+  if (!state) {
+    state = await initializeCharacterState(staticCharacter);
+  }
+
+  // Merge static character data with dynamic state
+  const character = mergeCharacterWithState(staticCharacter, state);
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black">

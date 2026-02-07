@@ -1,10 +1,10 @@
-import { promises as fs } from "fs";
-import path from "path";
-import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
-import { Character } from "@/types/character";
-
-const CHARACTERS_DIR = path.join(process.cwd(), "data", "characters");
+import { getCharacterBySlug } from "@/lib/characters";
+import {
+  getCharacterState,
+  updateCharacterState,
+  initializeCharacterState,
+} from "@/lib/character-state";
 
 export async function PATCH(
   request: NextRequest,
@@ -14,24 +14,43 @@ export async function PATCH(
     const { id } = await params;
     const updates = await request.json();
 
-    const filePath = path.join(CHARACTERS_DIR, `${id}.json`);
-    const content = await fs.readFile(filePath, "utf-8");
-    const character: Character = JSON.parse(content);
+    // Get static character data for validation (max HP, max hit dice, etc.)
+    const character = await getCharacterBySlug(id);
+    if (!character) {
+      return NextResponse.json(
+        { error: "Character not found" },
+        { status: 404 }
+      );
+    }
+
+    // Get or initialize current state from Redis
+    let state = await getCharacterState(id);
+    if (!state) {
+      state = await initializeCharacterState(character);
+    }
+
+    // Build updates object
+    const stateUpdates: Parameters<typeof updateCharacterState>[1] = {};
 
     // Update hit points
     if (updates.hitPoints !== undefined) {
+      stateUpdates.hitPoints = { ...state.hitPoints };
+
       if (typeof updates.hitPoints.current === "number") {
-        character.hitPoints.current = Math.max(
+        stateUpdates.hitPoints.current = Math.max(
           0,
           Math.min(updates.hitPoints.current, character.hitPoints.maximum)
         );
       }
       if (typeof updates.hitPoints.temporary === "number") {
-        character.hitPoints.temporary = Math.max(0, updates.hitPoints.temporary);
+        stateUpdates.hitPoints.temporary = Math.max(
+          0,
+          updates.hitPoints.temporary
+        );
       }
       if (typeof updates.hitPoints.hitDiceRemaining === "number") {
         const maxHitDice = character.level;
-        character.hitPoints.hitDiceRemaining = Math.max(
+        stateUpdates.hitPoints.hitDiceRemaining = Math.max(
           0,
           Math.min(updates.hitPoints.hitDiceRemaining, maxHitDice)
         );
@@ -40,26 +59,34 @@ export async function PATCH(
 
     // Update spell slots
     if (updates.spellSlots && character.spellcasting) {
-      updates.spellSlots.forEach(
-        (slotUpdate: { level: number; expended: number }) => {
-          const slot = character.spellcasting!.spellSlots.find(
-            (s) => s.level === slotUpdate.level
-          );
-          if (slot) {
-            slot.expended = Math.max(
-              0,
-              Math.min(slotUpdate.expended, slot.total)
-            );
-          }
+      const newSlots = state.spellSlots.map((slot) => {
+        const update = updates.spellSlots.find(
+          (u: { level: number; expended: number }) => u.level === slot.level
+        );
+        if (update) {
+          const maxSlots =
+            character.spellcasting!.spellSlots.find(
+              (s) => s.level === slot.level
+            )?.total || 0;
+          return {
+            ...slot,
+            expended: Math.max(0, Math.min(update.expended, maxSlots)),
+          };
         }
+        return slot;
+      });
+      stateUpdates.spellSlots = newSlots;
+    }
+
+    const newState = await updateCharacterState(id, stateUpdates);
+    if (!newState) {
+      return NextResponse.json(
+        { error: "Failed to update state" },
+        { status: 500 }
       );
     }
 
-    await fs.writeFile(filePath, JSON.stringify(character, null, 2), "utf-8");
-
-    revalidatePath(`/character/${id}`);
-
-    return NextResponse.json({ success: true, character });
+    return NextResponse.json({ success: true, state: newState });
   } catch (error) {
     console.error("Failed to update stats:", error);
     return NextResponse.json(

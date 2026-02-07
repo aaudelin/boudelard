@@ -1,10 +1,11 @@
-import { promises as fs } from "fs";
-import path from "path";
-import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
-import { Character } from "@/types/character";
-
-const CHARACTERS_DIR = path.join(process.cwd(), "data", "characters");
+import { getCharacterBySlug } from "@/lib/characters";
+import {
+  getCharacterState,
+  setCharacterState,
+  initializeCharacterState,
+  CharacterState,
+} from "@/lib/character-state";
 
 export async function POST(
   request: NextRequest,
@@ -21,9 +22,22 @@ export async function POST(
       );
     }
 
-    const filePath = path.join(CHARACTERS_DIR, `${id}.json`);
-    const content = await fs.readFile(filePath, "utf-8");
-    const character: Character = JSON.parse(content);
+    // Get static character data
+    const character = await getCharacterBySlug(id);
+    if (!character) {
+      return NextResponse.json(
+        { error: "Character not found" },
+        { status: 404 }
+      );
+    }
+
+    // Get or initialize current state from Redis
+    let state = await getCharacterState(id);
+    if (!state) {
+      state = await initializeCharacterState(character);
+    }
+
+    const newState: CharacterState = { ...state };
 
     if (type === "short") {
       // Short Rest (Repos Court):
@@ -31,39 +45,44 @@ export async function POST(
       // - Can spend hit dice (handled by user manually)
       // - Some class features recover
       if (character.spellcasting && character.class === "warlock") {
-        character.spellcasting.spellSlots.forEach((slot) => {
-          slot.expended = 0;
-        });
+        newState.spellSlots = state.spellSlots.map((slot) => ({
+          ...slot,
+          expended: 0,
+        }));
       }
     } else if (type === "long") {
       // Long Rest (Repos Long):
       // - Recover all HP
       // - Recover half of max hit dice (minimum 1)
       // - Recover all spell slots
-      character.hitPoints.current = character.hitPoints.maximum;
-      character.hitPoints.temporary = 0;
-
-      // Recover half hit dice (minimum 1)
-      const maxHitDice = character.level;
-      const hitDiceToRecover = Math.max(1, Math.floor(maxHitDice / 2));
-      character.hitPoints.hitDiceRemaining = Math.min(
-        maxHitDice,
-        character.hitPoints.hitDiceRemaining + hitDiceToRecover
-      );
+      newState.hitPoints = {
+        current: character.hitPoints.maximum,
+        temporary: 0,
+        hitDiceRemaining: Math.min(
+          character.level,
+          state.hitPoints.hitDiceRemaining +
+            Math.max(1, Math.floor(character.level / 2))
+        ),
+      };
 
       // Recover all spell slots
       if (character.spellcasting) {
-        character.spellcasting.spellSlots.forEach((slot) => {
-          slot.expended = 0;
-        });
+        newState.spellSlots = state.spellSlots.map((slot) => ({
+          ...slot,
+          expended: 0,
+        }));
       }
     }
 
-    await fs.writeFile(filePath, JSON.stringify(character, null, 2), "utf-8");
+    const success = await setCharacterState(id, newState);
+    if (!success) {
+      return NextResponse.json(
+        { error: "Failed to apply rest" },
+        { status: 500 }
+      );
+    }
 
-    revalidatePath(`/character/${id}`);
-
-    return NextResponse.json({ success: true, character });
+    return NextResponse.json({ success: true, state: newState });
   } catch (error) {
     console.error("Failed to apply rest:", error);
     return NextResponse.json(

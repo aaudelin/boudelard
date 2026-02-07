@@ -1,10 +1,10 @@
-import { promises as fs } from "fs";
-import path from "path";
-import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
-import { Character } from "@/types/character";
-
-const CHARACTERS_DIR = path.join(process.cwd(), "data", "characters");
+import { getCharacterBySlug } from "@/lib/characters";
+import {
+  getCharacterState,
+  updateCharacterState,
+  initializeCharacterState,
+} from "@/lib/character-state";
 
 export async function PATCH(
   request: NextRequest,
@@ -21,19 +21,37 @@ export async function PATCH(
       );
     }
 
-    const filePath = path.join(CHARACTERS_DIR, `${id}.json`);
+    // Get character to initialize state if needed
+    const character = await getCharacterBySlug(id);
+    if (!character) {
+      return NextResponse.json(
+        { error: "Character not found" },
+        { status: 404 }
+      );
+    }
 
-    const content = await fs.readFile(filePath, "utf-8");
-    const character: Character = JSON.parse(content);
+    // Get or initialize current state from Redis
+    let state = await getCharacterState(id);
+    if (!state) {
+      state = await initializeCharacterState(character);
+    }
 
-    character.equipment.currency.gold = gold;
-    character.equipment.currency.silver = silver;
+    const newState = await updateCharacterState(id, {
+      money: { gold, silver },
+    });
 
-    await fs.writeFile(filePath, JSON.stringify(character, null, 2), "utf-8");
+    if (!newState) {
+      return NextResponse.json(
+        { error: "Failed to update money" },
+        { status: 500 }
+      );
+    }
 
-    revalidatePath(`/character/${id}`);
-
-    return NextResponse.json({ success: true, gold, silver });
+    return NextResponse.json({
+      success: true,
+      gold: newState.money.gold,
+      silver: newState.money.silver,
+    });
   } catch (error) {
     console.error("Failed to update money:", error);
     return NextResponse.json(
