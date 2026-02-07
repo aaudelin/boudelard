@@ -24,11 +24,11 @@ export function SkillsList({ skills }: SkillsListProps) {
     "sleightOfHand",   // Escamotage
     "history",         // Histoire
     "intimidation",    // Intimidation
+    "insight",         // Intuition
     "investigation",   // Investigation
     "medicine",        // Médecine
     "nature",          // Nature
     "perception",      // Perception
-    "insight",         // Perspicacité
     "persuasion",      // Persuasion
     "religion",        // Religion
     "performance",     // Représentation
