@@ -1,7 +1,7 @@
 {
   "id": "ginny-bezley",
   "name": "Ginny Bezley",
-  "level": 2,
+  "level": 3,
   "class": "cleric",
   "subclass": "war",
   "race": "Humain",
@@ -15,11 +15,11 @@
   "speed": 9,
   "passivePerception": 13,
   "hitPoints": {
-    "maximum": 17,
-    "current": 17,
+    "maximum": 24,
+    "current": 24,
     "temporary": 0,
-    "hitDice": "2d8",
-    "hitDiceRemaining": 2
+    "hitDice": "3d8",
+    "hitDiceRemaining": 3
   },
   "abilities": {
     "strength": {
@@ -217,7 +217,12 @@
     "spellSlots": [
       {
         "level": 1,
-        "total": 3,
+        "total": 4,
+        "expended": 0
+      },
+      {
+        "level": 2,
+        "total": 2,
         "expended": 0
       }
     ],
@@ -348,6 +353,27 @@
         "components": "V, S",
         "duration": "Concentration, jusqu'à 1 minute",
         "description": "Sort de domaine (toujours préparé)"
+      },
+      {
+        "name": "Arme magique",
+        "level": 2,
+        "school": "transmutation",
+        "castingTime": "1 action bonus",
+        "range": "Contact",
+        "components": "V, S",
+        "duration": "Concentration, jusqu'à 1 heure",
+        "description": "Sort de domaine (toujours préparé). Une arme non magique devient une arme +1 aux jets d'attaque et de dégâts.",
+        "concentration": true
+      },
+      {
+        "name": "Arme spirituelle",
+        "level": 2,
+        "school": "evocation",
+        "castingTime": "1 action bonus",
+        "range": "18 mètres",
+        "components": "V, S",
+        "duration": "1 minute",
+        "description": "Sort de domaine (toujours préparé). Vous créez une arme spectrale flottante à portée. Vous pouvez effectuer une attaque de sort au corps à corps contre une créature à 1,5 mètre de l'arme, infligeant 1d8 + modificateur de Sagesse dégâts de force."
       }
     ]
   },

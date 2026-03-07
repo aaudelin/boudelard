@@ -1,7 +1,7 @@
 {
   "id": "germione-hangar",
   "name": "Germione Hangar",
-  "level": 2,
+  "level": 3,
   "class": "wizard",
   "subclass": "evocation",
   "race": "Humain",
@@ -15,11 +15,11 @@
   "speed": 9,
   "passivePerception": 11,
   "hitPoints": {
-    "maximum": 16,
-    "current": 16,
+    "maximum": 23,
+    "current": 23,
     "temporary": 0,
-    "hitDice": "2d6",
-    "hitDiceRemaining": 2
+    "hitDice": "3d6",
+    "hitDiceRemaining": 3
   },
   "abilities": {
     "strength": { "value": 9, "modifier": -1 },
@@ -119,7 +119,8 @@
     "spellSaveDC": 13,
     "spellAttackBonus": 5,
     "spellSlots": [
-      { "level": 1, "total": 3, "expended": 0 }
+      { "level": 1, "total": 4, "expended": 0 },
+      { "level": 2, "total": 2, "expended": 0 }
     ],
     "cantripsKnown": [
       {
@@ -235,6 +236,26 @@
         "duration": "Concentration, jusqu'à 1 heure",
         "description": "Vous créez une sphère de brouillard de 6 mètres de rayon centrée sur un point à portée. La zone est à visibilité nulle.",
         "concentration": true
+      },
+      {
+        "name": "Rayon ardent",
+        "level": 2,
+        "school": "evocation",
+        "castingTime": "1 action",
+        "range": "36 mètres",
+        "components": "V, S",
+        "duration": "Instantanée",
+        "description": "Vous créez trois rayons de feu et les projetez vers des cibles à portée. Effectuez une attaque de sort à distance pour chaque rayon. En cas de réussite, la cible subit 2d6 dégâts de feu."
+      },
+      {
+        "name": "Fracassement",
+        "level": 2,
+        "school": "evocation",
+        "castingTime": "1 action",
+        "range": "18 mètres",
+        "components": "V, S, M",
+        "duration": "Instantanée",
+        "description": "Un bruit soudain et douloureux retentit depuis un point de votre choix. Chaque créature dans une sphère de 3 mètres de rayon doit effectuer un JS Constitution. Elle subit 3d8 dégâts de tonnerre en cas d'échec, ou la moitié en cas de réussite."
       }
     ]
   },

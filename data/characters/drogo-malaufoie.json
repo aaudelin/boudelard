@@ -1,7 +1,7 @@
 {
   "id": "drogo-malaufoie",
   "name": "Drogo Malaufoie",
-  "level": 2,
+  "level": 3,
   "class": "warlock",
   "subclass": "hexblade",
   "race": "Humain",
@@ -15,11 +15,11 @@
   "speed": 9,
   "passivePerception": 10,
   "hitPoints": {
-    "maximum": 17,
-    "current": 17,
+    "maximum": 24,
+    "current": 24,
     "temporary": 0,
-    "hitDice": "2d8",
-    "hitDiceRemaining": 2
+    "hitDice": "3d8",
+    "hitDiceRemaining": 3
   },
   "abilities": {
     "strength": { "value": 10, "modifier": 0 },
@@ -103,6 +103,11 @@
       "name": "Décharge occulte",
       "source": "Occultiste",
       "description": "Tour de magie d'attaque. Dégâts de force + modificateur de Charisme. Peut repousser l'ennemi."
+    },
+    {
+      "name": "Pacte de la lame",
+      "source": "Occultiste",
+      "description": "Vous pouvez utiliser votre action pour créer une arme de pacte dans votre main vide. Cette arme compte comme magique. Vous pouvez utiliser le Charisme au lieu de la Force ou Dextérité pour les jets d'attaque et de dégâts."
     }
   ],
   "spellcasting": {
@@ -110,7 +115,7 @@
     "spellSaveDC": 13,
     "spellAttackBonus": 5,
     "spellSlots": [
-      { "level": 1, "total": 2, "expended": 0 }
+      { "level": 2, "total": 2, "expended": 0 }
     ],
     "cantripsKnown": [
       {
@@ -166,6 +171,17 @@
         "components": "V, S",
         "duration": "Instantanée",
         "description": "Des tentacules sombres jaillissent de vous. Chaque créature dans un rayon de 3 mètres doit réussir un JS Force ou subir 2d6 dégâts nécrotiques et ne peut pas utiliser de réaction jusqu'à son prochain tour."
+      },
+      {
+        "name": "Ténèbres",
+        "level": 2,
+        "school": "evocation",
+        "castingTime": "1 action",
+        "range": "18 mètres",
+        "components": "V, M",
+        "duration": "Concentration, jusqu'à 10 minutes",
+        "description": "Des ténèbres magiques s'étendent d'un point de votre choix dans un rayon de 4,5 mètres. Aucune vision, même la vision dans le noir, ne peut percer ces ténèbres.",
+        "concentration": true
       }
     ]
   },
