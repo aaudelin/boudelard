@@ -11,6 +11,7 @@ export const npcs: Npc[] = [
     ac: 15,
     powerLevel: "1/2",
     speed: "9m",
+    initiativeBonus: 2,
     attacks: [
       {
         name: "Lame de récup",
@@ -45,6 +46,7 @@ export const npcs: Npc[] = [
     // Ses soins illimités (1d8+3/tour) annulent les dégâts d'un seul aventurier
     powerLevel: "1/2",
     speed: "6m",
+    initiativeBonus: 0,
     attacks: [
       {
         name: "Bâton",
@@ -84,6 +86,7 @@ export const npcs: Npc[] = [
     hp: 15,
     ac: 13,
     powerLevel: "1/3",
+    initiativeBonus: 1,
     attacks: [
       {
         name: "Tuyau métallique",

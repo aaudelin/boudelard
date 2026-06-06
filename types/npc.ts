@@ -18,6 +18,8 @@ export interface Npc {
   // Difficulté pour les 3 aventuriers de le vaincre si le PNJ devient inamical
   powerLevel: PowerLevel;
   speed?: string;
+  /** Bonus ajouté au d20 lors du jet d'initiative (0 si absent) */
+  initiativeBonus?: number;
   attacks: EnemyAttack[];
   abilities: EnemyAbility[];
   spells?: NpcSpell[];

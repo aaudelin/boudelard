@@ -79,6 +79,8 @@ export function CharacterEncounterCard({
           </div>
           <Link
             href={`/character/${character.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
           >
             Fiche

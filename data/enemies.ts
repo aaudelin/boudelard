@@ -9,6 +9,7 @@ export const enemies: Enemy[] = [
     // Seul, on ne le détruit pas en 2 rounds : l'Alerte déclenche les renforts
     powerLevel: "1/2",
     speed: "Vol 12m",
+    initiativeBonus: 2,
     attacks: [
       {
         name: "Rayon",
@@ -32,6 +33,7 @@ export const enemies: Enemy[] = [
     hp: 12,
     ac: 14,
     powerLevel: "1/4",
+    initiativeBonus: 1,
     attacks: [
       {
         name: "Attaque",
@@ -54,6 +56,7 @@ export const enemies: Enemy[] = [
     hp: 25,
     ac: 15,
     powerLevel: "1/2",
+    initiativeBonus: 0,
     attacks: [
       {
         name: "Coup",
@@ -75,6 +78,7 @@ export const enemies: Enemy[] = [
     hp: 8,
     ac: 13,
     powerLevel: "1/4",
+    initiativeBonus: 3,
     attacks: [
       {
         name: "Morsure",
@@ -102,6 +106,7 @@ export const enemies: Enemy[] = [
     ac: 15,
     powerLevel: "2",
     speed: "Vol 9m (stationnaire)",
+    initiativeBonus: 2,
     attacks: [
       {
         name: "Rayon laser",
@@ -143,6 +148,7 @@ export const enemies: Enemy[] = [
     ac: 10,
     powerLevel: "1",
     speed: "Immobile",
+    initiativeBonus: -2,
     attacks: [
       {
         name: "Décharge d'urgence",

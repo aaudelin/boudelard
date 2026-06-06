@@ -26,6 +26,8 @@ export interface Enemy {
   ac: number;
   powerLevel: PowerLevel;
   speed?: string;
+  /** Bonus ajouté au d20 lors du jet d'initiative (0 si absent) */
+  initiativeBonus?: number;
   attacks: EnemyAttack[];
   abilities: EnemyAbility[];
   immunities?: string[];

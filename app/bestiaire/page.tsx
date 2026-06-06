@@ -30,11 +30,12 @@ import {
   ChevronDown,
   ChevronUp,
   Gauge,
-  Users,
   Sparkles,
   Dices,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { formatModifier } from "@/lib/dnd-helpers";
+import { Character } from "@/types/character";
 
 const PASSWORD = "liamlebg";
 const SAVE_INTERVAL_MS = 10000;
@@ -488,6 +489,9 @@ function EncounterParticipantCard({
               );
             }}
           />
+          <span className="text-xs text-muted-foreground">
+            (mod. {formatModifier(participant.initiativeBonus ?? 0)})
+          </span>
         </div>
 
         <div className="flex flex-wrap gap-2">
@@ -702,12 +706,13 @@ function BestiairePage() {
     if (loadedRef.current) dirtyRef.current = true;
   };
 
-  // Simule un jet de 1d20 pour chaque PNJ et ennemi de la rencontre
+  // Simule un jet de 1d20 + bonus pour chaque PNJ et ennemi de la rencontre
   const rollInitiative = () => {
     applyEncounter(
       encounterRef.current.map((e) => ({
         ...e,
-        initiative: 1 + Math.floor(Math.random() * 20),
+        initiative:
+          1 + Math.floor(Math.random() * 20) + (e.initiativeBonus ?? 0),
       })),
       true
     );
@@ -724,15 +729,24 @@ function BestiairePage() {
     applyEncounter([], true);
   };
 
-  const npcsInEncounter = encounter
-    .filter((p) => p.kind === "npc")
-    .sort(byInitiativeDesc);
-  const enemiesInEncounter = encounter
-    .filter((p) => p.kind === "enemy")
-    .sort(byInitiativeDesc);
-  const sortedCharacters = characters
-    .map((c) => ({ character: c, initiative: characterInitiatives[c.id] }))
-    .sort(byInitiativeDesc);
+  // Ordre global de la rencontre : personnages, PNJ et ennemis mélangés,
+  // triés par initiative décroissante (le code couleur distingue les types)
+  type EncounterRow =
+    | { type: "character"; character: Character; initiative?: number }
+    | { type: "participant"; participant: EncounterParticipant; initiative?: number };
+
+  const encounterRows: EncounterRow[] = [
+    ...characters.map((c) => ({
+      type: "character" as const,
+      character: c,
+      initiative: characterInitiatives[c.id],
+    })),
+    ...encounter.map((p) => ({
+      type: "participant" as const,
+      participant: p,
+      initiative: p.initiative,
+    })),
+  ].sort(byInitiativeDesc);
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black">
@@ -776,22 +790,46 @@ function BestiairePage() {
               </Card>
             ) : (
               <>
-                <div className="space-y-4">
-                  <h2 className="text-sm font-semibold uppercase tracking-wide text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
-                    <Users className="h-4 w-4" />
-                    Personnages ({characters.length})
-                  </h2>
-                  {sortedCharacters.map(({ character, initiative }) => (
+                {encounter.length > 0 && (
+                  <div className="flex justify-between">
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      onClick={rollInitiative}
+                    >
+                      <Dices className="h-4 w-4" />
+                      Lancer les initiatives
+                    </Button>
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      onClick={clearEncounter}
+                    >
+                      Vider la rencontre
+                    </Button>
+                  </div>
+                )}
+
+                {encounterRows.map((row) =>
+                  row.type === "character" ? (
                     <CharacterEncounterCard
-                      key={character.id}
-                      character={character}
-                      initiative={initiative}
+                      key={row.character.id}
+                      character={row.character}
+                      initiative={row.initiative}
                       onInitiativeChange={setCharacterInitiative}
                     />
-                  ))}
-                </div>
+                  ) : (
+                    <EncounterParticipantCard
+                      key={row.participant.instanceId}
+                      participant={row.participant}
+                      onHpChange={updateHp}
+                      onInitiativeChange={updateInitiative}
+                      onRemove={removeFromEncounter}
+                    />
+                  )
+                )}
 
-                {encounter.length === 0 ? (
+                {encounter.length === 0 && (
                   <Card className="py-8">
                     <CardContent className="text-center text-muted-foreground">
                       <Swords className="mx-auto h-12 w-12 mb-2 opacity-50" />
@@ -801,62 +839,6 @@ function BestiairePage() {
                       </p>
                     </CardContent>
                   </Card>
-                ) : (
-                  <>
-                    <div className="flex justify-between">
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={rollInitiative}
-                      >
-                        <Dices className="h-4 w-4" />
-                        Lancer les initiatives
-                      </Button>
-                      <Button
-                        variant="destructive"
-                        size="sm"
-                        onClick={clearEncounter}
-                      >
-                        Vider la rencontre
-                      </Button>
-                    </div>
-
-                    {npcsInEncounter.length > 0 && (
-                      <div className="space-y-4">
-                        <h2 className="text-sm font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-400 flex items-center gap-2">
-                          <Users className="h-4 w-4" />
-                          PNJ ({npcsInEncounter.length})
-                        </h2>
-                        {npcsInEncounter.map((participant) => (
-                          <EncounterParticipantCard
-                            key={participant.instanceId}
-                            participant={participant}
-                            onHpChange={updateHp}
-                            onInitiativeChange={updateInitiative}
-                            onRemove={removeFromEncounter}
-                          />
-                        ))}
-                      </div>
-                    )}
-
-                    {enemiesInEncounter.length > 0 && (
-                      <div className="space-y-4">
-                        <h2 className="text-sm font-semibold uppercase tracking-wide text-red-600 dark:text-red-400 flex items-center gap-2">
-                          <Swords className="h-4 w-4" />
-                          Ennemis ({enemiesInEncounter.length})
-                        </h2>
-                        {enemiesInEncounter.map((participant) => (
-                          <EncounterParticipantCard
-                            key={participant.instanceId}
-                            participant={participant}
-                            onHpChange={updateHp}
-                            onInitiativeChange={updateInitiative}
-                            onRemove={removeFromEncounter}
-                          />
-                        ))}
-                      </div>
-                    )}
-                  </>
                 )}
               </>
             )}
