@@ -404,14 +404,20 @@ Axe Musk projette un hologramme humanoïde pour se battre.
 >
 > *« ...Merci... Enfin... libre... »*
 
-**🎭 Moment crucial - L'âme de Ginny :**
-> *Ginny, tu ressens quelque chose d'étrange. Une chaleur qui entre en toi. Pas désagréable. Réconfortante, même.*
+**🎭 Moment crucial - Le bras de Ginny :**
+> *Ginny, l'onde de choc te frappe de plein fouet. Un éclat de cristal géant te transperce l'épaule droite. La douleur est fulgurante... puis plus rien. Quand la fumée se dissipe, tu baisses les yeux : ton bras droit n'est plus là. Arraché net par l'explosion.*
 >
-> *Pendant une fraction de seconde, tu vois une femme en armure - la même que Germione a vue - qui te sourit avant de se dissiper.*
+> *Mais au sol, parmi les débris fumants, une chose s'agite. Un bras mécanique d'Axe Musk - articulations de métal poli, circuits luisant d'une douce lumière bleue - rampe vers toi comme attiré par ton sang.*
 >
-> *Tu te sens... plus complète. Comme si une partie de toi qui manquait venait de revenir.*
+> *Avant que tu puisses réagir, le bras se dresse et se greffe à ton épaule. Pas de douleur. Juste une chaleur réconfortante qui remonte dans tout ton corps.*
 >
-> *(Mécaniquement : Ginny gagne un bonus secret. Tu peux lui donner +1 à une caractéristique de ton choix, ou un avantage sur les JS contre la peur, etc.)*
+> *Pendant une fraction de seconde, tu vois une femme en armure - la même que Germione a vue - qui te sourit avant de se dissiper... à l'intérieur du métal.*
+>
+> *L'âme de l'ancienne aventurière, libérée du serveur, a trouvé refuge dans ce bras. Comme l'amulette de Germione, ce bras est désormais le sien... et le tien.*
+>
+> *(Mécaniquement : Ginny perd son bras humain, remplacé par le **Bras Mécanique de Mécania**. Voir Récompenses.)*
+
+> **⚠️ Note MJ :** C'est le pendant de l'amulette de Germione. Tout comme l'âme du fantôme du cimetière s'est liée à l'amulette que porte Germione, l'âme de l'aventurière enfermée dans Axe Musk se lie au bras mécanique de Ginny. Deux âmes, deux objets, deux porteuses. Vecna avance ses pions.
 
 > *Dernière voix d'Axe Musk, de plus en plus faible :*
 >
@@ -432,11 +438,17 @@ Axe Musk projette un hologramme humanoïde pour se battre.
 
 **Effet :** À chaque repos long, gagnez **1d6+2 PV temporaires** (durent jusqu'au prochain repos long).
 
-**Bonus secret pour Ginny :**
-L'âme de l'ancienne aventurière est maintenant en elle. Possibilités :
-- +1 Sagesse permanent
-- Avantage sur JS contre Effrayé
-- 1×/jour : relancer un jet de sauvegarde raté
+### Bras Mécanique de Mécania (Ginny uniquement)
+> *Un bras-prothèse forgé par Axe Musk, greffé à l'épaule de Ginny après l'explosion. Le métal est froid au toucher, mais les circuits pulsent d'une lumière bleue chaleureuse. Parfois, quand Ginny dort, le bras bouge tout seul... comme s'il rêvait.*
+
+Le bras remplace définitivement le bras humain droit de Ginny. Il abrite l'âme de l'ancienne aventurière (pendant de l'amulette de Germione).
+
+**Compétence du bras - "Seringue Réparatrice" :**
+> Le bras renferme un module de soin d'Axe Musk. **1×/repos court**, Ginny peut toucher une créature (y compris elle-même) pour lui injecter un sérum réparateur : la cible récupère **1d8 + 2 PV**.
+
+**Note d'équilibrage (niveau 3-4) :** Une seule compétence active, cadencée sur le repos court, cohérente avec le rôle de soigneuse de Ginny et calibrée comme le Heaume de Vitalité. Le bras est aussi un membre mécanique : insensible à la douleur, impossible à désarmer de cette main, et avantage narratif sur les interactions avec la technologie d'Axe Musk (Goths, drones, mécanismes de l'usine).
+
+**Le fil rouge (caché aux joueurs) :** L'âme liée à ce bras est celle d'une aventurière piégée par Vecna il y a 47 ans. Comme pour Germione et son amulette, Ginny porte désormais une âme sans le savoir. Vecna a maintenant deux porteuses sur trois.
 
 ### Autres loots
 - **XP :** 400 par joueur (niveau 3 → niveau 4 ?)
