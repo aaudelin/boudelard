@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
+import { useCharacterState } from "./character-state-wrapper";
 
 interface RestActionsProps {
   characterId: string;
@@ -11,10 +12,15 @@ interface RestActionsProps {
 
 export function RestActions({ characterId, characterClass }: RestActionsProps) {
   const [isResting, setIsResting] = useState<"short" | "long" | null>(null);
+  const { flushPendingChanges } = useCharacterState();
 
   const handleRest = async (type: "short" | "long") => {
     setIsResting(type);
     try {
+      // Save unsaved edits (HP, feature uses, spell slots, money) first so
+      // the rest applies on top of them instead of a stale Redis state
+      await flushPendingChanges();
+
       const response = await fetch(`/api/characters/${characterId}/rest`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

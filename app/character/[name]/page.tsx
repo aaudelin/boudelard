@@ -73,11 +73,6 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
         <div className="space-y-4">
           <CharacterHeader character={character} />
 
-          <RestActions
-            characterId={character.id}
-            characterClass={character.class}
-          />
-
           <CharacterStateWrapper
             characterId={character.id}
             initialHitPoints={character.hitPoints}
@@ -86,6 +81,11 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
             initialSpellSlots={character.spellcasting?.spellSlots ?? []}
             initialFeatureUses={state.featureUses}
           >
+            <RestActions
+              characterId={character.id}
+              characterClass={character.class}
+            />
+
             <StatefulCombatStats
               armorClass={character.armorClass}
               passivePerception={character.passivePerception}

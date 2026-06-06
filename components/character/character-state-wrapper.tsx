@@ -21,6 +21,7 @@ export interface CharacterEditableState {
   onMoneyChange: (gold: number, silver: number) => void;
   onSpellSlotsChange: (slots: SpellSlot[]) => void;
   onFeatureUsesChange: (uses: FeatureUseState[]) => void;
+  flushPendingChanges: () => Promise<void>;
 }
 
 const CharacterStateContext = createContext<CharacterEditableState | null>(
@@ -85,28 +86,30 @@ export function CharacterStateWrapper({
     pendingChangesRef.current = pendingChanges;
   }, [pendingChanges]);
 
+  // Send pending changes to the server (used by the periodic save, the
+  // unmount flush, and before applying a rest)
+  const flushPendingChanges = useCallback(async () => {
+    const changes = pendingChangesRef.current;
+    if (Object.keys(changes).length === 0) return;
+
+    // Clear pending changes immediately
+    setPendingChanges({});
+    pendingChangesRef.current = {};
+
+    try {
+      await fetch(`/api/characters/${characterIdRef.current}/stats`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(changes),
+      });
+    } catch (error) {
+      console.error("Failed to save character state:", error);
+    }
+  }, []);
+
   // Set up interval for periodic saves
   useEffect(() => {
-    const saveChanges = async () => {
-      const changes = pendingChangesRef.current;
-      if (Object.keys(changes).length === 0) return;
-
-      // Clear pending changes immediately
-      setPendingChanges({});
-      pendingChangesRef.current = {};
-
-      try {
-        await fetch(`/api/characters/${characterIdRef.current}/stats`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(changes),
-        });
-      } catch (error) {
-        console.error("Failed to save character state:", error);
-      }
-    };
-
-    const intervalId = setInterval(saveChanges, SAVE_INTERVAL_MS);
+    const intervalId = setInterval(flushPendingChanges, SAVE_INTERVAL_MS);
 
     return () => {
       clearInterval(intervalId);
@@ -122,7 +125,7 @@ export function CharacterStateWrapper({
         });
       }
     };
-  }, []);
+  }, [flushPendingChanges]);
 
   const handleHitPointsChange = useCallback((newHitPoints: HitPoints) => {
     setHitPoints(newHitPoints);
@@ -173,6 +176,7 @@ export function CharacterStateWrapper({
     onMoneyChange: handleMoneyChange,
     onSpellSlotsChange: handleSpellSlotsChange,
     onFeatureUsesChange: handleFeatureUsesChange,
+    flushPendingChanges,
   };
 
   return (
