@@ -332,7 +332,12 @@ function NpcCard({
           </Button>
         </div>
 
+        <p className="text-sm text-muted-foreground">
+          {npc.race} — {npc.class} niveau {npc.level}
+        </p>
+
         <div className="flex flex-wrap gap-2">
+          <PowerLevelBadge level={npc.powerLevel} />
           <Badge variant="outline" className="gap-1">
             <Heart className="h-3 w-3" />
             {npc.hp} PV
@@ -346,6 +351,7 @@ function NpcCard({
 
         {expanded && (
           <CombatDetails
+            powerLevel={npc.powerLevel}
             attacks={npc.attacks}
             abilities={npc.abilities}
             spells={npc.spells}
@@ -464,9 +470,7 @@ function EncounterParticipantCard({
         </div>
 
         <div className="flex flex-wrap gap-2">
-          {participant.kind === "enemy" && (
-            <PowerLevelBadge level={participant.powerLevel} />
-          )}
+          <PowerLevelBadge level={participant.powerLevel} />
           <Badge variant="outline" className="gap-1">
             <Shield className="h-3 w-3" />
             CA {participant.ac}
@@ -478,9 +482,7 @@ function EncounterParticipantCard({
 
         {expanded && (
           <CombatDetails
-            powerLevel={
-              participant.kind === "enemy" ? participant.powerLevel : undefined
-            }
+            powerLevel={participant.powerLevel}
             attacks={participant.attacks}
             abilities={participant.abilities}
             spells={participant.kind === "npc" ? participant.spells : undefined}

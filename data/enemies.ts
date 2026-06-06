@@ -6,7 +6,8 @@ export const enemies: Enemy[] = [
     name: "Drone de surveillance",
     hp: 15,
     ac: 14,
-    powerLevel: "1/3",
+    // Seul, on ne le détruit pas en 2 rounds : l'Alerte déclenche les renforts
+    powerLevel: "1/2",
     speed: "Vol 12m",
     attacks: [
       {

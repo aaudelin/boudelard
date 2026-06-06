@@ -4,8 +4,12 @@ export const npcs: Npc[] = [
   {
     id: "belle",
     name: "Belle",
+    race: "Goth",
+    class: "Guerrière",
+    level: 4,
     hp: 30,
     ac: 15,
+    powerLevel: "1/2",
     speed: "9m",
     attacks: [
       {
@@ -33,8 +37,13 @@ export const npcs: Npc[] = [
   {
     id: "formeus",
     name: "Formeus le sage",
+    race: "Goth",
+    class: "Mage",
+    level: 3,
     hp: 18,
     ac: 12,
+    // Ses soins illimités (1d8+3/tour) annulent les dégâts d'un seul aventurier
+    powerLevel: "1/2",
     speed: "6m",
     attacks: [
       {
@@ -69,8 +78,12 @@ export const npcs: Npc[] = [
   {
     id: "goth-rebelle",
     name: "Goth rebelle",
+    race: "Goth",
+    class: "Combattant",
+    level: 1,
     hp: 15,
     ac: 13,
+    powerLevel: "1/3",
     attacks: [
       {
         name: "Tuyau métallique",
