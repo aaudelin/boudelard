@@ -4,6 +4,7 @@ import {
   initializeCharacterState,
   mergeCharacterWithState,
 } from "@/lib/character-state";
+import { getCharacterNotes } from "@/lib/character-notes";
 import { CharacterHeader } from "@/components/character/character-header";
 import { AbilityScores } from "@/components/character/ability-scores";
 import { SavingThrows } from "@/components/character/saving-throws";
@@ -67,6 +68,9 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
   // Merge static character data with dynamic state
   const character = mergeCharacterWithState(staticCharacter, state);
 
+  // Free-form notes stored in their own Redis key
+  const notes = await getCharacterNotes(character.id);
+
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black">
       <div className="mx-auto max-w-lg px-4 py-6">
@@ -84,6 +88,7 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
             <RestActions
               characterId={character.id}
               characterClass={character.class}
+              initialNotes={notes}
             />
 
             <StatefulCombatStats

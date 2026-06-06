@@ -4,13 +4,19 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
 import { useCharacterState } from "./character-state-wrapper";
+import { NotesDialog } from "./notes-dialog";
 
 interface RestActionsProps {
   characterId: string;
   characterClass: string;
+  initialNotes: string;
 }
 
-export function RestActions({ characterId, characterClass }: RestActionsProps) {
+export function RestActions({
+  characterId,
+  characterClass,
+  initialNotes,
+}: RestActionsProps) {
   const [isResting, setIsResting] = useState<"short" | "long" | null>(null);
   const { flushPendingChanges } = useCharacterState();
 
@@ -68,6 +74,7 @@ export function RestActions({ characterId, characterClass }: RestActionsProps) {
         <Moon className="mr-2 h-4 w-4" />
         {isResting === "long" ? "..." : "RL"}
       </Button>
+      <NotesDialog characterId={characterId} initialNotes={initialNotes} />
     </div>
   );
 }
