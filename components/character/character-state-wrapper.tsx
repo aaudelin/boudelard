@@ -9,16 +9,18 @@ import {
   createContext,
   useContext,
 } from "react";
-import { HitPoints, SpellSlot } from "@/types/character";
+import { HitPoints, SpellSlot, FeatureUseState } from "@/types/character";
 
 export interface CharacterEditableState {
   hitPoints: HitPoints;
   gold: number;
   silver: number;
   spellSlots: SpellSlot[];
+  featureUses: FeatureUseState[];
   onHitPointsChange: (hitPoints: HitPoints) => void;
   onMoneyChange: (gold: number, silver: number) => void;
   onSpellSlotsChange: (slots: SpellSlot[]) => void;
+  onFeatureUsesChange: (uses: FeatureUseState[]) => void;
 }
 
 const CharacterStateContext = createContext<CharacterEditableState | null>(
@@ -41,6 +43,7 @@ interface CharacterStateWrapperProps {
   initialGold: number;
   initialSilver: number;
   initialSpellSlots: SpellSlot[];
+  initialFeatureUses: FeatureUseState[];
   children: ReactNode;
 }
 
@@ -48,6 +51,7 @@ interface PendingChanges {
   hitPoints?: { current: number };
   money?: { gold: number; silver: number };
   spellSlots?: { level: number; expended: number }[];
+  featureUses?: FeatureUseState[];
 }
 
 const SAVE_INTERVAL_MS = 10000;
@@ -58,12 +62,15 @@ export function CharacterStateWrapper({
   initialGold,
   initialSilver,
   initialSpellSlots,
+  initialFeatureUses,
   children,
 }: CharacterStateWrapperProps) {
   const [hitPoints, setHitPoints] = useState<HitPoints>(initialHitPoints);
   const [gold, setGold] = useState(initialGold);
   const [silver, setSilver] = useState(initialSilver);
   const [spellSlots, setSpellSlots] = useState<SpellSlot[]>(initialSpellSlots);
+  const [featureUses, setFeatureUses] =
+    useState<FeatureUseState[]>(initialFeatureUses);
   const [pendingChanges, setPendingChanges] = useState<PendingChanges>({});
 
   const characterIdRef = useRef(characterId);
@@ -145,14 +152,27 @@ export function CharacterStateWrapper({
     }));
   }, []);
 
+  const handleFeatureUsesChange = useCallback((newUses: FeatureUseState[]) => {
+    setFeatureUses(newUses);
+    setPendingChanges((prev) => ({
+      ...prev,
+      featureUses: newUses.map((use) => ({
+        key: use.key,
+        expended: use.expended,
+      })),
+    }));
+  }, []);
+
   const state: CharacterEditableState = {
     hitPoints,
     gold,
     silver,
     spellSlots,
+    featureUses,
     onHitPointsChange: handleHitPointsChange,
     onMoneyChange: handleMoneyChange,
     onSpellSlotsChange: handleSpellSlotsChange,
+    onFeatureUsesChange: handleFeatureUsesChange,
   };
 
   return (

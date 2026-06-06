@@ -4,7 +4,8 @@ import { useCharacterState } from "./character-state-wrapper";
 import { CombatStats } from "./combat-stats";
 import { SpellcastingSection } from "./spellcasting-section";
 import { MoneySection } from "./money-section";
-import { Character } from "@/types/character";
+import { FeaturesTraits } from "./features-traits";
+import { Character, Feature } from "@/types/character";
 
 interface CombatStatsSectionProps {
   armorClass: number;
@@ -52,6 +53,24 @@ export function StatefulSpellcastingSection({
       spellcasting={spellcasting}
       spellSlots={spellSlots}
       onSpellSlotsChange={onSpellSlotsChange}
+    />
+  );
+}
+
+interface StatefulFeaturesTraitsProps {
+  features: Feature[];
+}
+
+export function StatefulFeaturesTraits({
+  features,
+}: StatefulFeaturesTraitsProps) {
+  const { featureUses, onFeatureUsesChange } = useCharacterState();
+
+  return (
+    <FeaturesTraits
+      features={features}
+      featureUses={featureUses}
+      onFeatureUsesChange={onFeatureUsesChange}
     />
   );
 }

@@ -33,8 +33,3 @@ export interface Enemy {
   vulnerabilities?: string[];
 }
 
-export interface EncounterEnemy extends Enemy {
-  instanceId: string;
-  currentHp: number;
-  label?: string;
-}

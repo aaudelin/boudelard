@@ -3,6 +3,7 @@ import { getCharacterBySlug } from "@/lib/characters";
 import {
   setCharacterState,
   initializeCharacterState,
+  getFeatureUsesDefinitions,
   CharacterState,
 } from "@/lib/character-state";
 
@@ -34,18 +35,26 @@ export async function POST(
     const state = await initializeCharacterState(character);
 
     const newState: CharacterState = { ...state };
+    const featureUsesDefinitions = getFeatureUsesDefinitions(character);
 
     if (type === "short") {
       // Short Rest (Repos Court):
       // - Warlock spell slots recover (Pact Magic)
       // - Can spend hit dice (handled by user manually)
-      // - Some class features recover
+      // - Features that recover on a short rest reset
       if (character.spellcasting && character.class === "warlock") {
         newState.spellSlots = state.spellSlots.map((slot) => ({
           ...slot,
           expended: 0,
         }));
       }
+
+      newState.featureUses = state.featureUses.map((use) => {
+        const definition = featureUsesDefinitions.find(
+          (d) => d.key === use.key
+        );
+        return definition?.recovery === "short" ? { ...use, expended: 0 } : use;
+      });
     } else if (type === "long") {
       // Long Rest (Repos Long):
       // - Recover all HP
@@ -68,6 +77,13 @@ export async function POST(
           expended: 0,
         }));
       }
+
+      // Recover all limited-use features (a long rest also restores
+      // features that recover on a short rest)
+      newState.featureUses = state.featureUses.map((use) => ({
+        ...use,
+        expended: 0,
+      }));
     }
 
     const success = await setCharacterState(id, newState);

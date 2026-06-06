@@ -87,7 +87,12 @@
     {
       "name": "Malédiction de la lame maudite",
       "source": "Occultiste (Lame maudite)",
-      "description": "Bonus aux dégâts égal au bonus de maîtrise. Critique sur 19 ou 20. Regain de PV égal au niveau + modificateur de Charisme quand la cible maudite meurt."
+      "description": "Bonus aux dégâts égal au bonus de maîtrise. Critique sur 19 ou 20. Regain de PV égal au niveau + modificateur de Charisme quand la cible maudite meurt. Utilisable une fois par repos court ou long.",
+      "uses": {
+        "maximum": 1,
+        "expended": 0,
+        "recovery": "short"
+      }
     },
     {
       "name": "Magie de pacte",

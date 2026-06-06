@@ -3,6 +3,7 @@ import { getCharacterBySlug } from "@/lib/characters";
 import {
   updateCharacterState,
   initializeCharacterState,
+  getFeatureUsesDefinitions,
 } from "@/lib/character-state";
 
 export async function PATCH(
@@ -72,6 +73,26 @@ export async function PATCH(
         return slot;
       });
       stateUpdates.spellSlots = newSlots;
+    }
+
+    // Update feature uses (limited-use abilities, e.g. "Prêtre de guerre")
+    if (updates.featureUses) {
+      const definitions = getFeatureUsesDefinitions(character);
+      const newUses = state.featureUses.map((use) => {
+        const update = updates.featureUses.find(
+          (u: { key: string; expended: number }) => u.key === use.key
+        );
+        if (update && typeof update.expended === "number") {
+          const maximum =
+            definitions.find((d) => d.key === use.key)?.maximum || 0;
+          return {
+            ...use,
+            expended: Math.max(0, Math.min(update.expended, maximum)),
+          };
+        }
+        return use;
+      });
+      stateUpdates.featureUses = newUses;
     }
 
     // Update money

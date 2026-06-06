@@ -105,10 +105,27 @@ export interface Spellcasting {
   spellsKnown: Spell[];
 }
 
+export interface FeatureUsage {
+  /** Clé du compteur partagé entre plusieurs capacités (par défaut le nom de la capacité, ex: "Conduit divin") */
+  key?: string;
+  maximum: number;
+  expended: number;
+  /** Type de repos qui restaure les utilisations ("short" est aussi restauré par un repos long) */
+  recovery: "short" | "long";
+}
+
 export interface Feature {
   name: string;
   source: string;
   description: string;
+  /** Utilisations limitées (compteur). Absent pour les capacités passives/illimitées. */
+  uses?: FeatureUsage;
+}
+
+/** État dynamique d'un compteur de capacité (persisté dans Redis) */
+export interface FeatureUseState {
+  key: string;
+  expended: number;
 }
 
 export interface HitPoints {

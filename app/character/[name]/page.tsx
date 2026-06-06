@@ -11,13 +11,13 @@ import { SkillsList } from "@/components/character/skills-list";
 import { Proficiencies } from "@/components/character/proficiencies";
 import { EquipmentList } from "@/components/character/equipment-list";
 import { AttacksSection } from "@/components/character/attacks-section";
-import { FeaturesTraits } from "@/components/character/features-traits";
 import { RestActions } from "@/components/character/rest-actions";
 import { CharacterStateWrapper } from "@/components/character/character-state-wrapper";
 import {
   StatefulCombatStats,
   StatefulSpellcastingSection,
   StatefulMoneySection,
+  StatefulFeaturesTraits,
 } from "@/components/character/character-stateful-sections";
 import {
   Accordion,
@@ -84,6 +84,7 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
             initialGold={character.equipment.currency.gold}
             initialSilver={character.equipment.currency.silver}
             initialSpellSlots={character.spellcasting?.spellSlots ?? []}
+            initialFeatureUses={state.featureUses}
           >
             <StatefulCombatStats
               armorClass={character.armorClass}
@@ -139,7 +140,9 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
                     <span className="text-lg font-semibold">Capacités</span>
                   </AccordionTrigger>
                   <AccordionContent className="px-6 pb-4">
-                    <FeaturesTraits features={character.featuresAndTraits} />
+                    <StatefulFeaturesTraits
+                      features={character.featuresAndTraits}
+                    />
                   </AccordionContent>
                 </div>
               </AccordionItem>

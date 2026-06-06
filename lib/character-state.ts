@@ -1,5 +1,5 @@
 import { Redis } from "@upstash/redis";
-import { Character } from "@/types/character";
+import { Character, Feature, FeatureUseState } from "@/types/character";
 
 const redis = Redis.fromEnv();
 
@@ -11,10 +11,54 @@ export interface CharacterState {
     hitDiceRemaining: number;
   };
   spellSlots: { level: number; expended: number }[];
+  featureUses: FeatureUseState[];
   money: {
     gold: number;
     silver: number;
   };
+}
+
+// Resolve the counter key of a feature (shared pools use the same key)
+export function getFeatureUsesKey(feature: Feature): string {
+  return feature.uses?.key ?? feature.name;
+}
+
+export interface FeatureUsesDefinition {
+  key: string;
+  maximum: number;
+  recovery: "short" | "long";
+}
+
+// Collect the limited-use counters defined by a character's features,
+// deduplicated by key (shared pools like "Conduit divin")
+export function getFeatureUsesDefinitions(
+  character: Character
+): FeatureUsesDefinition[] {
+  const definitions: FeatureUsesDefinition[] = [];
+  for (const feature of character.featuresAndTraits) {
+    if (!feature.uses) continue;
+    const key = getFeatureUsesKey(feature);
+    if (!definitions.some((d) => d.key === key)) {
+      definitions.push({
+        key,
+        maximum: feature.uses.maximum,
+        recovery: feature.uses.recovery,
+      });
+    }
+  }
+  return definitions;
+}
+
+function getInitialFeatureUses(character: Character): FeatureUseState[] {
+  const uses: FeatureUseState[] = [];
+  for (const feature of character.featuresAndTraits) {
+    if (!feature.uses) continue;
+    const key = getFeatureUsesKey(feature);
+    if (!uses.some((u) => u.key === key)) {
+      uses.push({ key, expended: feature.uses.expended });
+    }
+  }
+  return uses;
 }
 
 function getStateKey(characterId: string): string {
@@ -68,6 +112,7 @@ export async function updateCharacterState(
         ...(updates.money || {}),
       },
       spellSlots: updates.spellSlots || currentState.spellSlots,
+      featureUses: updates.featureUses || currentState.featureUses || [],
     };
 
     await setCharacterState(characterId, newState);
@@ -106,14 +151,43 @@ function reconcileSpellSlots(
   };
 }
 
+// Reconcile feature uses with character JSON (e.g. older states without
+// featureUses, or new limited-use features after a level up): keep expended
+// counts from state, add missing counters, drop counters no longer in the JSON
+function reconcileFeatureUses(
+  character: Character,
+  state: CharacterState
+): CharacterState | null {
+  const definitions = getFeatureUsesDefinitions(character);
+  const stateUses = state.featureUses || [];
+  const inSync =
+    definitions.length === stateUses.length &&
+    definitions.every((d) => stateUses.some((u) => u.key === d.key));
+  if (inSync) {
+    return null;
+  }
+
+  return {
+    ...state,
+    featureUses: definitions.map((d) => {
+      const stateUse = stateUses.find((u) => u.key === d.key);
+      return { key: d.key, expended: stateUse?.expended ?? 0 };
+    }),
+  };
+}
+
 // Initialize state from character JSON if not exists in Redis
 export async function initializeCharacterState(
   character: Character
 ): Promise<CharacterState> {
   const existingState = await getCharacterState(character.id);
   if (existingState) {
-    // Self-heal stale states whose spell slot levels no longer match the JSON
-    const reconciled = reconcileSpellSlots(character, existingState);
+    // Self-heal stale states whose spell slot levels or feature use
+    // counters no longer match the JSON
+    let reconciled = reconcileSpellSlots(character, existingState);
+    reconciled =
+      reconcileFeatureUses(character, reconciled ?? existingState) ??
+      reconciled;
     if (reconciled) {
       await setCharacterState(character.id, reconciled);
       return reconciled;
@@ -133,6 +207,7 @@ export async function initializeCharacterState(
         level: s.level,
         expended: s.expended,
       })) || [],
+    featureUses: getInitialFeatureUses(character),
     money: {
       gold: character.equipment.currency.gold,
       silver: character.equipment.currency.silver,
@@ -177,6 +252,19 @@ export function mergeCharacterWithState(
         return stateSlot ? { ...slot, expended: stateSlot.expended } : slot;
       }),
     };
+  }
+
+  // Merge feature uses
+  if (state.featureUses && state.featureUses.length > 0) {
+    merged.featuresAndTraits = character.featuresAndTraits.map((feature) => {
+      if (!feature.uses) return feature;
+      const stateUse = state.featureUses.find(
+        (u) => u.key === getFeatureUsesKey(feature)
+      );
+      return stateUse
+        ? { ...feature, uses: { ...feature.uses, expended: stateUse.expended } }
+        : feature;
+    });
   }
 
   return merged;

@@ -97,7 +97,12 @@
     {
       "name": "Restauration arcanique",
       "source": "Magicien",
-      "description": "Une fois par jour pendant un repos court, vous récupérez des emplacements de sorts dont le total est égal ou inférieur à la moitié de votre niveau de magicien (maximum niveau 5)."
+      "description": "Une fois par jour pendant un repos court, vous récupérez des emplacements de sorts dont le total est égal ou inférieur à la moitié de votre niveau de magicien (maximum niveau 5).",
+      "uses": {
+        "maximum": 1,
+        "expended": 0,
+        "recovery": "long"
+      }
     },
     {
       "name": "Évocateur érudit",
@@ -117,7 +122,12 @@
     {
       "name": "Amulette de Certitude",
       "source": "Objet magique",
-      "description": "Un œil en argent avec une pupille noire. Parfois, on jurerait qu'il cligne. 1×/repos long, remplacer n'importe quel jet de d20 par un 10 (décider AVANT de lancer)."
+      "description": "Un œil en argent avec une pupille noire. Parfois, on jurerait qu'il cligne. 1×/repos long, remplacer n'importe quel jet de d20 par un 10 (décider AVANT de lancer).",
+      "uses": {
+        "maximum": 1,
+        "expended": 0,
+        "recovery": "long"
+      }
     }
   ],
   "spellcasting": {
