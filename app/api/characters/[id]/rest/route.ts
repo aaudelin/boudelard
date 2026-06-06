@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCharacterBySlug } from "@/lib/characters";
 import {
-  getCharacterState,
   setCharacterState,
   initializeCharacterState,
   CharacterState,
@@ -31,11 +30,8 @@ export async function POST(
       );
     }
 
-    // Get or initialize current state from Redis
-    let state = await getCharacterState(id);
-    if (!state) {
-      state = await initializeCharacterState(character);
-    }
+    // Get or initialize current state from Redis (reconciled with the JSON)
+    const state = await initializeCharacterState(character);
 
     const newState: CharacterState = { ...state };
 

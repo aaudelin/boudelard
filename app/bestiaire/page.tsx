@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { enemies } from "@/data/enemies";
-import { Enemy, EncounterEnemy } from "@/types/enemy";
+import { Enemy, EncounterEnemy, PowerLevel } from "@/types/enemy";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,10 +20,46 @@ import {
   Skull,
   ChevronDown,
   ChevronUp,
+  Gauge,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const PASSWORD = "liamlebg";
+
+const POWER_LEVELS: Record<
+  PowerLevel,
+  { description: string; className: string }
+> = {
+  "1/4": {
+    description: "Très faible — 1 aventurier suffit largement",
+    className: "bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-300",
+  },
+  "1/3": {
+    description: "Faible — défi équilibré pour 1 aventurier",
+    className: "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300",
+  },
+  "1/2": {
+    description: "Modéré — défi pour 2 aventuriers, sans risque de mourir",
+    className: "bg-yellow-100 text-yellow-800 dark:bg-yellow-950 dark:text-yellow-300",
+  },
+  "1": {
+    description: "Standard — les 3 aventuriers le battent sans trop de risque",
+    className: "bg-orange-100 text-orange-800 dark:bg-orange-950 dark:text-orange-300",
+  },
+  "2": {
+    description: "Dangereux — défi majeur pour les 3 aventuriers, risque de mort",
+    className: "bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-300",
+  },
+};
+
+function PowerLevelBadge({ level }: { level: PowerLevel }) {
+  return (
+    <Badge className={cn("gap-1", POWER_LEVELS[level].className)}>
+      <Gauge className="h-3 w-3" />
+      {level}
+    </Badge>
+  );
+}
 
 function PasswordScreen({
   onSuccess,
@@ -102,6 +138,7 @@ function EnemyCard({
         </div>
 
         <div className="flex flex-wrap gap-2">
+          <PowerLevelBadge level={enemy.powerLevel} />
           <Badge variant="outline" className="gap-1">
             <Heart className="h-3 w-3" />
             {enemy.hp} PV
@@ -117,6 +154,16 @@ function EnemyCard({
 
         {expanded && (
           <div className="space-y-3 pt-2 border-t">
+            <div>
+              <h4 className="text-sm font-medium flex items-center gap-1 mb-1">
+                <Gauge className="h-3 w-3" />
+                Puissance {enemy.powerLevel}
+              </h4>
+              <p className="text-sm text-muted-foreground ml-4">
+                {POWER_LEVELS[enemy.powerLevel].description}
+              </p>
+            </div>
+
             <div>
               <h4 className="text-sm font-medium flex items-center gap-1 mb-1">
                 <Swords className="h-3 w-3" />
@@ -288,6 +335,7 @@ function EncounterEnemyCard({
         </div>
 
         <div className="flex flex-wrap gap-2">
+          <PowerLevelBadge level={enemy.powerLevel} />
           <Badge variant="outline" className="gap-1">
             <Shield className="h-3 w-3" />
             CA {enemy.ac}
@@ -297,6 +345,16 @@ function EncounterEnemyCard({
 
         {expanded && (
           <div className="space-y-3 pt-2 border-t">
+            <div>
+              <h4 className="text-sm font-medium flex items-center gap-1 mb-1">
+                <Gauge className="h-3 w-3" />
+                Puissance {enemy.powerLevel}
+              </h4>
+              <p className="text-sm text-muted-foreground ml-4">
+                {POWER_LEVELS[enemy.powerLevel].description}
+              </p>
+            </div>
+
             <div>
               <h4 className="text-sm font-medium flex items-center gap-1 mb-1">
                 <Swords className="h-3 w-3" />

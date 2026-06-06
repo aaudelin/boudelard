@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { getCharacterBySlug, getAllCharacterSlugs } from "@/lib/characters";
 import {
-  getCharacterState,
   initializeCharacterState,
   mergeCharacterWithState,
 } from "@/lib/character-state";
@@ -61,11 +60,9 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
     notFound();
   }
 
-  // Get dynamic state from Redis (or initialize from static data)
-  let state = await getCharacterState(staticCharacter.id);
-  if (!state) {
-    state = await initializeCharacterState(staticCharacter);
-  }
+  // Get dynamic state from Redis (or initialize from static data),
+  // reconciled with the JSON in case slot levels changed
+  const state = await initializeCharacterState(staticCharacter);
 
   // Merge static character data with dynamic state
   const character = mergeCharacterWithState(staticCharacter, state);

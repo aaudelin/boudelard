@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCharacterBySlug } from "@/lib/characters";
 import {
-  getCharacterState,
   updateCharacterState,
   initializeCharacterState,
 } from "@/lib/character-state";
@@ -30,11 +29,8 @@ export async function PATCH(
       );
     }
 
-    // Get or initialize current state from Redis
-    let state = await getCharacterState(id);
-    if (!state) {
-      state = await initializeCharacterState(character);
-    }
+    // Ensure state exists in Redis before updating
+    await initializeCharacterState(character);
 
     const newState = await updateCharacterState(id, {
       money: { gold, silver },

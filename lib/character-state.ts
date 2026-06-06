@@ -78,12 +78,46 @@ export async function updateCharacterState(
   }
 }
 
+// Reconcile spell slots with character JSON (e.g. after a level up adds
+// new slot levels): keep expended counts from state, add missing levels,
+// drop levels no longer in the JSON
+function reconcileSpellSlots(
+  character: Character,
+  state: CharacterState
+): CharacterState | null {
+  const jsonSlots = character.spellcasting?.spellSlots || [];
+  const inSync =
+    jsonSlots.length === state.spellSlots.length &&
+    jsonSlots.every((s) =>
+      state.spellSlots.some((slot) => slot.level === s.level)
+    );
+  if (inSync) {
+    return null;
+  }
+
+  return {
+    ...state,
+    spellSlots: jsonSlots.map((s) => {
+      const stateSlot = state.spellSlots.find(
+        (slot) => slot.level === s.level
+      );
+      return { level: s.level, expended: stateSlot?.expended ?? s.expended };
+    }),
+  };
+}
+
 // Initialize state from character JSON if not exists in Redis
 export async function initializeCharacterState(
   character: Character
 ): Promise<CharacterState> {
   const existingState = await getCharacterState(character.id);
   if (existingState) {
+    // Self-heal stale states whose spell slot levels no longer match the JSON
+    const reconciled = reconcileSpellSlots(character, existingState);
+    if (reconciled) {
+      await setCharacterState(character.id, reconciled);
+      return reconciled;
+    }
     return existingState;
   }
 

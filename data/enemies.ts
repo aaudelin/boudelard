@@ -6,6 +6,7 @@ export const enemies: Enemy[] = [
     name: "Drone de surveillance",
     hp: 15,
     ac: 14,
+    powerLevel: "1/3",
     speed: "Vol 12m",
     attacks: [
       {
@@ -29,6 +30,7 @@ export const enemies: Enemy[] = [
     name: "Homoncule amélioré",
     hp: 12,
     ac: 14,
+    powerLevel: "1/4",
     attacks: [
       {
         name: "Attaque",
@@ -50,6 +52,7 @@ export const enemies: Enemy[] = [
     name: "Gardien de porte",
     hp: 25,
     ac: 15,
+    powerLevel: "1/2",
     attacks: [
       {
         name: "Coup",
@@ -70,6 +73,7 @@ export const enemies: Enemy[] = [
     name: "Drone-araignée",
     hp: 8,
     ac: 13,
+    powerLevel: "1/4",
     attacks: [
       {
         name: "Morsure",
@@ -95,6 +99,7 @@ export const enemies: Enemy[] = [
     name: "Avatar d'Axe Musk",
     hp: 55,
     ac: 15,
+    powerLevel: "2",
     speed: "Vol 9m (stationnaire)",
     attacks: [
       {
@@ -135,6 +140,7 @@ export const enemies: Enemy[] = [
     name: "Serveur Central",
     hp: 35,
     ac: 10,
+    powerLevel: "1",
     speed: "Immobile",
     attacks: [
       {
