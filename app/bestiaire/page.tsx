@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { enemies, getEnemyById } from "@/data/enemies";
 import { npcs, getNpcById } from "@/data/npcs";
+import { characters } from "@/data/characters";
 import { Enemy, EnemyAttack, EnemyAbility, PowerLevel } from "@/types/enemy";
 import { Npc, NpcSpell } from "@/types/npc";
 import {
@@ -10,6 +11,7 @@ import {
   EncounterParticipant,
   EncounterParticipantState,
 } from "@/types/encounter";
+import { CharacterEncounterCard } from "@/components/encounter/character-encounter-card";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -30,6 +32,7 @@ import {
   Gauge,
   Users,
   Sparkles,
+  Dices,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -365,10 +368,12 @@ function NpcCard({
 function EncounterParticipantCard({
   participant,
   onHpChange,
+  onInitiativeChange,
   onRemove,
 }: {
   participant: EncounterParticipant;
   onHpChange: (instanceId: string, delta: number) => void;
+  onInitiativeChange: (instanceId: string, value: number | undefined) => void;
   onRemove: (instanceId: string) => void;
 }) {
   const [expanded, setExpanded] = useState(false);
@@ -469,6 +474,22 @@ function EncounterParticipantCard({
           </div>
         </div>
 
+        <div className="flex items-center gap-2">
+          <label className="text-sm text-muted-foreground">Initiative</label>
+          <Input
+            type="number"
+            className="w-16 h-8 text-center font-mono"
+            value={participant.initiative ?? ""}
+            onChange={(e) => {
+              const raw = e.target.value;
+              onInitiativeChange(
+                participant.instanceId,
+                raw === "" ? undefined : Number(raw)
+              );
+            }}
+          />
+        </div>
+
         <div className="flex flex-wrap gap-2">
           <PowerLevelBadge level={participant.powerLevel} />
           <Badge variant="outline" className="gap-1">
@@ -513,17 +534,30 @@ function toParticipantState(
     kind: p.kind,
     currentHp: p.currentHp,
     ...(p.label ? { label: p.label } : {}),
+    ...(p.initiative !== undefined ? { initiative: p.initiative } : {}),
   };
+}
+
+// Tri par initiative décroissante, les participants sans initiative en dernier
+function byInitiativeDesc(
+  a: { initiative?: number },
+  b: { initiative?: number }
+) {
+  return (b.initiative ?? -Infinity) - (a.initiative ?? -Infinity);
 }
 
 function BestiairePage() {
   const [encounter, setEncounter] = useState<EncounterParticipant[]>([]);
+  const [characterInitiatives, setCharacterInitiatives] = useState<
+    Record<string, number>
+  >({});
   const [view, setView] = useState<"encounter" | "bestiary" | "npcs">(
     "encounter"
   );
   const [loaded, setLoaded] = useState(false);
 
   const encounterRef = useRef<EncounterParticipant[]>([]);
+  const characterInitiativesRef = useRef<Record<string, number>>({});
   const dirtyRef = useRef(false);
   const loadedRef = useRef(false);
 
@@ -536,6 +570,7 @@ function BestiairePage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           participants: encounterRef.current.map(toParticipantState),
+          characterInitiatives: characterInitiativesRef.current,
         }),
       });
     } catch (error) {
@@ -561,11 +596,16 @@ function BestiairePage() {
               instanceId: p.instanceId,
               currentHp: Math.max(0, Math.min(p.currentHp, ref.hp)),
               label: p.label,
+              initiative: p.initiative,
             } as EncounterParticipant;
           })
           .filter((p): p is EncounterParticipant => p !== null);
         setEncounter(participants);
         encounterRef.current = participants;
+        const storedInitiatives: Record<string, number> =
+          data.state?.characterInitiatives ?? {};
+        setCharacterInitiatives(storedInitiatives);
+        characterInitiativesRef.current = storedInitiatives;
       })
       .catch((error) => console.error("Failed to load encounter:", error))
       .finally(() => {
@@ -641,6 +681,38 @@ function BestiairePage() {
     );
   };
 
+  const updateInitiative = (instanceId: string, value: number | undefined) => {
+    applyEncounter(
+      encounterRef.current.map((e) =>
+        e.instanceId === instanceId ? { ...e, initiative: value } : e
+      ),
+      false
+    );
+  };
+
+  const setCharacterInitiative = (id: string, value: number | undefined) => {
+    const next = { ...characterInitiativesRef.current };
+    if (value === undefined) {
+      delete next[id];
+    } else {
+      next[id] = value;
+    }
+    setCharacterInitiatives(next);
+    characterInitiativesRef.current = next;
+    if (loadedRef.current) dirtyRef.current = true;
+  };
+
+  // Simule un jet de 1d20 pour chaque PNJ et ennemi de la rencontre
+  const rollInitiative = () => {
+    applyEncounter(
+      encounterRef.current.map((e) => ({
+        ...e,
+        initiative: 1 + Math.floor(Math.random() * 20),
+      })),
+      true
+    );
+  };
+
   const removeFromEncounter = (instanceId: string) => {
     applyEncounter(
       encounterRef.current.filter((e) => e.instanceId !== instanceId),
@@ -652,8 +724,15 @@ function BestiairePage() {
     applyEncounter([], true);
   };
 
-  const npcsInEncounter = encounter.filter((p) => p.kind === "npc");
-  const enemiesInEncounter = encounter.filter((p) => p.kind === "enemy");
+  const npcsInEncounter = encounter
+    .filter((p) => p.kind === "npc")
+    .sort(byInitiativeDesc);
+  const enemiesInEncounter = encounter
+    .filter((p) => p.kind === "enemy")
+    .sort(byInitiativeDesc);
+  const sortedCharacters = characters
+    .map((c) => ({ character: c, initiative: characterInitiatives[c.id] }))
+    .sort(byInitiativeDesc);
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black">
@@ -695,60 +774,89 @@ function BestiairePage() {
                   <p>Chargement de la rencontre...</p>
                 </CardContent>
               </Card>
-            ) : encounter.length === 0 ? (
-              <Card className="py-8">
-                <CardContent className="text-center text-muted-foreground">
-                  <Swords className="mx-auto h-12 w-12 mb-2 opacity-50" />
-                  <p>Aucun participant dans la rencontre</p>
-                  <p className="text-sm mt-1">
-                    Allez dans le Bestiaire ou les PNJ pour en ajouter
-                  </p>
-                </CardContent>
-              </Card>
             ) : (
               <>
-                <div className="flex justify-end">
-                  <Button
-                    variant="destructive"
-                    size="sm"
-                    onClick={clearEncounter}
-                  >
-                    Vider la rencontre
-                  </Button>
+                <div className="space-y-4">
+                  <h2 className="text-sm font-semibold uppercase tracking-wide text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
+                    <Users className="h-4 w-4" />
+                    Personnages ({characters.length})
+                  </h2>
+                  {sortedCharacters.map(({ character, initiative }) => (
+                    <CharacterEncounterCard
+                      key={character.id}
+                      character={character}
+                      initiative={initiative}
+                      onInitiativeChange={setCharacterInitiative}
+                    />
+                  ))}
                 </div>
 
-                {npcsInEncounter.length > 0 && (
-                  <div className="space-y-4">
-                    <h2 className="text-sm font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-400 flex items-center gap-2">
-                      <Users className="h-4 w-4" />
-                      PNJ ({npcsInEncounter.length})
-                    </h2>
-                    {npcsInEncounter.map((participant) => (
-                      <EncounterParticipantCard
-                        key={participant.instanceId}
-                        participant={participant}
-                        onHpChange={updateHp}
-                        onRemove={removeFromEncounter}
-                      />
-                    ))}
-                  </div>
-                )}
+                {encounter.length === 0 ? (
+                  <Card className="py-8">
+                    <CardContent className="text-center text-muted-foreground">
+                      <Swords className="mx-auto h-12 w-12 mb-2 opacity-50" />
+                      <p>Aucun PNJ ni ennemi dans la rencontre</p>
+                      <p className="text-sm mt-1">
+                        Allez dans le Bestiaire ou les PNJ pour en ajouter
+                      </p>
+                    </CardContent>
+                  </Card>
+                ) : (
+                  <>
+                    <div className="flex justify-between">
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={rollInitiative}
+                      >
+                        <Dices className="h-4 w-4" />
+                        Lancer les initiatives
+                      </Button>
+                      <Button
+                        variant="destructive"
+                        size="sm"
+                        onClick={clearEncounter}
+                      >
+                        Vider la rencontre
+                      </Button>
+                    </div>
 
-                {enemiesInEncounter.length > 0 && (
-                  <div className="space-y-4">
-                    <h2 className="text-sm font-semibold uppercase tracking-wide text-red-600 dark:text-red-400 flex items-center gap-2">
-                      <Swords className="h-4 w-4" />
-                      Ennemis ({enemiesInEncounter.length})
-                    </h2>
-                    {enemiesInEncounter.map((participant) => (
-                      <EncounterParticipantCard
-                        key={participant.instanceId}
-                        participant={participant}
-                        onHpChange={updateHp}
-                        onRemove={removeFromEncounter}
-                      />
-                    ))}
-                  </div>
+                    {npcsInEncounter.length > 0 && (
+                      <div className="space-y-4">
+                        <h2 className="text-sm font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-400 flex items-center gap-2">
+                          <Users className="h-4 w-4" />
+                          PNJ ({npcsInEncounter.length})
+                        </h2>
+                        {npcsInEncounter.map((participant) => (
+                          <EncounterParticipantCard
+                            key={participant.instanceId}
+                            participant={participant}
+                            onHpChange={updateHp}
+                            onInitiativeChange={updateInitiative}
+                            onRemove={removeFromEncounter}
+                          />
+                        ))}
+                      </div>
+                    )}
+
+                    {enemiesInEncounter.length > 0 && (
+                      <div className="space-y-4">
+                        <h2 className="text-sm font-semibold uppercase tracking-wide text-red-600 dark:text-red-400 flex items-center gap-2">
+                          <Swords className="h-4 w-4" />
+                          Ennemis ({enemiesInEncounter.length})
+                        </h2>
+                        {enemiesInEncounter.map((participant) => (
+                          <EncounterParticipantCard
+                            key={participant.instanceId}
+                            participant={participant}
+                            onHpChange={updateHp}
+                            onInitiativeChange={updateInitiative}
+                            onRemove={removeFromEncounter}
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </>
                 )}
               </>
             )}

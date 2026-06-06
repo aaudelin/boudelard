@@ -3,6 +3,7 @@ import { getEncounterState, setEncounterState } from "@/lib/encounter-state";
 import { EncounterParticipantState } from "@/types/encounter";
 import { getEnemyById } from "@/data/enemies";
 import { getNpcById } from "@/data/npcs";
+import { getAllCharacterSlugs } from "@/lib/characters";
 
 export async function GET() {
   const state = await getEncounterState();
@@ -34,10 +35,27 @@ export async function PUT(request: NextRequest) {
         kind: p.kind,
         currentHp: Math.max(0, Math.min(Number(p.currentHp) || 0, ref.hp)),
         ...(typeof p.label === "string" ? { label: p.label } : {}),
+        ...(Number.isFinite(Number(p.initiative))
+          ? { initiative: Math.trunc(Number(p.initiative)) }
+          : {}),
       });
     }
 
-    const saved = await setEncounterState({ participants: sanitized });
+    // Initiatives des personnages joueurs : clés validées contre les fiches
+    const characterInitiatives: Record<string, number> = {};
+    if (body.characterInitiatives && typeof body.characterInitiatives === "object") {
+      const validIds = new Set(await getAllCharacterSlugs());
+      for (const [id, value] of Object.entries(body.characterInitiatives)) {
+        if (validIds.has(id) && Number.isFinite(Number(value))) {
+          characterInitiatives[id] = Math.trunc(Number(value));
+        }
+      }
+    }
+
+    const saved = await setEncounterState({
+      participants: sanitized,
+      characterInitiatives,
+    });
     if (!saved) {
       return NextResponse.json(
         { error: "Failed to save encounter" },

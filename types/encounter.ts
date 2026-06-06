@@ -12,6 +12,7 @@ export type EncounterParticipant = (
   instanceId: string;
   currentHp: number;
   label?: string;
+  initiative?: number;
 };
 
 // Forme minimale persistée dans Redis : juste de quoi retrouver la fiche
@@ -22,8 +23,12 @@ export interface EncounterParticipantState {
   kind: CombatantKind;
   currentHp: number;
   label?: string;
+  initiative?: number;
 }
 
 export interface EncounterState {
   participants: EncounterParticipantState[];
+  // Initiatives des personnages joueurs, propres à la rencontre
+  // (jamais stockées dans la fiche de personnage), clé = id du personnage
+  characterInitiatives?: Record<string, number>;
 }
