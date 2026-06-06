@@ -92,6 +92,8 @@ export interface Spell {
   description: string;
   ritual?: boolean;
   concentration?: boolean;
+  /** Sort préparé (true par défaut). Mettre à false pour un sort connu mais non préparé. */
+  prepared?: boolean;
 }
 
 export interface Spellcasting {
@@ -101,7 +103,6 @@ export interface Spellcasting {
   spellSlots: SpellSlot[];
   cantripsKnown: Spell[];
   spellsKnown: Spell[];
-  spellsPrepared?: Spell[];
 }
 
 export interface Feature {

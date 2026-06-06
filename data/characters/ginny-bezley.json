@@ -268,7 +268,7 @@
         "range": "18 mètres",
         "components": "V, S, M",
         "duration": "Concentration, jusqu'à 10 minutes",
-        "description": "Un champ scintillant apparaît autour d'une créature de votre choix à portée, lui conférant un bonus de +2 à la CA pendant la durée du sort.",
+        "description": "Sort de domaine (toujours préparé). Un champ scintillant apparaît autour d'une créature de votre choix à portée, lui conférant un bonus de +2 à la CA pendant la durée du sort.",
         "concentration": true
       },
       {
@@ -279,7 +279,7 @@
         "range": "Personnelle",
         "components": "V, S",
         "duration": "Concentration, jusqu'à 1 minute",
-        "description": "Votre prière vous imprègne de radiance divine. Jusqu'à la fin du sort, vos attaques d'arme infligent 1d4 dégâts radiants supplémentaires en cas de réussite.",
+        "description": "Sort de domaine (toujours préparé). Votre prière vous imprègne de radiance divine. Jusqu'à la fin du sort, vos attaques d'arme infligent 1d4 dégâts radiants supplémentaires en cas de réussite.",
         "concentration": true
       },
       {
@@ -331,28 +331,17 @@
         "components": "V",
         "duration": "Instantanée",
         "description": "Une créature de votre choix que vous pouvez voir à portée récupère un nombre de points de vie égal à 1d4 + votre modificateur de caractéristique d'incantation (3)."
-      }
-    ],
-    "spellsPrepared": [
-      {
-        "name": "Bouclier de la foi",
-        "level": 1,
-        "school": "abjuration",
-        "castingTime": "1 action bonus",
-        "range": "18 mètres",
-        "components": "V, S, M",
-        "duration": "Concentration, jusqu'à 10 minutes",
-        "description": "Sort de domaine (toujours préparé)"
       },
       {
-        "name": "Faveur divine",
-        "level": 1,
-        "school": "evocation",
-        "castingTime": "1 action bonus",
-        "range": "Personnelle",
-        "components": "V, S",
+        "name": "Immobilisation de personne",
+        "level": 2,
+        "school": "enchantment",
+        "castingTime": "1 action",
+        "range": "18 mètres",
+        "components": "V, S, M",
         "duration": "Concentration, jusqu'à 1 minute",
-        "description": "Sort de domaine (toujours préparé)"
+        "description": "Choisissez un humanoïde que vous pouvez voir à portée. La cible doit réussir un JS Sagesse ou être paralysée pendant la durée du sort. À la fin de chacun de ses tours, la cible peut refaire le JS pour mettre fin à l'effet. Les attaques au corps à corps contre une créature paralysée ont l'avantage et sont des coups critiques automatiques.",
+        "concentration": true
       },
       {
         "name": "Arme magique",

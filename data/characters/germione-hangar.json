@@ -73,7 +73,8 @@
       "Encre (2 bouteilles)",
       "Plume d'écriture (2)",
       "Parchemin (10)",
-      "Vêtements communs"
+      "Vêtements communs",
+      "Amulette de Certitude"
     ],
     "currency": {
       "copper": 0,
@@ -112,6 +113,11 @@
       "name": "Chercheur",
       "source": "Sage",
       "description": "Vous savez où chercher pour trouver n'importe quelle information."
+    },
+    {
+      "name": "Amulette de Certitude",
+      "source": "Objet magique",
+      "description": "Un œil en argent avec une pupille noire. Parfois, on jurerait qu'il cligne. 1×/repos long, remplacer n'importe quel jet de d20 par un 10 (décider AVANT de lancer)."
     }
   ],
   "spellcasting": {

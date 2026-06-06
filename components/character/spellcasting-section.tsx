@@ -74,10 +74,13 @@ export function SpellcastingSection({
     groupedSpells[0].push(spell);
   });
 
-  spellcasting.spellsKnown.forEach((spell) => {
-    if (!groupedSpells[spell.level]) groupedSpells[spell.level] = [];
-    groupedSpells[spell.level].push(spell);
-  });
+  // Seuls les sorts préparés sont affichés (prepared est true par défaut)
+  spellcasting.spellsKnown
+    .filter((spell) => spell.prepared !== false)
+    .forEach((spell) => {
+      if (!groupedSpells[spell.level]) groupedSpells[spell.level] = [];
+      groupedSpells[spell.level].push(spell);
+    });
 
   const handleSlotUpdate = (level: number, expended: number) => {
     const newSlots = spellSlots.map((s) =>
@@ -124,7 +127,15 @@ export function SpellcastingSection({
           .sort(([a], [b]) => Number(a) - Number(b))
           .map(([level, spells]) => {
             const levelNum = Number(level);
-            const slot = spellSlots.find((s) => s.level === levelNum);
+            // Un sort peut être lancé avec un emplacement de son niveau ou
+            // supérieur (ex: occultiste avec uniquement des emplacements de
+            // niveau 2 pour ses sorts de niveau 1)
+            const slot =
+              levelNum > 0
+                ? spellSlots
+                    .filter((s) => s.level >= levelNum)
+                    .sort((a, b) => a.level - b.level)[0]
+                : undefined;
             const remaining = slot ? slot.total - slot.expended : 0;
 
             return (
