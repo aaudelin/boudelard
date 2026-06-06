@@ -1,10 +1,6 @@
 // Gravité croissante d'une blessure : plus on monte, plus c'est grave.
-export type InjurySeverity =
-  | "légère"
-  | "modérée"
-  | "grave"
-  | "critique"
-  | "fatale";
+// Aucune blessure n'est mortelle.
+export type InjurySeverity = "légère" | "modérée" | "grave" | "critique";
 
 export interface Injury {
   id: string;
