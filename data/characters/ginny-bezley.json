@@ -170,7 +170,8 @@
     "items": [
       "Masse d'armes",
       "Chemise de mailles",
-      "Bouclier"
+      "Bouclier",
+      "Bras Mécanique de Mécania (prothèse — bras droit, récupéré après la victoire sur Axe Musk)"
     ],
     "currency": {
       "copper": 0,
@@ -225,6 +226,16 @@
       "name": "Abri du fidèle",
       "source": "Acolyte",
       "description": "Vous et vos compagnons pouvez vous attendre à recevoir des soins gratuits dans un temple de votre foi."
+    },
+    {
+      "name": "Seringue Réparatrice",
+      "source": "Bras Mécanique de Mécania",
+      "description": "Le bras-prothèse forgé par Axe Musk, greffé à l'épaule droite de Ginny après l'explosion de l'usine, renferme un module de soin. 1×/repos court, Ginny touche une créature (y compris elle-même) pour lui injecter un sérum réparateur : la cible récupère 1d8 + 2 PV. Le bras est un membre mécanique : insensible à la douleur, impossible à désarmer de cette main, et confère un avantage narratif sur les interactions avec la technologie d'Axe Musk (Goths, drones, mécanismes).",
+      "uses": {
+        "maximum": 1,
+        "expended": 0,
+        "recovery": "short"
+      }
     }
   ],
   "spellcasting": {
@@ -388,5 +399,6 @@
   "bonds": "",
   "flaws": "",
   "backstory": "Acolyte",
+  "appearance": "Bras droit arraché lors de l'explosion d'Axe Musk, remplacé par une prothèse mécanique (Bras Mécanique de Mécania) aux circuits bleus lumineux.",
   "image": "/ginny-profile.jpeg"
 }
