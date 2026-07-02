@@ -14,6 +14,7 @@ import { EquipmentList } from "@/components/character/equipment-list";
 import { AttacksSection } from "@/components/character/attacks-section";
 import { RestActions } from "@/components/character/rest-actions";
 import { CharacterStateWrapper } from "@/components/character/character-state-wrapper";
+import { MapToggleFab } from "@/components/map/map-toggle-fab";
 import {
   StatefulCombatStats,
   StatefulSpellcastingSection,
@@ -74,7 +75,7 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black">
       <div className="mx-auto max-w-lg px-4 py-6">
-        <div className="space-y-4">
+        <div className="space-y-4 pb-20">
           <CharacterHeader character={character} />
 
           <CharacterStateWrapper
@@ -179,6 +180,8 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
           </CharacterStateWrapper>
         </div>
       </div>
+
+      <MapToggleFab href={`/character/${name}/carte`} target="map" />
     </div>
   );
 }

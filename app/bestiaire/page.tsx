@@ -12,6 +12,7 @@ import {
   EncounterParticipantState,
 } from "@/types/encounter";
 import { CharacterEncounterCard } from "@/components/encounter/character-encounter-card";
+import { GmMapPanel } from "@/components/map/gm-map-panel";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -32,6 +33,7 @@ import {
   Gauge,
   Sparkles,
   Dices,
+  Map as MapIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatModifier } from "@/lib/dnd-helpers";
@@ -555,7 +557,7 @@ function BestiairePage() {
   const [characterInitiatives, setCharacterInitiatives] = useState<
     Record<string, number>
   >({});
-  const [view, setView] = useState<"encounter" | "bestiary" | "npcs">(
+  const [view, setView] = useState<"encounter" | "map" | "bestiary" | "npcs">(
     "encounter"
   );
   const [loaded, setLoaded] = useState(false);
@@ -755,24 +757,28 @@ function BestiairePage() {
           <h1 className="text-2xl font-bold tracking-tight text-center">
             Bestiaire du MJ
           </h1>
-          <div className="flex gap-2 mt-4">
+          <div className="grid grid-cols-2 gap-2 mt-4">
             <Button
               variant={view === "encounter" ? "default" : "outline"}
-              className="flex-1"
               onClick={() => setView("encounter")}
             >
               Rencontre ({encounter.length})
             </Button>
             <Button
+              variant={view === "map" ? "default" : "outline"}
+              onClick={() => setView("map")}
+            >
+              <MapIcon className="h-4 w-4" />
+              Carte
+            </Button>
+            <Button
               variant={view === "bestiary" ? "default" : "outline"}
-              className="flex-1"
               onClick={() => setView("bestiary")}
             >
               Bestiaire
             </Button>
             <Button
               variant={view === "npcs" ? "default" : "outline"}
-              className="flex-1"
               onClick={() => setView("npcs")}
             >
               PNJ
@@ -843,6 +849,10 @@ function BestiairePage() {
               </>
             )}
           </div>
+        )}
+
+        {view === "map" && (
+          <GmMapPanel participants={encounter} onHpChange={updateHp} />
         )}
 
         {view === "bestiary" && (
