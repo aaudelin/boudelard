@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { characters } from "@/data/characters";
 import { EncounterParticipant } from "@/types/encounter";
-import { useLiveMap } from "@/hooks/use-live-map";
+import { LiveMapApi } from "@/hooks/use-live-map";
 import {
   LiveMap,
   MapEntity,
@@ -14,6 +14,7 @@ import {
   characterTokenId,
   participantTokenId,
   parseSpeedMeters,
+  isTokenHidden,
   DEFAULT_MAP_WIDTH_METERS,
 } from "@/lib/map-helpers";
 import { Button } from "@/components/ui/button";
@@ -41,35 +42,12 @@ import {
   Trash2,
 } from "lucide-react";
 
-interface GmMapPanelProps {
-  participants: EncounterParticipant[];
-  onHpChange: (instanceId: string, delta: number) => void;
-}
-
-export function GmMapPanel({ participants, onHpChange }: GmMapPanelProps) {
-  const {
-    state,
-    image,
-    loaded,
-    uploading,
-    updateToken,
-    setMapWidthMeters,
-    uploadImage,
-    removeImage,
-  } = useLiveMap();
-
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [widthInput, setWidthInput] = useState("");
-
-  const mapWidthMeters = state?.mapWidthMeters ?? DEFAULT_MAP_WIDTH_METERS;
-
-  // Synchronise l'input d'échelle avec la valeur stockée
-  useEffect(() => {
-    setWidthInput(String(mapWidthMeters));
-  }, [mapWidthMeters]);
-
-  const entities: MapEntity[] = [
+// Pions de la carte du MJ : personnages joueurs + participants de la
+// rencontre (partagé avec l'onglet Rencontre pour le bouton œil)
+export function buildGmMapEntities(
+  participants: EncounterParticipant[]
+): MapEntity[] {
+  return [
     ...characters.map((c) => ({
       id: characterTokenId(c.id),
       name: c.name,
@@ -86,6 +64,38 @@ export function GmMapPanel({ participants, onHpChange }: GmMapPanelProps) {
       maxHp: p.hp,
     })),
   ];
+}
+
+interface GmMapPanelProps {
+  participants: EncounterParticipant[];
+  onHpChange: (instanceId: string, delta: number) => void;
+  map: LiveMapApi;
+}
+
+export function GmMapPanel({ participants, onHpChange, map }: GmMapPanelProps) {
+  const {
+    state,
+    image,
+    loaded,
+    uploading,
+    updateToken,
+    setMapWidthMeters,
+    uploadImage,
+    removeImage,
+  } = map;
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [widthInput, setWidthInput] = useState("");
+
+  const mapWidthMeters = state?.mapWidthMeters ?? DEFAULT_MAP_WIDTH_METERS;
+
+  // Synchronise l'input d'échelle avec la valeur stockée
+  useEffect(() => {
+    setWidthInput(String(mapWidthMeters));
+  }, [mapWidthMeters]);
+
+  const entities = buildGmMapEntities(participants);
 
   const positions = state?.tokens ?? {};
 
@@ -95,7 +105,7 @@ export function GmMapPanel({ participants, onHpChange }: GmMapPanelProps) {
     updateToken(id, {
       x: position.x,
       y: position.y,
-      hidden: !positions[id]?.hidden,
+      hidden: !isTokenHidden(id, positions[id]),
     });
   };
 
@@ -136,7 +146,7 @@ export function GmMapPanel({ participants, onHpChange }: GmMapPanelProps) {
     (c) => characterTokenId(c.id) === selectedId
   );
   const selectedHidden =
-    selectedId !== null && positions[selectedId]?.hidden === true;
+    selectedId !== null && isTokenHidden(selectedId, positions[selectedId]);
 
   return (
     <div className="space-y-4">
@@ -202,8 +212,9 @@ export function GmMapPanel({ participants, onHpChange }: GmMapPanelProps) {
           </div>
           <p className="text-xs text-muted-foreground">
             Les PNJ et ennemis de l&apos;onglet Rencontre apparaissent sur la
-            carte. Touchez un pion pour ses infos, glissez-le pour le
-            déplacer. Changer d&apos;image réinitialise les positions.
+            carte, masqués aux joueurs par défaut. Touchez un pion pour ses
+            infos, glissez-le pour le déplacer. Changer d&apos;image
+            réinitialise les positions.
           </p>
         </CardContent>
       </Card>
@@ -224,11 +235,7 @@ export function GmMapPanel({ participants, onHpChange }: GmMapPanelProps) {
           showHiddenTokens
           showHp
           onMove={(id, x, y) =>
-            updateToken(id, {
-              x,
-              y,
-              ...(positions[id]?.hidden ? { hidden: true } : {}),
-            })
+            updateToken(id, { x, y, hidden: isTokenHidden(id, positions[id]) })
           }
           onSelect={setSelectedId}
         />

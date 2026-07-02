@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { MapImage, MapTokenState } from "@/types/map";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { clamp01 } from "@/lib/map-helpers";
+import { clamp01, isTokenHidden } from "@/lib/map-helpers";
 import { EyeOff, Skull, ZoomIn, ZoomOut } from "lucide-react";
 
 // Pion affiché sur la carte : les données viennent des fiches statiques
@@ -99,7 +99,7 @@ export function LiveMap({
   const mapHeightMeters = mapWidthMeters * (image.height / image.width);
 
   const visibleEntities = entities.filter(
-    (e) => showHiddenTokens || !positions[e.id]?.hidden
+    (e) => showHiddenTokens || !isTokenHidden(e.id, positions[e.id])
   );
 
   const tokenPosition = (id: string): { x: number; y: number } => {
@@ -262,7 +262,7 @@ export function LiveMap({
 
           {visibleEntities.map((entity) => {
             const position = tokenPosition(entity.id);
-            const hidden = positions[entity.id]?.hidden === true;
+            const hidden = isTokenHidden(entity.id, positions[entity.id]);
             const movable = canMove(entity.id);
             const isDragged = drag?.id === entity.id;
             return (

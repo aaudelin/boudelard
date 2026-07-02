@@ -14,6 +14,7 @@ import {
   characterTokenId,
   participantTokenId,
   parseSpeedMeters,
+  isTokenHidden,
   DEFAULT_MAP_WIDTH_METERS,
 } from "@/lib/map-helpers";
 import { Card, CardContent } from "@/components/ui/card";
@@ -124,11 +125,7 @@ export function PlayerMapPanel({ characterId }: PlayerMapPanelProps) {
         canMove={(id) => id === ownTokenId}
         showHiddenTokens={false}
         onMove={(id, x, y) =>
-          updateToken(id, {
-            x,
-            y,
-            ...(positions[id]?.hidden ? { hidden: true } : {}),
-          })
+          updateToken(id, { x, y, hidden: isTokenHidden(id, positions[id]) })
         }
       />
       <p className="text-xs text-muted-foreground">

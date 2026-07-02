@@ -12,7 +12,13 @@ import {
   EncounterParticipantState,
 } from "@/types/encounter";
 import { CharacterEncounterCard } from "@/components/encounter/character-encounter-card";
-import { GmMapPanel } from "@/components/map/gm-map-panel";
+import {
+  GmMapPanel,
+  buildGmMapEntities,
+} from "@/components/map/gm-map-panel";
+import { getDefaultPositions } from "@/components/map/live-map";
+import { useLiveMap } from "@/hooks/use-live-map";
+import { isTokenHidden, participantTokenId } from "@/lib/map-helpers";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,6 +40,8 @@ import {
   Sparkles,
   Dices,
   Map as MapIcon,
+  Eye,
+  EyeOff,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatModifier } from "@/lib/dnd-helpers";
@@ -370,13 +378,17 @@ function NpcCard({
 
 function EncounterParticipantCard({
   participant,
+  hiddenOnMap,
   onHpChange,
   onInitiativeChange,
+  onToggleHidden,
   onRemove,
 }: {
   participant: EncounterParticipant;
+  hiddenOnMap: boolean;
   onHpChange: (instanceId: string, delta: number) => void;
   onInitiativeChange: (instanceId: string, value: number | undefined) => void;
+  onToggleHidden: (instanceId: string) => void;
   onRemove: (instanceId: string) => void;
 }) {
   const [expanded, setExpanded] = useState(false);
@@ -417,13 +429,31 @@ function EncounterParticipantCard({
             </h3>
             {isDead && <Skull className="h-4 w-4 text-muted-foreground" />}
           </div>
-          <Button
-            size="icon-xs"
-            variant="ghost"
-            onClick={() => onRemove(participant.instanceId)}
-          >
-            <X className="h-4 w-4" />
-          </Button>
+          <div className="flex items-center gap-1">
+            <Button
+              size="icon-xs"
+              variant="ghost"
+              title={
+                hiddenOnMap
+                  ? "Masqué sur la carte des joueurs"
+                  : "Visible sur la carte des joueurs"
+              }
+              onClick={() => onToggleHidden(participant.instanceId)}
+            >
+              {hiddenOnMap ? (
+                <EyeOff className="h-4 w-4 text-muted-foreground" />
+              ) : (
+                <Eye className="h-4 w-4 text-emerald-600" />
+              )}
+            </Button>
+            <Button
+              size="icon-xs"
+              variant="ghost"
+              onClick={() => onRemove(participant.instanceId)}
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
 
         <div className="space-y-2">
@@ -561,6 +591,10 @@ function BestiairePage() {
     "encounter"
   );
   const [loaded, setLoaded] = useState(false);
+
+  // État de la carte partagé entre l'onglet Rencontre (bouton œil)
+  // et l'onglet Carte
+  const map = useLiveMap();
 
   const encounterRef = useRef<EncounterParticipant[]>([]);
   const characterInitiativesRef = useRef<Record<string, number>>({});
@@ -720,6 +754,22 @@ function BestiairePage() {
     );
   };
 
+  // Bascule la visibilité du pion sur la carte des joueurs
+  // (masqué par défaut tant que le MJ ne l'a pas révélé)
+  const toggleParticipantHidden = (instanceId: string) => {
+    const tokenId = participantTokenId(instanceId);
+    const token = map.state?.tokens[tokenId];
+    const position =
+      token ??
+      getDefaultPositions(buildGmMapEntities(encounterRef.current))[tokenId] ??
+      { x: 0.5, y: 0.5 };
+    map.updateToken(tokenId, {
+      x: position.x,
+      y: position.y,
+      hidden: !isTokenHidden(tokenId, token),
+    });
+  };
+
   const removeFromEncounter = (instanceId: string) => {
     applyEncounter(
       encounterRef.current.filter((e) => e.instanceId !== instanceId),
@@ -828,8 +878,15 @@ function BestiairePage() {
                     <EncounterParticipantCard
                       key={row.participant.instanceId}
                       participant={row.participant}
+                      hiddenOnMap={isTokenHidden(
+                        participantTokenId(row.participant.instanceId),
+                        map.state?.tokens[
+                          participantTokenId(row.participant.instanceId)
+                        ]
+                      )}
                       onHpChange={updateHp}
                       onInitiativeChange={updateInitiative}
+                      onToggleHidden={toggleParticipantHidden}
                       onRemove={removeFromEncounter}
                     />
                   )
@@ -852,7 +909,11 @@ function BestiairePage() {
         )}
 
         {view === "map" && (
-          <GmMapPanel participants={encounter} onHpChange={updateHp} />
+          <GmMapPanel
+            participants={encounter}
+            onHpChange={updateHp}
+            map={map}
+          />
         )}
 
         {view === "bestiary" && (

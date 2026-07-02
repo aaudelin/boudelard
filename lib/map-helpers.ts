@@ -1,7 +1,15 @@
 // Helpers de la carte utilisables côté client comme côté serveur
 // (pas d'import Redis ici)
 
+import { MapTokenState } from "@/types/map";
+
 export const DEFAULT_MAP_WIDTH_METERS = 30;
+
+// Les PNJ et ennemis sont masqués par défaut sur la carte des joueurs :
+// le MJ les révèle explicitement. Les personnages joueurs sont visibles.
+export function isTokenHidden(id: string, token?: MapTokenState): boolean {
+  return token?.hidden ?? id.startsWith("participant:");
+}
 
 export function characterTokenId(characterId: string): string {
   return `character:${characterId}`;
