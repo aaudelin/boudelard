@@ -1,4 +1,11 @@
-import { EnemyAbility, EnemyAttack, PowerLevel } from "./enemy";
+import {
+  AbilityKey,
+  AbilityScores,
+  CombatantSkill,
+  EnemyAbility,
+  EnemyAttack,
+  PowerLevel,
+} from "./enemy";
 
 export interface NpcSpell {
   name: string;
@@ -20,6 +27,12 @@ export interface Npc {
   speed?: string;
   /** Bonus ajouté au d20 lors du jet d'initiative (0 si absent) */
   initiativeBonus?: number;
+  abilityScores: AbilityScores;
+  /** Jets de sauvegarde maîtrisés uniquement : bonus final.
+   *  Les autres sauvegardes = modificateur de caractéristique. */
+  savingThrows?: Partial<Record<AbilityKey, number>>;
+  /** Compétences notables uniquement */
+  skills?: CombatantSkill[];
   attacks: EnemyAttack[];
   abilities: EnemyAbility[];
   spells?: NpcSpell[];

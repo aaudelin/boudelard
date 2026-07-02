@@ -10,6 +10,10 @@ export const enemies: Enemy[] = [
     powerLevel: "1/2",
     speed: "Vol 12m",
     initiativeBonus: 2,
+    // Cf. Homoncule SRD : engin volant fragile, tir précis (DEX),
+    // Perception « programmée » élevée malgré une INT basse
+    abilityScores: { str: 6, dex: 16, con: 10, int: 8, wis: 16, cha: 4 },
+    skills: [{ name: "Perception", bonus: 5 }],
     attacks: [
       {
         name: "Rayon",
@@ -34,6 +38,8 @@ export const enemies: Enemy[] = [
     ac: 14,
     powerLevel: "1/4",
     initiativeBonus: 1,
+    // Homoncule SRD avec bras mécanique renforcé (FOR 16 → attaque +5)
+    abilityScores: { str: 16, dex: 12, con: 12, int: 10, wis: 10, cha: 6 },
     attacks: [
       {
         name: "Attaque",
@@ -57,6 +63,10 @@ export const enemies: Enemy[] = [
     ac: 15,
     powerLevel: "1/2",
     initiativeBonus: 0,
+    // Cf. Armure animée SRD : construction lourde, sauvegarde CON maîtrisée
+    abilityScores: { str: 18, dex: 10, con: 14, int: 3, wis: 10, cha: 3 },
+    savingThrows: { con: 4 },
+    skills: [{ name: "Perception", bonus: 2 }],
     attacks: [
       {
         name: "Coup",
@@ -79,6 +89,9 @@ export const enemies: Enemy[] = [
     ac: 13,
     powerLevel: "1/4",
     initiativeBonus: 3,
+    // Cf. Araignée-loup géante SRD : agile et discrète, très fragile
+    abilityScores: { str: 6, dex: 15, con: 8, int: 4, wis: 10, cha: 3 },
+    skills: [{ name: "Discrétion", bonus: 4 }],
     attacks: [
       {
         name: "Morsure",
@@ -107,6 +120,15 @@ export const enemies: Enemy[] = [
     powerLevel: "2",
     speed: "Vol 9m (stationnaire)",
     initiativeBonus: 2,
+    // Boss : physique d'Ogre SRD (2d8+4 exact) + IA supérieure (INT 19
+    // → rayon laser +6), deux sauvegardes maîtrisées
+    abilityScores: { str: 19, dex: 14, con: 18, int: 19, wis: 14, cha: 16 },
+    savingThrows: { con: 6, cha: 5 },
+    skills: [
+      { name: "Intimidation", bonus: 5 },
+      { name: "Perception", bonus: 4 },
+      { name: "Investigation", bonus: 6 },
+    ],
     attacks: [
       {
         name: "Rayon laser",
@@ -149,6 +171,11 @@ export const enemies: Enemy[] = [
     powerLevel: "1",
     speed: "Immobile",
     initiativeBonus: -2,
+    // Machine immobile : INT 18 justifie le DD 14 de la Décharge
+    // d'urgence (8 + maîtrise 2 + mod 4)
+    abilityScores: { str: 1, dex: 7, con: 16, int: 18, wis: 8, cha: 1 },
+    savingThrows: { con: 5, int: 6 },
+    skills: [{ name: "Investigation", bonus: 6 }],
     attacks: [
       {
         name: "Décharge d'urgence",

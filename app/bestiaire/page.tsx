@@ -4,7 +4,19 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { enemies, getEnemyById } from "@/data/enemies";
 import { npcs, getNpcById } from "@/data/npcs";
 import { characters } from "@/data/characters";
-import { Enemy, EnemyAttack, EnemyAbility, PowerLevel } from "@/types/enemy";
+import {
+  AbilityKey,
+  AbilityScores,
+  CombatantSkill,
+  Enemy,
+  EnemyAttack,
+  EnemyAbility,
+  PowerLevel,
+} from "@/types/enemy";
+import {
+  CompactStats,
+  combatantCompactAbilities,
+} from "@/components/encounter/compact-stats";
 import { Npc, NpcSpell } from "@/types/npc";
 import {
   CombatantKind,
@@ -132,6 +144,9 @@ function PasswordScreen({
 // Détails dépliés communs aux fiches ennemi, PNJ et rencontre
 function CombatDetails({
   powerLevel,
+  abilityScores,
+  savingThrows,
+  skills,
   attacks,
   abilities,
   spells,
@@ -140,6 +155,9 @@ function CombatDetails({
   vulnerabilities,
 }: {
   powerLevel?: PowerLevel;
+  abilityScores?: AbilityScores;
+  savingThrows?: Partial<Record<AbilityKey, number>>;
+  skills?: CombatantSkill[];
   attacks: EnemyAttack[];
   abilities: EnemyAbility[];
   spells?: NpcSpell[];
@@ -149,6 +167,13 @@ function CombatDetails({
 }) {
   return (
     <div className="space-y-3 pt-2 border-t">
+      {abilityScores && (
+        <CompactStats
+          abilities={combatantCompactAbilities(abilityScores, savingThrows)}
+          skills={skills ?? []}
+        />
+      )}
+
       {powerLevel && (
         <div>
           <h4 className="text-sm font-medium flex items-center gap-1 mb-1">
@@ -302,6 +327,9 @@ function EnemyCard({
         {expanded && (
           <CombatDetails
             powerLevel={enemy.powerLevel}
+            abilityScores={enemy.abilityScores}
+            savingThrows={enemy.savingThrows}
+            skills={enemy.skills}
             attacks={enemy.attacks}
             abilities={enemy.abilities}
             immunities={enemy.immunities}
@@ -366,6 +394,9 @@ function NpcCard({
         {expanded && (
           <CombatDetails
             powerLevel={npc.powerLevel}
+            abilityScores={npc.abilityScores}
+            savingThrows={npc.savingThrows}
+            skills={npc.skills}
             attacks={npc.attacks}
             abilities={npc.abilities}
             spells={npc.spells}
@@ -540,6 +571,9 @@ function EncounterParticipantCard({
         {expanded && (
           <CombatDetails
             powerLevel={participant.powerLevel}
+            abilityScores={participant.abilityScores}
+            savingThrows={participant.savingThrows}
+            skills={participant.skills}
             attacks={participant.attacks}
             abilities={participant.abilities}
             spells={participant.kind === "npc" ? participant.spells : undefined}
