@@ -12,6 +12,14 @@ export const npcs: Npc[] = [
     powerLevel: "1/2",
     speed: "9m",
     initiativeBonus: 2,
+    // Guerrière meneuse façon Vétéran SRD : FOR 16 (Lame de récup +5),
+    // sauvegardes FOR/CON de guerrier, CHA correcte pour son aura
+    abilityScores: { str: 16, dex: 14, con: 14, int: 10, wis: 11, cha: 14 },
+    savingThrows: { str: 5, con: 4 },
+    skills: [
+      { name: "Athlétisme", bonus: 5 },
+      { name: "Intimidation", bonus: 4 },
+    ],
     attacks: [
       {
         name: "Lame de récup",
@@ -47,6 +55,14 @@ export const npcs: Npc[] = [
     powerLevel: "1/2",
     speed: "6m",
     initiativeBonus: 0,
+    // Cf. Mage SRD : INT 16 (Éclair de données +5), sauvegardes INT/SAG
+    abilityScores: { str: 8, dex: 12, con: 12, int: 16, wis: 15, cha: 10 },
+    savingThrows: { int: 5, wis: 4 },
+    skills: [
+      { name: "Arcanes", bonus: 5 },
+      { name: "Histoire", bonus: 5 },
+      { name: "Médecine", bonus: 4 },
+    ],
     attacks: [
       {
         name: "Bâton",
@@ -87,6 +103,12 @@ export const npcs: Npc[] = [
     ac: 13,
     powerLevel: "1/3",
     initiativeBonus: 1,
+    // Combattant de rue façon Malfrat SRD : FOR 14 (Tuyau métallique +4)
+    abilityScores: { str: 14, dex: 13, con: 12, int: 10, wis: 10, cha: 12 },
+    skills: [
+      { name: "Investigation", bonus: 2 },
+      { name: "Discrétion", bonus: 3 },
+    ],
     attacks: [
       {
         name: "Tuyau métallique",

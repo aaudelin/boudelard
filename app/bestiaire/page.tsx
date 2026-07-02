@@ -4,7 +4,19 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { enemies, getEnemyById } from "@/data/enemies";
 import { npcs, getNpcById } from "@/data/npcs";
 import { characters } from "@/data/characters";
-import { Enemy, EnemyAttack, EnemyAbility, PowerLevel } from "@/types/enemy";
+import {
+  AbilityKey,
+  AbilityScores,
+  CombatantSkill,
+  Enemy,
+  EnemyAttack,
+  EnemyAbility,
+  PowerLevel,
+} from "@/types/enemy";
+import {
+  CompactStats,
+  combatantCompactAbilities,
+} from "@/components/encounter/compact-stats";
 import { Npc, NpcSpell } from "@/types/npc";
 import {
   CombatantKind,
@@ -12,6 +24,13 @@ import {
   EncounterParticipantState,
 } from "@/types/encounter";
 import { CharacterEncounterCard } from "@/components/encounter/character-encounter-card";
+import {
+  GmMapPanel,
+  buildGmMapEntities,
+} from "@/components/map/gm-map-panel";
+import { getDefaultPositions } from "@/components/map/live-map";
+import { useLiveMap } from "@/hooks/use-live-map";
+import { isTokenHidden, participantTokenId } from "@/lib/map-helpers";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -32,6 +51,9 @@ import {
   Gauge,
   Sparkles,
   Dices,
+  Map as MapIcon,
+  Eye,
+  EyeOff,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatModifier } from "@/lib/dnd-helpers";
@@ -122,6 +144,9 @@ function PasswordScreen({
 // Détails dépliés communs aux fiches ennemi, PNJ et rencontre
 function CombatDetails({
   powerLevel,
+  abilityScores,
+  savingThrows,
+  skills,
   attacks,
   abilities,
   spells,
@@ -130,6 +155,9 @@ function CombatDetails({
   vulnerabilities,
 }: {
   powerLevel?: PowerLevel;
+  abilityScores?: AbilityScores;
+  savingThrows?: Partial<Record<AbilityKey, number>>;
+  skills?: CombatantSkill[];
   attacks: EnemyAttack[];
   abilities: EnemyAbility[];
   spells?: NpcSpell[];
@@ -139,6 +167,13 @@ function CombatDetails({
 }) {
   return (
     <div className="space-y-3 pt-2 border-t">
+      {abilityScores && (
+        <CompactStats
+          abilities={combatantCompactAbilities(abilityScores, savingThrows)}
+          skills={skills ?? []}
+        />
+      )}
+
       {powerLevel && (
         <div>
           <h4 className="text-sm font-medium flex items-center gap-1 mb-1">
@@ -292,6 +327,9 @@ function EnemyCard({
         {expanded && (
           <CombatDetails
             powerLevel={enemy.powerLevel}
+            abilityScores={enemy.abilityScores}
+            savingThrows={enemy.savingThrows}
+            skills={enemy.skills}
             attacks={enemy.attacks}
             abilities={enemy.abilities}
             immunities={enemy.immunities}
@@ -356,6 +394,9 @@ function NpcCard({
         {expanded && (
           <CombatDetails
             powerLevel={npc.powerLevel}
+            abilityScores={npc.abilityScores}
+            savingThrows={npc.savingThrows}
+            skills={npc.skills}
             attacks={npc.attacks}
             abilities={npc.abilities}
             spells={npc.spells}
@@ -368,13 +409,17 @@ function NpcCard({
 
 function EncounterParticipantCard({
   participant,
+  hiddenOnMap,
   onHpChange,
   onInitiativeChange,
+  onToggleHidden,
   onRemove,
 }: {
   participant: EncounterParticipant;
+  hiddenOnMap: boolean;
   onHpChange: (instanceId: string, delta: number) => void;
   onInitiativeChange: (instanceId: string, value: number | undefined) => void;
+  onToggleHidden: (instanceId: string) => void;
   onRemove: (instanceId: string) => void;
 }) {
   const [expanded, setExpanded] = useState(false);
@@ -415,13 +460,31 @@ function EncounterParticipantCard({
             </h3>
             {isDead && <Skull className="h-4 w-4 text-muted-foreground" />}
           </div>
-          <Button
-            size="icon-xs"
-            variant="ghost"
-            onClick={() => onRemove(participant.instanceId)}
-          >
-            <X className="h-4 w-4" />
-          </Button>
+          <div className="flex items-center gap-1">
+            <Button
+              size="icon-xs"
+              variant="ghost"
+              title={
+                hiddenOnMap
+                  ? "Masqué sur la carte des joueurs"
+                  : "Visible sur la carte des joueurs"
+              }
+              onClick={() => onToggleHidden(participant.instanceId)}
+            >
+              {hiddenOnMap ? (
+                <EyeOff className="h-4 w-4 text-muted-foreground" />
+              ) : (
+                <Eye className="h-4 w-4 text-emerald-600" />
+              )}
+            </Button>
+            <Button
+              size="icon-xs"
+              variant="ghost"
+              onClick={() => onRemove(participant.instanceId)}
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
 
         <div className="space-y-2">
@@ -508,6 +571,9 @@ function EncounterParticipantCard({
         {expanded && (
           <CombatDetails
             powerLevel={participant.powerLevel}
+            abilityScores={participant.abilityScores}
+            savingThrows={participant.savingThrows}
+            skills={participant.skills}
             attacks={participant.attacks}
             abilities={participant.abilities}
             spells={participant.kind === "npc" ? participant.spells : undefined}
@@ -555,10 +621,14 @@ function BestiairePage() {
   const [characterInitiatives, setCharacterInitiatives] = useState<
     Record<string, number>
   >({});
-  const [view, setView] = useState<"encounter" | "bestiary" | "npcs">(
+  const [view, setView] = useState<"encounter" | "map" | "bestiary" | "npcs">(
     "encounter"
   );
   const [loaded, setLoaded] = useState(false);
+
+  // État de la carte partagé entre l'onglet Rencontre (bouton œil)
+  // et l'onglet Carte
+  const map = useLiveMap();
 
   const encounterRef = useRef<EncounterParticipant[]>([]);
   const characterInitiativesRef = useRef<Record<string, number>>({});
@@ -718,6 +788,22 @@ function BestiairePage() {
     );
   };
 
+  // Bascule la visibilité du pion sur la carte des joueurs
+  // (masqué par défaut tant que le MJ ne l'a pas révélé)
+  const toggleParticipantHidden = (instanceId: string) => {
+    const tokenId = participantTokenId(instanceId);
+    const token = map.state?.tokens[tokenId];
+    const position =
+      token ??
+      getDefaultPositions(buildGmMapEntities(encounterRef.current))[tokenId] ??
+      { x: 0.5, y: 0.5 };
+    map.updateToken(tokenId, {
+      x: position.x,
+      y: position.y,
+      hidden: !isTokenHidden(tokenId, token),
+    });
+  };
+
   const removeFromEncounter = (instanceId: string) => {
     applyEncounter(
       encounterRef.current.filter((e) => e.instanceId !== instanceId),
@@ -755,24 +841,28 @@ function BestiairePage() {
           <h1 className="text-2xl font-bold tracking-tight text-center">
             Bestiaire du MJ
           </h1>
-          <div className="flex gap-2 mt-4">
+          <div className="grid grid-cols-2 gap-2 mt-4">
             <Button
               variant={view === "encounter" ? "default" : "outline"}
-              className="flex-1"
               onClick={() => setView("encounter")}
             >
               Rencontre ({encounter.length})
             </Button>
             <Button
+              variant={view === "map" ? "default" : "outline"}
+              onClick={() => setView("map")}
+            >
+              <MapIcon className="h-4 w-4" />
+              Carte
+            </Button>
+            <Button
               variant={view === "bestiary" ? "default" : "outline"}
-              className="flex-1"
               onClick={() => setView("bestiary")}
             >
               Bestiaire
             </Button>
             <Button
               variant={view === "npcs" ? "default" : "outline"}
-              className="flex-1"
               onClick={() => setView("npcs")}
             >
               PNJ
@@ -822,8 +912,15 @@ function BestiairePage() {
                     <EncounterParticipantCard
                       key={row.participant.instanceId}
                       participant={row.participant}
+                      hiddenOnMap={isTokenHidden(
+                        participantTokenId(row.participant.instanceId),
+                        map.state?.tokens[
+                          participantTokenId(row.participant.instanceId)
+                        ]
+                      )}
                       onHpChange={updateHp}
                       onInitiativeChange={updateInitiative}
+                      onToggleHidden={toggleParticipantHidden}
                       onRemove={removeFromEncounter}
                     />
                   )
@@ -843,6 +940,14 @@ function BestiairePage() {
               </>
             )}
           </div>
+        )}
+
+        {view === "map" && (
+          <GmMapPanel
+            participants={encounter}
+            onHpChange={updateHp}
+            map={map}
+          />
         )}
 
         {view === "bestiary" && (

@@ -1,14 +1,8 @@
 import Link from "next/link";
-import Image from "next/image";
-import { getAllCharacters } from "@/lib/characters";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { classLabels, subclassLabels } from "@/lib/dnd-helpers";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Lock, Swords, Users } from "lucide-react";
 
-export default async function Home() {
-  const characters = await getAllCharacters();
-
+export default function Home() {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black">
       <div className="mx-auto max-w-lg px-4 py-8">
@@ -19,55 +13,44 @@ export default async function Home() {
           </p>
         </header>
 
-        <div className="flex flex-col gap-3">
-          {characters.map((character) => {
-            const className = classLabels[character.class] || character.class;
-            const subclassName =
-              subclassLabels[character.subclass] || character.subclass;
+        <div className="flex flex-col gap-4">
+          <Link href="/personnages">
+            <Card className="transition-colors hover:bg-accent/50">
+              <CardContent className="flex items-center gap-4 py-6">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">
+                  <Users className="h-7 w-7" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h2 className="text-lg font-semibold">Espace joueurs</h2>
+                  <p className="text-muted-foreground text-sm">
+                    Accédez à vos fiches de personnage et à la carte
+                  </p>
+                </div>
+                <ChevronRight className="text-muted-foreground h-5 w-5 shrink-0" />
+              </CardContent>
+            </Card>
+          </Link>
 
-            return (
-              <Link key={character.id} href={`/character/${character.id}`}>
-                <Card className="transition-colors hover:bg-accent/50">
-                  <CardContent className="flex items-center gap-4 py-4">
-                    {character.image && (
-                      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg">
-                        <Image
-                          src={character.image}
-                          alt={character.name}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    )}
-                    <div className="min-w-0 flex-1">
-                      <h2 className="truncate font-semibold">
-                        {character.name}
-                      </h2>
-                      <p className="text-muted-foreground text-sm">
-                        {character.race}
-                      </p>
-                      <div className="mt-1 flex flex-wrap gap-1">
-                        <Badge variant="default" className="text-xs">
-                          Niv. {character.level}
-                        </Badge>
-                        <Badge variant="secondary" className="text-xs">
-                          {className}
-                        </Badge>
-                        <Badge variant="outline" className="text-xs">
-                          {subclassName}
-                        </Badge>
-                      </div>
-                    </div>
-                    <ChevronRight className="text-muted-foreground h-5 w-5 shrink-0" />
-                  </CardContent>
-                </Card>
-              </Link>
-            );
-          })}
+          <Link href="/bestiaire">
+            <Card className="transition-colors hover:bg-accent/50">
+              <CardContent className="flex items-center gap-4 py-6">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300">
+                  <Swords className="h-7 w-7" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h2 className="flex items-center gap-1.5 text-lg font-semibold">
+                    Espace MJ
+                    <Lock className="text-muted-foreground h-4 w-4" />
+                  </h2>
+                  <p className="text-muted-foreground text-sm">
+                    Bestiaire, rencontres et carte — protégé par mot de passe
+                  </p>
+                </div>
+                <ChevronRight className="text-muted-foreground h-5 w-5 shrink-0" />
+              </CardContent>
+            </Card>
+          </Link>
         </div>
-
-        <footer className="mt-8 text-center">
-        </footer>
       </div>
     </div>
   );

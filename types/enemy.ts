@@ -3,6 +3,17 @@ export interface EnemyAbility {
   description: string;
 }
 
+export type AbilityKey = "str" | "dex" | "con" | "int" | "wis" | "cha";
+
+/** Scores bruts de caractéristiques, les modificateurs sont dérivés */
+export type AbilityScores = Record<AbilityKey, number>;
+
+/** Compétence notable d'un PNJ/ennemi, avec le bonus final au jet */
+export interface CombatantSkill {
+  name: string;
+  bonus: number;
+}
+
 export interface EnemyAttack {
   name: string;
   bonus: number;
@@ -28,6 +39,12 @@ export interface Enemy {
   speed?: string;
   /** Bonus ajouté au d20 lors du jet d'initiative (0 si absent) */
   initiativeBonus?: number;
+  abilityScores: AbilityScores;
+  /** Jets de sauvegarde maîtrisés uniquement : bonus final.
+   *  Les autres sauvegardes = modificateur de caractéristique. */
+  savingThrows?: Partial<Record<AbilityKey, number>>;
+  /** Compétences notables uniquement */
+  skills?: CombatantSkill[];
   attacks: EnemyAttack[];
   abilities: EnemyAbility[];
   immunities?: string[];

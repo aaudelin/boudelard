@@ -6,9 +6,12 @@ import { Character, Spell } from "@/types/character";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { AbilityScores } from "@/components/character/ability-scores";
-import { SkillsList } from "@/components/character/skills-list";
 import { AttacksSection } from "@/components/character/attacks-section";
+import {
+  CompactStats,
+  characterCompactAbilities,
+  characterNotableSkills,
+} from "@/components/encounter/compact-stats";
 import {
   formatModifier,
   classLabels,
@@ -125,8 +128,10 @@ export function CharacterEncounterCard({
 
         {expanded && (
           <div className="space-y-3 pt-2 border-t">
-            <AbilityScores abilities={character.abilities} />
-            <SkillsList skills={character.skills} />
+            <CompactStats
+              abilities={characterCompactAbilities(character)}
+              skills={characterNotableSkills(character)}
+            />
             <AttacksSection attacks={character.attacks} />
 
             {character.featuresAndTraits.length > 0 && (
