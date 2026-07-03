@@ -1,8 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { MapImage, MapState, MapTokenState } from "@/types/map";
+import { MapImage, MapRotation, MapState, MapTokenState } from "@/types/map";
 import { fileToCompressedDataUrl } from "@/lib/map-image";
+import {
+  normalizeRotation,
+  rotatedImageDims,
+  rotateToken90CW,
+} from "@/lib/map-helpers";
 
 // Même fonctionnement que la mise à jour des stats : polling périodique
 // côté lecture, écriture immédiate côté action, un petit delta de
@@ -19,6 +24,7 @@ export interface LiveMapApi {
   uploading: boolean;
   updateToken: (id: string, token: MapTokenState) => void;
   setMapWidthMeters: (meters: number) => void;
+  rotateImage: () => void;
   uploadImage: (file: File) => Promise<boolean>;
   removeImage: () => Promise<void>;
 }
@@ -132,6 +138,48 @@ export function useLiveMap(): LiveMapApi {
     [patch]
   );
 
+  // Pivote l'image de 90° dans le sens horaire. L'image stockée reste
+  // inchangée : on fait pivoter l'affichage et on migre les pions + l'échelle
+  // pour qu'ils restent cohérents avec la nouvelle orientation.
+  const rotateImage = useCallback(() => {
+    const current = stateRef.current;
+    if (!current || !image) return;
+
+    const rotation = normalizeRotation(current.rotation);
+    const nextRotation = (((rotation + 90) % 360) as MapRotation);
+    const { width: dispW, height: dispH } = rotatedImageDims(
+      image.width,
+      image.height,
+      rotation
+    );
+
+    const nextTokens: Record<string, MapTokenState> = {};
+    for (const [id, token] of Object.entries(current.tokens)) {
+      nextTokens[id] = rotateToken90CW(token);
+    }
+    // Après une rotation de 90°, la largeur affichée devient l'ancienne
+    // hauteur : on ajuste l'échelle pour garder les distances réelles
+    const nextWidth = Math.max(
+      1,
+      Math.min(1000, current.mapWidthMeters * (dispH / dispW))
+    );
+
+    overridesRef.current.clear();
+    const next: MapState = {
+      ...current,
+      rotation: nextRotation,
+      mapWidthMeters: nextWidth,
+      tokens: nextTokens,
+    };
+    stateRef.current = next;
+    setState(next);
+    patch({
+      rotation: nextRotation,
+      mapWidthMeters: nextWidth,
+      tokens: nextTokens,
+    });
+  }, [image, patch]);
+
   const uploadImage = useCallback(
     async (file: File): Promise<boolean> => {
       setUploading(true);
@@ -183,6 +231,7 @@ export function useLiveMap(): LiveMapApi {
     uploading,
     updateToken,
     setMapWidthMeters,
+    rotateImage,
     uploadImage,
     removeImage,
   };

@@ -11,7 +11,12 @@ const MAP_STATE_KEY = "map:current:state";
 const MAP_IMAGE_KEY = "map:current:image";
 
 export function getEmptyMapState(imageId: string | null = null): MapState {
-  return { imageId, mapWidthMeters: DEFAULT_MAP_WIDTH_METERS, tokens: {} };
+  return {
+    imageId,
+    mapWidthMeters: DEFAULT_MAP_WIDTH_METERS,
+    rotation: 0,
+    tokens: {},
+  };
 }
 
 export async function getMapState(): Promise<MapState | null> {

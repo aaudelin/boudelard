@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { enemies, getEnemyById } from "@/data/enemies";
 import { npcs, getNpcById } from "@/data/npcs";
 import { characters } from "@/data/characters";
@@ -54,6 +54,8 @@ import {
   Map as MapIcon,
   Eye,
   EyeOff,
+  Search,
+  SlidersHorizontal,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatModifier } from "@/lib/dnd-helpers";
@@ -88,12 +90,106 @@ const POWER_LEVELS: Record<
   },
 };
 
+// Ordre croissant de puissance pour l'affichage des filtres
+const POWER_LEVEL_ORDER: PowerLevel[] = ["1/4", "1/3", "1/2", "1", "2"];
+
 function PowerLevelBadge({ level }: { level: PowerLevel }) {
   return (
     <Badge className={cn("gap-1", POWER_LEVELS[level].className)}>
       <Gauge className="h-3 w-3" />
       {level}
     </Badge>
+  );
+}
+
+// Barre de recherche + filtres de puissance partagée entre Bestiaire et PNJ
+function CombatantFilters({
+  search,
+  onSearchChange,
+  selectedPowers,
+  onTogglePower,
+  onReset,
+  total,
+  shown,
+  noun,
+}: {
+  search: string;
+  onSearchChange: (value: string) => void;
+  selectedPowers: PowerLevel[];
+  onTogglePower: (level: PowerLevel) => void;
+  onReset: () => void;
+  total: number;
+  shown: number;
+  noun: { singular: string; plural: string };
+}) {
+  const hasFilters = search.trim() !== "" || selectedPowers.length > 0;
+
+  return (
+    <div className="space-y-3 rounded-lg border bg-card p-3">
+      <div className="relative">
+        <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        <Input
+          type="search"
+          placeholder="Rechercher par nom..."
+          value={search}
+          onChange={(e) => onSearchChange(e.target.value)}
+          className="pl-9 pr-9"
+        />
+        {search && (
+          <button
+            type="button"
+            aria-label="Effacer la recherche"
+            onClick={() => onSearchChange("")}
+            className="absolute right-2 top-1/2 -translate-y-1/2 rounded p-1 text-muted-foreground hover:bg-accent"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        )}
+      </div>
+
+      <div className="flex flex-wrap items-center gap-1.5">
+        <span className="flex items-center gap-1 text-xs font-medium text-muted-foreground">
+          <SlidersHorizontal className="h-3 w-3" />
+          Puissance
+        </span>
+        {POWER_LEVEL_ORDER.map((level) => {
+          const active = selectedPowers.includes(level);
+          return (
+            <button
+              key={level}
+              type="button"
+              aria-pressed={active}
+              title={POWER_LEVELS[level].description}
+              onClick={() => onTogglePower(level)}
+              className={cn(
+                "inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors",
+                active
+                  ? cn(POWER_LEVELS[level].className, "border-transparent ring-2 ring-primary/50")
+                  : "border-border text-muted-foreground hover:bg-accent"
+              )}
+            >
+              <Gauge className="h-3 w-3" />
+              {level}
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="flex items-center justify-between text-xs text-muted-foreground">
+        <span>
+          {shown} / {total} {shown > 1 ? noun.plural : noun.singular}
+        </span>
+        {hasFilters && (
+          <button
+            type="button"
+            onClick={onReset}
+            className="font-medium text-primary hover:underline"
+          >
+            Réinitialiser
+          </button>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -120,7 +216,7 @@ function PasswordScreen({
       <Card className="w-full max-w-sm mx-4">
         <CardHeader className="text-center">
           <Lock className="mx-auto h-12 w-12 text-muted-foreground mb-2" />
-          <CardTitle>Bestiaire du MJ</CardTitle>
+          <CardTitle>Espace MJ</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -626,6 +722,43 @@ function BestiairePage() {
   );
   const [loaded, setLoaded] = useState(false);
 
+  // Recherche par nom + filtres de puissance, partagés entre Bestiaire et PNJ
+  const [search, setSearch] = useState("");
+  const [powerFilter, setPowerFilter] = useState<PowerLevel[]>([]);
+
+  const togglePowerFilter = (level: PowerLevel) => {
+    setPowerFilter((prev) =>
+      prev.includes(level)
+        ? prev.filter((l) => l !== level)
+        : [...prev, level]
+    );
+  };
+
+  const resetFilters = () => {
+    setSearch("");
+    setPowerFilter([]);
+  };
+
+  const matchesFilters = useCallback(
+    (c: { name: string; powerLevel: PowerLevel }) => {
+      const query = search.trim().toLowerCase();
+      if (query && !c.name.toLowerCase().includes(query)) return false;
+      if (powerFilter.length > 0 && !powerFilter.includes(c.powerLevel))
+        return false;
+      return true;
+    },
+    [search, powerFilter]
+  );
+
+  const filteredEnemies = useMemo(
+    () => enemies.filter(matchesFilters),
+    [matchesFilters]
+  );
+  const filteredNpcs = useMemo(
+    () => npcs.filter(matchesFilters),
+    [matchesFilters]
+  );
+
   // État de la carte partagé entre l'onglet Rencontre (bouton œil)
   // et l'onglet Carte
   const map = useLiveMap();
@@ -839,7 +972,7 @@ function BestiairePage() {
       <div className="mx-auto max-w-lg px-4 py-6">
         <header className="mb-6">
           <h1 className="text-2xl font-bold tracking-tight text-center">
-            Bestiaire du MJ
+            Espace MJ
           </h1>
           <div className="grid grid-cols-2 gap-2 mt-4">
             <Button
@@ -952,25 +1085,61 @@ function BestiairePage() {
 
         {view === "bestiary" && (
           <div className="space-y-4">
-            {enemies.map((enemy) => (
+            <CombatantFilters
+              search={search}
+              onSearchChange={setSearch}
+              selectedPowers={powerFilter}
+              onTogglePower={togglePowerFilter}
+              onReset={resetFilters}
+              total={enemies.length}
+              shown={filteredEnemies.length}
+              noun={{ singular: "ennemi", plural: "ennemis" }}
+            />
+            {filteredEnemies.map((enemy) => (
               <EnemyCard
                 key={enemy.id}
                 enemy={enemy}
                 onAdd={(e) => addToEncounter(e, "enemy")}
               />
             ))}
+            {filteredEnemies.length === 0 && (
+              <Card className="py-8">
+                <CardContent className="text-center text-muted-foreground">
+                  <Search className="mx-auto h-12 w-12 mb-2 opacity-50" />
+                  <p>Aucun ennemi ne correspond à la recherche</p>
+                </CardContent>
+              </Card>
+            )}
           </div>
         )}
 
         {view === "npcs" && (
           <div className="space-y-4">
-            {npcs.map((npc) => (
+            <CombatantFilters
+              search={search}
+              onSearchChange={setSearch}
+              selectedPowers={powerFilter}
+              onTogglePower={togglePowerFilter}
+              onReset={resetFilters}
+              total={npcs.length}
+              shown={filteredNpcs.length}
+              noun={{ singular: "PNJ", plural: "PNJ" }}
+            />
+            {filteredNpcs.map((npc) => (
               <NpcCard
                 key={npc.id}
                 npc={npc}
                 onAdd={(n) => addToEncounter(n, "npc")}
               />
             ))}
+            {filteredNpcs.length === 0 && (
+              <Card className="py-8">
+                <CardContent className="text-center text-muted-foreground">
+                  <Search className="mx-auto h-12 w-12 mb-2 opacity-50" />
+                  <p>Aucun PNJ ne correspond à la recherche</p>
+                </CardContent>
+              </Card>
+            )}
           </div>
         )}
       </div>

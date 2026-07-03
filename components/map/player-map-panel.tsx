@@ -120,6 +120,7 @@ export function PlayerMapPanel({ characterId }: PlayerMapPanelProps) {
       <LiveMap
         image={image}
         mapWidthMeters={state?.mapWidthMeters ?? DEFAULT_MAP_WIDTH_METERS}
+        rotation={state?.rotation ?? 0}
         entities={entities}
         positions={positions}
         canMove={(id) => id === ownTokenId}

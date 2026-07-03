@@ -37,6 +37,7 @@ import {
   Map as MapIcon,
   Minus,
   Plus,
+  RotateCw,
   Ruler,
   Shield,
   Trash2,
@@ -80,6 +81,7 @@ export function GmMapPanel({ participants, onHpChange, map }: GmMapPanelProps) {
     uploading,
     updateToken,
     setMapWidthMeters,
+    rotateImage,
     uploadImage,
     removeImage,
   } = map;
@@ -174,21 +176,32 @@ export function GmMapPanel({ participants, onHpChange, map }: GmMapPanelProps) {
                   : "Charger une carte"}
             </Button>
             {image && (
-              <Button
-                variant="destructive"
-                size="icon"
-                onClick={() => {
-                  if (
-                    window.confirm(
-                      "Supprimer la carte et réinitialiser les positions ?"
-                    )
-                  ) {
-                    removeImage();
-                  }
-                }}
-              >
-                <Trash2 className="h-4 w-4" />
-              </Button>
+              <>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  title="Pivoter la carte de 90°"
+                  disabled={uploading}
+                  onClick={() => rotateImage()}
+                >
+                  <RotateCw className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant="destructive"
+                  size="icon"
+                  onClick={() => {
+                    if (
+                      window.confirm(
+                        "Supprimer la carte et réinitialiser les positions ?"
+                      )
+                    ) {
+                      removeImage();
+                    }
+                  }}
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              </>
             )}
           </div>
 
@@ -213,8 +226,9 @@ export function GmMapPanel({ participants, onHpChange, map }: GmMapPanelProps) {
           <p className="text-xs text-muted-foreground">
             Les PNJ et ennemis de l&apos;onglet Rencontre apparaissent sur la
             carte, masqués aux joueurs par défaut. Touchez un pion pour ses
-            infos, glissez-le pour le déplacer. Changer d&apos;image
-            réinitialise les positions.
+            infos, glissez-le pour le déplacer. Le bouton{" "}
+            <RotateCw className="inline h-3 w-3" /> pivote la carte de 90° (côté
+            joueurs aussi). Changer d&apos;image réinitialise les positions.
           </p>
         </CardContent>
       </Card>
@@ -229,6 +243,7 @@ export function GmMapPanel({ participants, onHpChange, map }: GmMapPanelProps) {
         <LiveMap
           image={image}
           mapWidthMeters={mapWidthMeters}
+          rotation={state?.rotation ?? 0}
           entities={entities}
           positions={positions}
           canMove={() => true}
