@@ -65,6 +65,7 @@ export async function PUT(request: NextRequest) {
     const state: MapState = {
       imageId: image.id,
       mapWidthMeters: previous?.mapWidthMeters ?? DEFAULT_MAP_WIDTH_METERS,
+      rotation: 0,
       tokens: {},
     };
     await setMapState(state);

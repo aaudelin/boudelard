@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getMapState, setMapState, getEmptyMapState } from "@/lib/map-state";
 import { MapState, MapTokenState } from "@/types/map";
-import { clamp01 } from "@/lib/map-helpers";
+import { clamp01, normalizeRotation } from "@/lib/map-helpers";
 
 const MAX_TOKENS = 200;
 const MAX_TOKEN_ID_LENGTH = 120;
@@ -52,6 +52,10 @@ export async function PATCH(request: NextRequest) {
         1,
         Math.min(1000, Number(body.mapWidthMeters))
       );
+    }
+
+    if (body.rotation !== undefined) {
+      state.rotation = normalizeRotation(body.rotation);
     }
 
     const saved = await setMapState(state);

@@ -67,6 +67,8 @@ interface DragState {
 interface LiveMapProps {
   image: MapImage;
   mapWidthMeters: number;
+  // Rotation d'affichage de l'image, en degrés horaires (0 par défaut)
+  rotation?: number;
   entities: MapEntity[];
   positions: Record<string, MapTokenState>;
   canMove: (id: string) => boolean;
@@ -82,6 +84,7 @@ const ZOOM_LEVELS = [1, 1.5, 2, 3];
 export function LiveMap({
   image,
   mapWidthMeters,
+  rotation = 0,
   entities,
   positions,
   canMove,
@@ -96,7 +99,13 @@ export function LiveMap({
   const innerRef = useRef<HTMLDivElement>(null);
 
   const defaults = getDefaultPositions(entities);
-  const mapHeightMeters = mapWidthMeters * (image.height / image.width);
+
+  // Dimensions réellement affichées (largeur/hauteur échangées à 90°/270°).
+  // Les pions et distances raisonnent dans ce repère affiché.
+  const swapAxes = rotation === 90 || rotation === 270;
+  const displayWidth = swapAxes ? image.height : image.width;
+  const displayHeight = swapAxes ? image.width : image.height;
+  const mapHeightMeters = mapWidthMeters * (displayHeight / displayWidth);
 
   const visibleEntities = entities.filter(
     (e) => showHiddenTokens || !isTokenHidden(e.id, positions[e.id])
@@ -231,14 +240,29 @@ export function LiveMap({
         <div
           ref={innerRef}
           className="relative"
-          style={{ width: `${zoom * 100}%` }}
+          style={{
+            width: `${zoom * 100}%`,
+            aspectRatio: `${displayWidth} / ${displayHeight}`,
+          }}
         >
+          {/* L'image est pivotée en CSS pour remplir exactement la boîte
+              affichée (dimensions transposées à 90°/270°) */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={image.dataUrl}
             alt="Carte de la rencontre"
-            className="block w-full select-none"
+            className="absolute left-1/2 top-1/2 select-none"
             draggable={false}
+            style={{
+              maxWidth: "none",
+              transform: `translate(-50%, -50%) rotate(${rotation}deg)`,
+              width: swapAxes
+                ? `${(image.width / image.height) * 100}%`
+                : "100%",
+              height: swapAxes
+                ? `${(image.height / image.width) * 100}%`
+                : "100%",
+            }}
           />
 
           {/* Rayon de déplacement (vitesse) autour du point de départ */}
