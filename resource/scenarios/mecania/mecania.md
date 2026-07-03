@@ -24,17 +24,41 @@
 
 ## 📍 ÉTAT ACTUEL DE LA PARTIE
 
-> **Les joueurs sont arrivés à Mécania !**
+> **✅ SCÉNARIO 2 TERMINÉ — Axe Musk a été détruite !**
 >
-> **Ce qui s'est passé :**
-> - Claude Gépété a été rencontré à Boudelard
-> - L'énigme de l'ordinateur a été résolue (code AXEMUSK)
-> - Claude leur a donné le livre "Aventures d'Outre-monde" de JK Growling (avec les initiales VELP)
-> - Les joueurs savent que ce livre a inspiré Claude à créer le monde des Goths
-> - Ils viennent d'arriver au village de Mécania
+> La Session 2 a été jouée jusqu'à la destruction d'Axe Musk incluse. La partie s'est arrêtée juste après l'explosion finale.
 >
-> **Ce que Germione ressent (optionnel à mentionner) :**
-> Depuis que l'âme du fantôme est entrée en elle, Germione peut parfois sentir une "présence". Si elle se concentre, elle a des flashs d'images : des aventuriers dans ce même village, il y a très longtemps... portant des vêtements d'une autre époque.
+> 👉 Voir le **Débrief Session 2** ci-dessous pour le déroulé, et la **Préparation Session 3** pour les fils à reprendre.
+
+---
+
+## 🗒️ DÉBRIEF SESSION 2 (jouée)
+
+**Ce qui s'est passé :**
+- Les aventuriers ont rencontré **Belle**, cheffe de la résistance Goth (« Belle la rebelle »).
+- Ils ont d'abord attaqué la **tour / salle de contrôle** de l'usine pour **désactiver la sécurité**.
+- Ils ont ensuite affronté et **détruit Axe Musk**.
+- En mourant, **Axe Musk a explosé** :
+  - L'explosion a **arraché le bras droit de Ginny**, aussitôt remplacé par le **Bras Mécanique de Mécania**, qui abrite l'âme liée de l'ancienne aventurière (cf. Récompenses).
+  - **Belle et Germione sont tombées inconscientes** (« dans les pommes ») sous le souffle.
+  - **Seul Drogo est resté éveillé** pendant l'explosion.
+- **Aucun des autres PNJ n'a été rencontré** : le sage **Formeus** et le choix des cristaux bleu/rouge n'ont **pas** eu lieu, le **Goth prisonnier** de la salle de contrôle n'a pas été libéré, etc.
+
+> ⚠️ **Note mécanique :** Ginny a perdu son bras humain droit. Sa fiche (`data/characters/ginny-bezley.json`) a été mise à jour avec le **Bras Mécanique de Mécania** et sa capacité « Seringue Réparatrice ». In-fiction, **Ginny n'a pas encore été mise au courant** de sa nouvelle prothèse → voir Préparation Session 3.
+
+> **Rappel — ce que Germione ressent :** Depuis que l'âme du fantôme est entrée en elle, Germione peut parfois sentir une « présence » et avoir des flashs d'anciens aventuriers. Ginny porte désormais elle aussi une âme liée (le bras) : deux porteuses sur trois.
+
+---
+
+## 🎯 PRÉPARATION SESSION 3 — fils à reprendre
+
+À développer plus tard ; conservé ici en mémoire pour la prochaine préparation :
+
+1. **Annoncer à Ginny son bras métallique.** À la dissipation de la fumée / au réveil du groupe, lui révéler qu'elle a désormais une prothèse mécanique greffée (Bras Mécanique de Mécania). Gérer sa réaction et celle des autres.
+2. **Faire avancer l'intrigue de Vecna.** Trouver un moyen de pousser la trame principale (El Professor = Vecna, le cycle des 47 ans, VELP = Vecna El Pottier, les âmes des anciens aventuriers enfermées dans ses créations). Cf. « Indices sur la trame principale » et « Transition vers le scénario 3 » plus bas.
+3. **Situation particulière entre Germione et Ginny.** Toutes deux ont récupéré une âme liée (l'amulette de Germione, le bras de Ginny). Faire émerger un lien / une résonance / une tension entre elles autour de ces âmes.
+4. **Donner des indices sur les âmes liées** en entamant une **communication avec les hôtes** (les âmes logées dans l'amulette et dans le bras) : premiers murmures, rêves, flashs, échanges…
+5. **Préparer le scénario suivant pour que Drogo récupère lui aussi son âme** (3ᵉ porteur). Drogo est resté conscient pendant l'explosion et reste le seul sans âme liée ; le prochain arc devrait lui en attribuer une → passer de « deux porteuses sur trois » à trois sur trois.
 
 ---
 
@@ -53,7 +77,9 @@
 
 ---
 
-## 🎬 ACTE 2 : LE VILLAGE DES ROBOTS (45 min - 1h)
+## 🎬 ACTE 2 : LE VILLAGE DES ROBOTS (45 min - 1h) ✅ JOUÉ (Session 2)
+
+> *Rencontre de Belle et de la résistance Goth faite. **Formeus et le choix des cristaux bleu/rouge n'ont PAS eu lieu** (PNJ non rencontré).*
 
 ### ▶️ REPRENDRE ICI - Arrivée à Mécania
 
@@ -175,6 +201,8 @@ Belle explique (les joueurs peuvent poser des questions) :
 
 ### Formeus et la Pilule
 
+> ⚠️ **Session 2 :** ce passage n'a **pas** été joué — Formeus n'a pas été rencontré et le choix des cristaux n'a pas eu lieu.
+
 **Formeus le sage** s'approche. Vieux Goth, lunettes noires, longue barbe blanche. Il parle lentement, avec gravité.
 
 > « Avant d'affronter Axe Musk... vous devez choisir. »
@@ -202,7 +230,9 @@ Belle explique (les joueurs peuvent poser des questions) :
 
 ---
 
-## 🎬 ACTE 3 : INFILTRATION DE L'USINE (30-45 min)
+## 🎬 ACTE 3 : INFILTRATION DE L'USINE (30-45 min) ✅ JOUÉ (Session 2)
+
+> *Les joueurs ont attaqué la tour / salle de contrôle pour désactiver la sécurité. **Le Goth prisonnier de la salle de contrôle n'a pas été libéré** (PNJ non rencontré).*
 
 ### Plan de la Steelwatch Factory
 
@@ -299,7 +329,9 @@ Loot :
 
 ---
 
-## 🎬 ACTE 4 : BOSS - AXE MUSK (30-45 min)
+## 🎬 ACTE 4 : BOSS - AXE MUSK (30-45 min) ✅ JOUÉ (Session 2)
+
+> *Axe Musk a été détruite. À sa mort, explosion : bras droit de Ginny arraché puis remplacé par le Bras Mécanique de Mécania ; Belle et Germione KO ; seul Drogo resté éveillé.*
 
 ### La Salle des Serveurs
 
