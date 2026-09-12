@@ -225,6 +225,11 @@
       "name": "Abri du fidèle",
       "source": "Acolyte",
       "description": "Vous et vos compagnons pouvez vous attendre à recevoir des soins gratuits dans un temple de votre foi."
+    },
+    {
+      "name": "Bras droit arraché",
+      "source": "Blessure — explosion d'Axe Musk",
+      "description": "L'explosion du Serveur Central a emporté le bras droit de Ginny au-dessus du coude. Le moignon est cautérisé, il ne saigne plus. Ginny se bat et lance ses sorts d'une seule main : elle ne peut plus rien faire qui demande deux mains (recharger une arbalète, grimper à la corde, porter le bouclier ET la masse en même temps). Tant qu'elle porte son bouclier, elle n'a pas de main libre : chaque sort à composante matérielle ou somatique demande de ranger la masse (action gratuite) ou de lâcher le bouclier. Aucune magie de Boudelard ne fait repousser un membre."
     }
   ],
   "spellcasting": {
@@ -388,5 +393,6 @@
   "bonds": "",
   "flaws": "",
   "backstory": "Acolyte",
+  "appearance": "Manchote du bras droit depuis l'explosion d'Axe Musk : le bras a été arraché au-dessus du coude, le moignon est cautérisé par la chaleur du Serveur.",
   "image": "/ginny-profile.jpeg"
 }
