@@ -47,7 +47,7 @@
   - **Drogo** : **indemne**, le seul resté debout — et donc le seul témoin de ce qui s'est passé juste après.
 - **Aucun des autres PNJ n'a été rencontré** : le sage **Formeus** et le choix des cristaux bleu/rouge n'ont **pas** eu lieu, le **Goth prisonnier** de la salle de contrôle n'a pas été libéré, etc.
 
-> ⚠️ **Note mécanique :** Ginny a perdu son bras humain droit. Sa fiche (`data/characters/ginny-bezley.json`) porte le trait **« Bras droit arraché »** et **rien d'autre** : le **Bras Mécanique de Mécania** et sa capacité « Seringue Réparatrice » ont été **retirés de la fiche exprès**, pour que la joueuse ne les découvre pas avant l'heure. Le bloc JSON à recoller au moment de la greffe est dans le scénario de la session 3, section Récompenses.
+> ⚠️ **Note mécanique :** Ginny a perdu son bras humain droit. Sa fiche (`data/characters/ginny-bezley.json`) porte désormais le **Bras Mécanique de Mécania** et sa **Seringue Réparatrice**, livrés en même temps que la **montée au niveau 4** : la joueuse découvre les deux d'un coup, au moment de la greffe (session 3, Acte 2). **Ne lui faites pas ouvrir sa fiche avant** — pendant l'Acte 0 et l'Acte 1, elle est manchote et dans le coma.
 
 > ⚠️ **Le coma de Ginny n'est pas qu'une blessure.** Quand le Serveur a explosé, ce qui y était enfermé est entré **en elle**. Son âme et cette présence se disputent le même corps : c'est ça, le coma. Il faudra les **réconcilier**, exactement comme on l'a fait pour Germione au scénario 1 — la scène est écrite dans le scénario de la session 3 (Acte 1, « Fil B »), et c'est seulement **après** la réconciliation que la présence trouvera sa place dans le bras forgé par Formeus.
 
@@ -485,7 +485,7 @@ Axe Musk projette un hologramme humanoïde pour se battre.
 ### Bras Mécanique de Mécania (Ginny uniquement) — ⏳ PAS ENCORE OBTENU
 > **⚠️ Ce n'est plus une récompense de la session 2.** Ginny sort de l'explosion **manchote et dans le coma**. La prothèse est forgée par **Formeus** à la session suivante (`resource/scenarios/henry-le-pottier/henry-le-pottier.md`, Acte 2), une fois Ginny réconciliée avec sa passagère — et c'est Ginny qui **choisit** de l'accueillir.
 >
-> Le bloc JSON à recoller dans `data/characters/ginny-bezley.json` au moment de la greffe est dans la section Récompenses de ce scénario-là. **Jusqu'à ce moment, il ne doit pas apparaître sur la fiche.**
+> La fiche `data/characters/ginny-bezley.json` porte déjà le bras, livré avec la montée au niveau 4. **Ne la faites pas ouvrir à Ginny avant l'Acte 2 de la session 3.**
 
 > *Un bras-prothèse en métal d'Axe Musk, refondu par un vieux Goth dans son atelier. Le métal est froid au toucher, mais les circuits pulsent d'une lumière bleue chaleureuse. Parfois, quand Ginny dort, le bras bouge tout seul... comme s'il rêvait.*
 
@@ -499,7 +499,7 @@ Le bras remplace définitivement le bras humain droit de Ginny. Il abrite l'âme
 **Le fil rouge (caché aux joueurs) :** L'âme liée à ce bras est celle d'une aventurière piégée par Vecna il y a 47 ans. Comme pour Germione et son amulette, Ginny porte désormais une âme sans le savoir. Vecna a maintenant deux porteuses sur trois.
 
 ### Autres loots
-- **XP :** 400 par joueur (niveau 3 → niveau 4 ?)
+- **XP :** 400 par joueur. ✅ **Le passage au niveau 4 est appliqué** sur les trois fiches, à jouer au moment de la greffe du bras (session 3, Acte 2) — cf. « La montée au niveau 4 » dans `resource/scenarios/henry-le-pottier/henry-le-pottier.md`
 - **Or :** 30 pièces d'or en composants récupérables
 - **Grenade EMP** (si pas utilisée) : gardable pour plus tard
 - **Cristal de communication Goth** : permet de contacter Belle (portée illimitée)

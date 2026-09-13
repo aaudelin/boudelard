@@ -8,7 +8,7 @@
 | Info | Détail |
 |------|--------|
 | **Durée** | 3h - 3h30 |
-| **Niveau conseillé** | 4 (faites-les monter avant de commencer) |
+| **Niveau conseillé** | 4 — ✅ **déjà appliqué sur les trois fiches** (cf. « La montée au niveau 4 » en fin de doc) |
 | **Combats** | 4 (dont 1 boss en 2 phases, et 1 entièrement évitable) |
 | **Énigmes** | 3 + 1 contournement de combat |
 | **Joueur vedette** | Ginny (le coma, l'âme, le bras) — avec une ouverture solo forte pour Drogo |
@@ -884,19 +884,15 @@ Faites-en une petite séquence : porter Belle, compter les Goths, revenir cherch
 ### Bras Mécanique de Mécania *(Ginny)*
 Forgé par Formeus, en métal d'Axe Musk, étalonné par le groupe.
 
-> **➡️ Au moment de la greffe, remettez ce bloc dans `data/characters/ginny-bezley.json`** (dans `featuresAndTraits`) — il en a été **retiré exprès** pour que Ginny ne le voie pas avant :
+> **✅ Déjà sur la fiche.** Le bras et sa **Seringue Réparatrice** sont dans `data/characters/ginny-bezley.json`, en même temps que la montée au niveau 4 : la joueuse découvre les deux d'un coup, à ce moment précis de la partie. **Rien à recoller.**
+>
+> ⚠️ En contrepartie, **ne faites pas ouvrir sa fiche à Ginny avant l'Acte 2.** Pendant l'Acte 0 et l'Acte 1 elle est manchote et dans le coma : la fiche a une session d'avance sur la fiction. Si elle a besoin de jeter les dés avant (le Fil B se joue sans feuille, ou presque), donnez-lui les valeurs de vive voix.
 
-```json
-{
-  "name": "Seringue Réparatrice",
-  "source": "Bras Mécanique de Mécania",
-  "description": "Prothèse du bras droit, forgée par Formeus dans le métal d'Axe Musk et greffée au sanctuaire. Elle renferme un module de soin. 1×/repos court, Ginny touche une créature (y compris elle-même) pour lui injecter un sérum réparateur : la cible récupère 1d8 + 2 PV. Le bras est un membre mécanique : insensible à la douleur, impossible à désarmer de cette main, et confère un avantage narratif sur les interactions avec la technologie d'Axe Musk (Goths, drones, mécanismes).",
-  "uses": { "maximum": 1, "expended": 0, "recovery": "short" }
-}
-```
-
-Et dans `equipment.items` : `"Bras Mécanique de Mécania (prothèse — bras droit, forgée par Formeus)"`.
-Et **retirez** le trait `"Bras droit arraché"`, qui ne sert plus qu'à ça.
+| Sur la fiche | Ce que Ginny en sait |
+|---|---|
+| Seringue Réparatrice, 1×/repos court, 1d8+2 PV | Découvert à la greffe, Acte 2 |
+| « prothèse — bras droit, forgée par Formeus » | Idem |
+| Le reste (la passagère, son nom, d'où elle vient) | **N'est pas sur la fiche, et n'y sera pas** |
 
 **En plus de la fiche, trois choses gratuites et narratives :**
 - Elle **compte cinq doigts**. Toujours cinq. C'est devenu sa façon de vérifier qu'elle est dans le vrai monde.
@@ -917,6 +913,88 @@ Et **retirez** le trait `"Bras droit arraché"`, qui ne sert plus qu'à ça.
 - **Dobbix**, s'il a survécu : suiveur. Il refuse d'être payé. Il accepte les chaussettes.
 - **Le cristal de Formeus** (option B) : un appel, un seul.
 - Le livre *Aventures d'Outre-monde* a maintenant un statut nouveau : ce n'est plus un roman, c'est une **pièce à conviction**.
+
+---
+
+## 🎚️ LA MONTÉE AU NIVEAU 4
+
+**Déjà appliquée sur les trois fiches.** Reste à la *jouer* : le bon moment est le **repos long au sanctuaire de Formeus (fin de l'Acte 2)**, juste après la greffe du bras. Les trois se relèvent en même temps, chacun avec quelque chose en plus.
+
+**Règles appliquées :** SRD 5.2.1 (`resource/rules/FR_SRD_CC_v5.2.1.pdf`), tables de progression de classe.
+
+### Ce qui vaut pour tout le monde
+
+| Point | Valeur |
+|---|---|
+| **Bonus de maîtrise** | **+2, inchangé** (le palier +3 est au niveau 5) |
+| **PV** | +1 dé de vie, valeur fixe du SRD : **d8 → 5 + mod. CON**, **d6 → 4 + mod. CON**. Ça tombe sur **+7 PV pour les trois** |
+| **Dés de vie** | 3 → **4** |
+| **Sort mineur** | **+1 pour chacun** (les trois classes en gagnent un au niveau 4) |
+| **Amélioration de caractéristique** | Le SRD 5.2.1 ne contient que **17 dons**, dont **deux seulement** sont accessibles à un ASI de niveau 4 : *Amélioration de caractéristique* et *Empoigneur*. Pas de Robuste, pas de Chanceux, pas de Combattant occulte. Les trois personnages ayant toutes leurs caracs principales **paires**, un **+2 sur une seule carac** est strictement meilleur qu'un +1/+1 |
+
+### 🛡️ Ginny Bezley — Clerc (Guerre) 4
+
+| | Avant | Après |
+|---|---|---|
+| PV | 24 | **31** (4d8) |
+| **SAGESSE** | 16 (+3) | **18 (+4)** |
+| DD des sorts / attaque | 13 / +5 | **14 / +6** |
+| Sauvegarde SAG | +5 | **+6** |
+| Perception passive | 13 | **14** |
+| Emplacements | 4 / 2 | **4 / 3** |
+| **Prêtre de guerre** | 3×/repos long | **4×/repos long** |
+| Sorts mineurs | 3 | **4** — nouveau : **Flamme sacrée** |
+| Sorts | 10 | **11** — nouveau : **Bénédiction** |
+| Conduit divin | 2 | 2 (inchangé, le palier est au niveau 6) |
+
+**Pourquoi la Sagesse plutôt que la Force :** la Sagesse est la seule carac qui touche *tout* ce que fait Ginny d'un coup — ses soins (+1 PV rendu à chaque sort de soin), le DD de ses sorts, et surtout **le nombre d'utilisations de Prêtre de guerre**, qui est égal à son mod. de Sagesse : elle gagne une **attaque bonus supplémentaire par repos long**. Elle progresse donc en mêlée *et* en soin, là où +2 en Force n'aurait amélioré que le premier.
+
+**Flamme sacrée** comble un trou béant : elle n'avait **aucun tour de magie offensif**. Jusqu'ici, sans munition et hors de portée, elle ne pouvait rien faire. C'est aussi une jolie coïncidence de fiction — elle retrouve une main droite et une attaque à distance dans la même scène.
+
+### 📖 Germione Hangar — Magicienne (Évocation) 4
+
+| | Avant | Après |
+|---|---|---|
+| PV | 23 | **30** (4d6) |
+| **INTELLIGENCE** | 16 (+3) | **18 (+4)** |
+| DD des sorts / attaque | 13 / +5 | **14 / +6** |
+| Sauvegarde INT | +5 | **+6** |
+| Arcanes / Histoire / Investigation | +5 | **+6** |
+| Emplacements | 4 / 2 | **4 / 3** |
+| Sorts mineurs | 3 | **4** — nouveau : **Trait de feu** |
+| Grimoire | 10 sorts | **12** — nouveaux : **Toile d'araignée**, **Image miroir** |
+
+**Pourquoi l'Intelligence :** c'est à la fois sa carac d'incantation *et* celle de ses trois compétences signature. Un seul +2 améliore le DD de chaque sort d'évocation et fait passer la chercheuse de la Maison à +6 en Arcanes, Histoire et Investigation — ce qui compte beaucoup dans une session bâtie sur trois énigmes.
+
+**Sur sa fragilité :** l'agent de règles recommandait plutôt +2 en Constitution. J'ai tranché autrement, parce qu'elle porte déjà **Armure de mage** (CA 15) et **Bouclier** (+5 en réaction) : son problème de défense est déjà résolu par ses sorts, et +2 en CON n'aurait donné que des PV *futurs*. **Image miroir** finit le travail — trois leurres, sans Concentration, donc cumulable avec *Ténèbres* ou *Toile d'araignée*.
+**Toile d'araignée** est pensée pour cette session en particulier : contre la marée de Figurants de l'Acte 1 et les Effaceurs de l'Acte 3, un terrain difficile en cube de 6 m change tout.
+
+### 🗡️ Drogo Malaufoie — Occultiste (Lame maudite) 4
+
+| | Avant | Après |
+|---|---|---|
+| PV | 24 | **31** (4d8) |
+| **CHARISME** | 16 (+3) | **18 (+4)** |
+| DD des sorts / attaque | 13 / +5 | **14 / +6** |
+| Sauvegarde CHA | +5 | **+6** |
+| Tromperie / Intimidation / Représentation | +5 | **+6** |
+| **Magie de pacte** | 2 × niv. 2 | **2 × niv. 2 — INCHANGÉ** |
+| Manifestations occultes | 3 | 3 (inchangé) |
+| Sorts mineurs | 2 | **3** — nouveau : **Illusion mineure** |
+| Sorts | 4 | **5** — nouveau : **Pas voilé** |
+
+> ⚠️ **Le piège à éviter :** l'Occultiste **ne gagne rien** en emplacements au niveau 4. Le passage à 2 emplacements de niveau 3 n'arrive qu'au **niveau 5**. C'est contre-intuitif et ça se corrige mal en pleine partie — vérifié dans la table de Magie de pacte du SRD.
+
+**Pourquoi le Charisme :** c'est sa carac d'incantation, sa carac d'attaque au corps à corps via le Pacte de la lame, **et** celle de ses quatre compétences maîtrisées. Aucune autre ne rend autant pour un artiste bagarreur. Sa **Malédiction de la lame maudite** rend aussi plus de PV (niveau + mod. de Charisme : 6 → **8**).
+
+> 📌 **Correction de fiche au passage :** Drogo avait le **Pacte de la lame** mais aucune arme de pacte dans ses attaques — sur le papier, il ne pouvait taper qu'à la dague à 1d4+3. La **Lame de pacte** a été ajoutée (**+6, 1d8+4 tranchant, magique**, Charisme au lieu de Force/Dextérité). C'est exactement ce que l'ASI vient d'améliorer.
+
+**Illusion mineure** est le tour de l'artiste — et dans une session entière consacrée à un monde faux, fabriquer une fausse image a de quoi amuser tout le monde. **Pas voilé** en action bonus donne enfin à un bretteur de mêlée le moyen d'entrer et de sortir d'un corps à corps.
+
+### Deux points pratiques
+
+- **Les PV courants ne se mettent pas à jour tout seuls** dans l'app : ils sont conservés en base. Le **repos long** du sanctuaire les remet au maximum — d'où l'intérêt de faire la montée de niveau à ce moment-là. Les nouveaux emplacements de sorts et le compteur de la Seringue, eux, apparaissent automatiquement.
+- **Les sous-classes de Ginny (Guerre) et de Drogo (Lame maudite) ne sont pas dans le SRD 5.2.1** — ce sont des apports de la table. Les colonnes communes des tables de classe s'appliquent quand même (c'est ce qui est fait ici), mais si ces sous-classes accordent quelque chose de leur cru au niveau 4, c'est à vous de l'ajouter. Seule l'Évocation de Germione est du SRD pur.
 
 ---
 
