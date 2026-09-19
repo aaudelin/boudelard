@@ -24,7 +24,7 @@
 ## ✅ À PRÉPARER AVANT DE COMMENCER
 
 - [ ] **Les 4 feuilles joueurs** (`enigmes-joueurs.md`) imprimées ou prêtes à l'écran : la fête · la forge · la porte · les chiffres du bras
-- [ ] **Les 5 cartes** (`cartes-et-prompts.md`) générées ou téléchargées, **à charger juste avant chaque scène** — changer l'image réinitialise les pions
+- [ ] **Les 7 images de cartes** (`carte-*.jpg`, dans ce dossier — 5 cartes + 2 variantes) **à charger juste avant chaque scène** — changer l'image réinitialise les pions. La **largeur en mètres** à saisir est dans le nom du fichier et rappelée à chaque scène.
 - [ ] **Un moyen de passer l'Acte 0 en privé à Drogo** (message, ou « bouchez-vous les oreilles »)
 - [ ] **Le merge de la branche prêt à déclencher à l'Acte 2** — c'est lui qui donne le niveau 4 aux trois fiches et le bras à Ginny
 - [ ] **Ne pas laisser Ginny ouvrir sa fiche avant l'Acte 2** (le bras y est déjà, la fiche a une session d'avance sur la fiction)
@@ -580,7 +580,9 @@ Renvoi des morts-vivants, Injonction, une bonne droite : **laissez-la faire, ça
 
 ### ⚔️ COMBAT 1 — LA PLACE EN FÊTE
 
-**Carte :** *La Place de Mécania* — cf. `cartes-et-prompts.md`, carte **n°1**
+**Carte :** *La Place de Mécania* — `carte-1-place-de-mecania-30m.jpg`, **largeur 30 m** (détails : `cartes-et-prompts.md`, carte **n°1**)
+
+**Variante :** `carte-1-variante-monde-qui-craque-30m.jpg`, **largeur 30 m** — à recharger quand le décor se fige, en cours de combat.
 
 | Ennemis | Nombre | Fiche bestiaire |
 |---|---|---|
@@ -621,7 +623,7 @@ Renvoi des morts-vivants, Injonction, une bonne droite : **laissez-la faire, ça
 
 ### Dobbix, dans le couloir qui n'existe pas
 
-**Carte :** *Le Sanctuaire de Formeus* — cf. `cartes-et-prompts.md`, carte **n°2**
+**Carte :** *Le Sanctuaire de Formeus* — `carte-2-sanctuaire-de-formeus-15m.jpg`, **largeur 15 m** (détails : `cartes-et-prompts.md`, carte **n°2**)
 
 > *Le couloir gris file sur trente mètres et s'arrête net, sans mur, sur du blanc.*
 >
@@ -799,7 +801,7 @@ Dobbix sait. Dobbix a toujours su, il attendait juste qu'on lui demande :
 
 ### La traversée
 
-**Carte :** *Les Terres Non Rendues* — cf. `cartes-et-prompts.md`, carte **n°3**
+**Carte :** *Les Terres Non Rendues* — `carte-3-terres-non-rendues-40m.jpg`, **largeur 40 m** (détails : `cartes-et-prompts.md`, carte **n°3**)
 
 > *Dobbix pose la main sur le blanc, et le blanc s'ouvre.*
 >
@@ -880,7 +882,7 @@ Dobbix sait. Dobbix a toujours su, il attendait juste qu'on lui demande :
 
 ### 🐕 LE SEUIL DU PARE-FEU
 
-**Carte :** *Le Seuil et la Porte* — cf. `cartes-et-prompts.md`, carte **n°4**
+**Carte :** *Le Seuil du Pare-feu* — `carte-4-seuil-du-pare-feu-24m.jpg`, **largeur 24 m** (détails : `cartes-et-prompts.md`, carte **n°4**)
 
 > *Le dernier fragment est une esplanade de pierre noire, propre, finie, réelle — le premier endroit soigné depuis des heures. Au fond : une porte de dix mètres de haut, sans poignée, sans serrure, couverte d'une écriture minuscule.*
 >
@@ -953,7 +955,9 @@ Recommencez
 
 ## 🎬 ACTE 4 : LE BUREAU 47 (45 min)
 
-**Carte :** *Le Bureau 47* — cf. `cartes-et-prompts.md`, carte **n°5**
+**Carte :** *Le Bureau 47* — `carte-5-bureau-47-18m.jpg`, **largeur 18 m** (détails : `cartes-et-prompts.md`, carte **n°5**)
+
+**Variante :** `carte-5-variante-phase-2-18m.jpg`, **largeur 18 m** — à recharger au **Sceau 2**.
 
 > *En haut de l'escalier : un bureau.*
 >
