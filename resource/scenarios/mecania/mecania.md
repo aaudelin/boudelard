@@ -24,11 +24,13 @@
 
 ## 📍 ÉTAT ACTUEL DE LA PARTIE
 
-> **✅ SCÉNARIO 2 TERMINÉ — Axe Musk a été détruite !**
+> **✅ SCÉNARIO 2, PARTIE 1 TERMINÉE — Axe Musk a été détruite !**
 >
-> La Session 2 a été jouée jusqu'à la destruction d'Axe Musk incluse. La partie s'est arrêtée juste après l'explosion finale.
+> La Session 2 a été jouée jusqu'à la destruction d'Axe Musk incluse. La partie s'est arrêtée **sur l'explosion**, qui a touché les aventuriers de plein fouet.
 >
-> 👉 Voir le **Débrief Session 2** ci-dessous pour le déroulé, et la **Préparation Session 3** pour les fils à reprendre.
+> 👉 Voir le **Débrief Session 2** ci-dessous pour le déroulé.
+>
+> 👉 **La suite est écrite :** `resource/scenarios/henry-le-pottier/henry-le-pottier.md` — *Le Masque de Henry Le Pottier*, avec ses cartes (`cartes-et-prompts.md`) et ses documents joueurs (`enigmes-joueurs.md`).
 
 ---
 
@@ -38,27 +40,40 @@
 - Les aventuriers ont rencontré **Belle**, cheffe de la résistance Goth (« Belle la rebelle »).
 - Ils ont d'abord attaqué la **tour / salle de contrôle** de l'usine pour **désactiver la sécurité**.
 - Ils ont ensuite affronté et **détruit Axe Musk**.
-- En mourant, **Axe Musk a explosé** :
-  - L'explosion a **arraché le bras droit de Ginny**, aussitôt remplacé par le **Bras Mécanique de Mécania**, qui abrite l'âme liée de l'ancienne aventurière (cf. Récompenses).
-  - **Belle et Germione sont tombées inconscientes** (« dans les pommes ») sous le souffle.
-  - **Seul Drogo est resté éveillé** pendant l'explosion.
+- En mourant, **Axe Musk a explosé**, et le souffle a touché tout le groupe :
+  - **Ginny** : le bras droit **arraché** au-dessus du coude, moignon cautérisé par la chaleur du Serveur. **Elle est dans le coma.** *(Pas de prothèse pour l'instant — voir ci-dessous.)*
+  - **Germione** : soufflée. **Elle est dans le coma** elle aussi.
+  - **Belle** : à terre, immobile.
+  - **Drogo** : **indemne**, le seul resté debout — et donc le seul témoin de ce qui s'est passé juste après.
 - **Aucun des autres PNJ n'a été rencontré** : le sage **Formeus** et le choix des cristaux bleu/rouge n'ont **pas** eu lieu, le **Goth prisonnier** de la salle de contrôle n'a pas été libéré, etc.
 
-> ⚠️ **Note mécanique :** Ginny a perdu son bras humain droit. Sa fiche (`data/characters/ginny-bezley.json`) a été mise à jour avec le **Bras Mécanique de Mécania** et sa capacité « Seringue Réparatrice ». In-fiction, **Ginny n'a pas encore été mise au courant** de sa nouvelle prothèse → voir Préparation Session 3.
+> ⚠️ **Note mécanique :** Ginny a perdu son bras humain droit. Sa fiche (`data/characters/ginny-bezley.json`) porte désormais le **Bras Mécanique de Mécania** et sa **Seringue Réparatrice**, livrés en même temps que la **montée au niveau 4** : la joueuse découvre les deux d'un coup, au moment de la greffe (session 3, Acte 2). **Ne lui faites pas ouvrir sa fiche avant** — pendant l'Acte 0 et l'Acte 1, elle est manchote et dans le coma.
 
-> **Rappel — ce que Germione ressent :** Depuis que l'âme du fantôme est entrée en elle, Germione peut parfois sentir une « présence » et avoir des flashs d'anciens aventuriers. Ginny porte désormais elle aussi une âme liée (le bras) : deux porteuses sur trois.
+> ⚠️ **Le coma de Ginny n'est pas qu'une blessure.** Quand le Serveur a explosé, ce qui y était enfermé est entré **en elle**. Son âme et cette présence se disputent le même corps : c'est ça, le coma. Il faudra les **réconcilier**, exactement comme on l'a fait pour Germione au scénario 1 — la scène est écrite dans le scénario de la session 3 (Acte 1, « Fil B »), et c'est seulement **après** la réconciliation que la présence trouvera sa place dans le bras forgé par Formeus.
+
+> **Rappel — ce que Germione ressent :** Depuis que l'âme du fantôme est entrée en elle, Germione peut parfois sentir une « présence » et avoir des flashs d'anciens aventuriers.
+
+> 🤫 **Ligne à ne pas franchir :** la trame des âmes liées (Vecna, les anciens aventuriers, les trois porteurs) reste **cachée**. Les joueurs vont rapprocher le coma de Ginny de ce qui est arrivé à Germione : laissez-les faire le rapprochement seuls, ne confirmez jamais.
 
 ---
 
-## 🎯 PRÉPARATION SESSION 3 — fils à reprendre
+## 🎯 LA SUITE : SESSION 3 — ✍️ ÉCRITE
 
-À développer plus tard ; conservé ici en mémoire pour la prochaine préparation :
+👉 **`resource/scenarios/henry-le-pottier/henry-le-pottier.md` — *Le Masque de Henry Le Pottier***
 
-1. **Annoncer à Ginny son bras métallique.** À la dissipation de la fumée / au réveil du groupe, lui révéler qu'elle a désormais une prothèse mécanique greffée (Bras Mécanique de Mécania). Gérer sa réaction et celle des autres.
-2. **Faire avancer l'intrigue de Vecna.** Trouver un moyen de pousser la trame principale (El Professor = Vecna, le cycle des 47 ans, VELP = Vecna El Pottier, les âmes des anciens aventuriers enfermées dans ses créations). Cf. « Indices sur la trame principale » et « Transition vers le scénario 3 » plus bas.
-3. **Situation particulière entre Germione et Ginny.** Toutes deux ont récupéré une âme liée (l'amulette de Germione, le bras de Ginny). Faire émerger un lien / une résonance / une tension entre elles autour de ces âmes.
-4. **Donner des indices sur les âmes liées** en entamant une **communication avec les hôtes** (les âmes logées dans l'amulette et dans le bras) : premiers murmures, rêves, flashs, échanges…
-5. **Préparer le scénario suivant pour que Drogo récupère lui aussi son âme** (3ᵉ porteur). Drogo est resté conscient pendant l'explosion et reste le seul sans âme liée ; le prochain arc devrait lui en attribuer une → passer de « deux porteuses sur trois » à trois sur trois.
+La seconde partie du scénario 2 reprend **exactement sur l'explosion** et répond aux fils laissés ouverts :
+
+| Fil laissé en session 2 | Où il est traité |
+|---|---|
+| Le coma de Ginny et sa passagère | Acte 1, « Fil B » — la réconciliation, en trois scènes solo |
+| Le bras de Ginny | Acte 2 — Formeus le forge en techno-magie, et Ginny **choisit** de l'accueillir |
+| Ce que Drogo a vu pendant que les autres étaient au sol | Acte 0 — scène solo |
+| Belle | Actes 1 et 4 — elle n'a jamais été aux commandes |
+| Le livre *Aventures d'Outre-monde* et VELP | Acte 4 — première vérité, et une piste vers El Professor |
+| Le cycle des 47 ans | Acte 4 — 47 n'est pas un nombre d'années |
+| Germione ↔ Ginny, les deux porteuses | Acte 2 — le silence de Formeus, et rien de plus |
+| **Germione, son âme** | **Acte 1, Fil C — épreuve solo : le lien se forge pour de bon** |
+| Drogo, 3ᵉ porteur | Acte 3 + Épilogue — il **récupère** une âme (un objet perdu dans son enfance), mais **le lien n'est pas encore forgé** : c'est la scène du scénario 3 |
 
 ---
 
@@ -74,6 +89,8 @@
 > Ce livre raconte l'histoire d'un peuple créé par un autre, qui développe une conscience et se rebelle. Claude s'en est inspiré pour créer les Goths.
 >
 > *Ce que les joueurs ne savent pas :* Ce livre a aussi été écrit par quelqu'un signant "VELP" (Vecna El Pottier). Vecna a semé ce livre pour que quelqu'un crée les Goths... et donc Axe Musk. Tout est orchestré.
+
+> 🕯️ **Canon de campagne (MJ seul) :** **Vecna El Pottier est la moitié sombre de Henry Le Pottier**, séparée de lui il y a 47 ans, et c'est elle qui se fait appeler El Professor. Le rituel n'a pas tué les quatre aventuriers de l'époque : il a **fendu leurs âmes en deux** — d'où la formulation « une **partie** de l'âme » plus haut, qui était déjà juste. Détail complet dans `resource/scenarios/henry-le-pottier/henry-le-pottier.md`, section « La vérité complète ».
 
 ---
 
@@ -331,7 +348,7 @@ Loot :
 
 ## 🎬 ACTE 4 : BOSS - AXE MUSK (30-45 min) ✅ JOUÉ (Session 2)
 
-> *Axe Musk a été détruite. À sa mort, explosion : bras droit de Ginny arraché puis remplacé par le Bras Mécanique de Mécania ; Belle et Germione KO ; seul Drogo resté éveillé.*
+> *Axe Musk a été détruite. À sa mort, explosion : bras droit de Ginny arraché (**pas de prothèse** : elle vient plus tard, cf. session 3) ; Ginny et Germione dans le coma ; Belle à terre ; seul Drogo indemne.*
 
 ### La Salle des Serveurs
 
@@ -436,20 +453,18 @@ Axe Musk projette un hologramme humanoïde pour se battre.
 >
 > *« ...Merci... Enfin... libre... »*
 
-**🎭 Moment crucial - Le bras de Ginny :**
-> *Ginny, l'onde de choc te frappe de plein fouet. Un éclat de cristal géant te transperce l'épaule droite. La douleur est fulgurante... puis plus rien. Quand la fumée se dissipe, tu baisses les yeux : ton bras droit n'est plus là. Arraché net par l'explosion.*
+**🎭 Moment crucial - Le bras de Ginny (tel que joué) :**
+> *Ginny, l'onde de choc te frappe de plein fouet. Un éclat de cristal géant te transperce l'épaule droite. La douleur est fulgurante... puis plus rien.*
 >
-> *Mais au sol, parmi les débris fumants, une chose s'agite. Un bras mécanique d'Axe Musk - articulations de métal poli, circuits luisant d'une douce lumière bleue - rampe vers toi comme attiré par ton sang.*
+> *Ton bras droit n'est plus là. Arraché net, au-dessus du coude. Tu ne saignes presque pas : la chaleur du Serveur a refermé la plaie en te la brûlant.*
 >
-> *Avant que tu puisses réagir, le bras se dresse et se greffe à ton épaule. Pas de douleur. Juste une chaleur réconfortante qui remonte dans tout ton corps.*
+> *Et pendant que tu tombes, tu sens **quelque chose entrer**. Pas dans la plaie. Plus profond. Comme si, en te vidant, tu avais laissé une place — et que quelqu'un s'y était mis.*
 >
-> *Pendant une fraction de seconde, tu vois une femme en armure - la même que Germione a vue - qui te sourit avant de se dissiper... à l'intérieur du métal.*
+> *Le noir.*
 >
-> *L'âme de l'ancienne aventurière, libérée du serveur, a trouvé refuge dans ce bras. Comme l'amulette de Germione, ce bras est désormais le sien... et le tien.*
->
-> *(Mécaniquement : Ginny perd son bras humain, remplacé par le **Bras Mécanique de Mécania**. Voir Récompenses.)*
+> *(Mécaniquement : Ginny perd son bras droit et **tombe dans le coma**. Pas de prothèse pour l'instant. Germione tombe aussi. Seul Drogo reste debout.)*
 
-> **⚠️ Note MJ :** C'est le pendant de l'amulette de Germione. Tout comme l'âme du fantôme du cimetière s'est liée à l'amulette que porte Germione, l'âme de l'aventurière enfermée dans Axe Musk se lie au bras mécanique de Ginny. Deux âmes, deux objets, deux porteuses. Vecna avance ses pions.
+> **⚠️ Note MJ :** l'âme de l'aventurière enfermée dans Axe Musk est libérée par l'explosion et se loge **directement dans Ginny** — pas dans un objet. Deux âmes dans un corps, ça ne tient pas : c'est ça, le coma. La réconciliation puis le transfert vers le bras mécanique forgé par Formeus sont écrits dans **`resource/scenarios/henry-le-pottier/henry-le-pottier.md`** (Actes 1 et 2). C'est le pendant de l'amulette de Germione : deux âmes, deux objets, deux porteuses. Vecna avance ses pions — **mais les joueurs n'en savent rien.**
 
 > *Dernière voix d'Axe Musk, de plus en plus faible :*
 >
@@ -470,8 +485,12 @@ Axe Musk projette un hologramme humanoïde pour se battre.
 
 **Effet :** À chaque repos long, gagnez **1d6+2 PV temporaires** (durent jusqu'au prochain repos long).
 
-### Bras Mécanique de Mécania (Ginny uniquement)
-> *Un bras-prothèse forgé par Axe Musk, greffé à l'épaule de Ginny après l'explosion. Le métal est froid au toucher, mais les circuits pulsent d'une lumière bleue chaleureuse. Parfois, quand Ginny dort, le bras bouge tout seul... comme s'il rêvait.*
+### Bras Mécanique de Mécania (Ginny uniquement) — ⏳ PAS ENCORE OBTENU
+> **⚠️ Ce n'est plus une récompense de la session 2.** Ginny sort de l'explosion **manchote et dans le coma**. La prothèse est forgée par **Formeus** à la session suivante (`resource/scenarios/henry-le-pottier/henry-le-pottier.md`, Acte 2), une fois Ginny réconciliée avec sa passagère — et c'est Ginny qui **choisit** de l'accueillir.
+>
+> La fiche `data/characters/ginny-bezley.json` porte déjà le bras, livré avec la montée au niveau 4. **Ne la faites pas ouvrir à Ginny avant l'Acte 2 de la session 3.**
+
+> *Un bras-prothèse en métal d'Axe Musk, refondu par un vieux Goth dans son atelier. Le métal est froid au toucher, mais les circuits pulsent d'une lumière bleue chaleureuse. Parfois, quand Ginny dort, le bras bouge tout seul... comme s'il rêvait.*
 
 Le bras remplace définitivement le bras humain droit de Ginny. Il abrite l'âme de l'ancienne aventurière (pendant de l'amulette de Germione).
 
@@ -483,7 +502,7 @@ Le bras remplace définitivement le bras humain droit de Ginny. Il abrite l'âme
 **Le fil rouge (caché aux joueurs) :** L'âme liée à ce bras est celle d'une aventurière piégée par Vecna il y a 47 ans. Comme pour Germione et son amulette, Ginny porte désormais une âme sans le savoir. Vecna a maintenant deux porteuses sur trois.
 
 ### Autres loots
-- **XP :** 400 par joueur (niveau 3 → niveau 4 ?)
+- **XP :** 400 par joueur. ✅ **Le passage au niveau 4 est appliqué** sur les trois fiches, à jouer au moment de la greffe du bras (session 3, Acte 2) — cf. « La montée au niveau 4 » dans `resource/scenarios/henry-le-pottier/henry-le-pottier.md`
 - **Or :** 30 pièces d'or en composants récupérables
 - **Grenade EMP** (si pas utilisée) : gardable pour plus tard
 - **Cristal de communication Goth** : permet de contacter Belle (portée illimitée)
@@ -526,6 +545,8 @@ Les Goths sont maintenant des alliés permanents. Belle peut fournir :
 | **L'âme libérée** | Vecna enferme les âmes des anciens aventuriers dans ses créations |
 
 ### Transition vers le scénario 3
+
+> ⚠️ **Cette transition est repoussée.** Elle n'a pas lieu à la fin de la session 2 : elle clôt **la session 3** (`resource/scenarios/henry-le-pottier/henry-le-pottier.md`, Épilogue), qui la reprend enrichie — avec les mains d'El Professor.
 
 > De retour à Boudelard, vous êtes accueillis par Claude Gépété qui pleure de soulagement.
 >

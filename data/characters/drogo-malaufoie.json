@@ -1,7 +1,7 @@
 {
   "id": "drogo-malaufoie",
   "name": "Drogo Malaufoie",
-  "level": 3,
+  "level": 4,
   "class": "warlock",
   "subclass": "hexblade",
   "race": "Humain",
@@ -15,11 +15,11 @@
   "speed": 9,
   "passivePerception": 10,
   "hitPoints": {
-    "maximum": 24,
-    "current": 24,
+    "maximum": 31,
+    "current": 31,
     "temporary": 0,
-    "hitDice": "3d8",
-    "hitDiceRemaining": 3
+    "hitDice": "4d8",
+    "hitDiceRemaining": 4
   },
   "abilities": {
     "strength": { "value": 10, "modifier": 0 },
@@ -27,7 +27,7 @@
     "constitution": { "value": 14, "modifier": 2 },
     "intelligence": { "value": 10, "modifier": 0 },
     "wisdom": { "value": 11, "modifier": 0 },
-    "charisma": { "value": 16, "modifier": 3 }
+    "charisma": { "value": 18, "modifier": 4 }
   },
   "savingThrows": {
     "strength": { "proficient": false, "modifier": 0 },
@@ -35,23 +35,23 @@
     "constitution": { "proficient": false, "modifier": 2 },
     "intelligence": { "proficient": false, "modifier": 0 },
     "wisdom": { "proficient": true, "modifier": 2 },
-    "charisma": { "proficient": true, "modifier": 5 }
+    "charisma": { "proficient": true, "modifier": 6 }
   },
   "skills": {
     "acrobatics": { "proficient": true, "modifier": 5 },
     "animalHandling": { "proficient": false, "modifier": 0 },
     "arcana": { "proficient": false, "modifier": 0 },
     "athletics": { "proficient": false, "modifier": 0 },
-    "deception": { "proficient": true, "modifier": 5 },
+    "deception": { "proficient": true, "modifier": 6 },
     "history": { "proficient": false, "modifier": 0 },
     "insight": { "proficient": false, "modifier": 0 },
-    "intimidation": { "proficient": true, "modifier": 5 },
+    "intimidation": { "proficient": true, "modifier": 6 },
     "investigation": { "proficient": false, "modifier": 0 },
     "medicine": { "proficient": false, "modifier": 0 },
     "nature": { "proficient": false, "modifier": 0 },
     "perception": { "proficient": false, "modifier": 0 },
-    "performance": { "proficient": true, "modifier": 5 },
-    "persuasion": { "proficient": false, "modifier": 3 },
+    "performance": { "proficient": true, "modifier": 6 },
+    "persuasion": { "proficient": false, "modifier": 4 },
     "religion": { "proficient": false, "modifier": 0 },
     "sleightOfHand": { "proficient": false, "modifier": 3 },
     "stealth": { "proficient": false, "modifier": 3 },
@@ -81,6 +81,14 @@
       "damageType": "perforant",
       "range": "Corps à corps ou 6m/18m",
       "properties": ["Finesse", "Légère", "Lancer"]
+    },
+    {
+      "name": "Lame de pacte",
+      "attackBonus": 6,
+      "damage": "1d8+4",
+      "damageType": "tranchant",
+      "range": "Corps à corps",
+      "properties": ["Magique", "Charisme au lieu de Force/Dextérité"]
     }
   ],
   "featuresAndTraits": [
@@ -88,11 +96,7 @@
       "name": "Malédiction de la lame maudite",
       "source": "Occultiste (Lame maudite)",
       "description": "Bonus aux dégâts égal au bonus de maîtrise. Critique sur 19 ou 20. Regain de PV égal au niveau + modificateur de Charisme quand la cible maudite meurt. Utilisable une fois par repos court ou long.",
-      "uses": {
-        "maximum": 1,
-        "expended": 0,
-        "recovery": "short"
-      }
+      "uses": { "maximum": 1, "expended": 0, "recovery": "short" }
     },
     {
       "name": "Magie de pacte",
@@ -117,11 +121,9 @@
   ],
   "spellcasting": {
     "spellcastingAbility": "charisma",
-    "spellSaveDC": 13,
-    "spellAttackBonus": 5,
-    "spellSlots": [
-      { "level": 2, "total": 2, "expended": 0 }
-    ],
+    "spellSaveDC": 14,
+    "spellAttackBonus": 6,
+    "spellSlots": [{ "level": 2, "total": 2, "expended": 0 }],
     "cantripsKnown": [
       {
         "name": "Décharge occulte",
@@ -143,6 +145,16 @@
         "duration": "Concentration, jusqu'à 1 minute",
         "description": "Vous avez l'avantage aux jets de Charisme contre une créature de votre choix qui n'est pas hostile envers vous.",
         "concentration": true
+      },
+      {
+        "name": "Illusion mineure",
+        "level": 0,
+        "school": "illusion",
+        "castingTime": "1 action",
+        "range": "9 mètres",
+        "components": "S, M",
+        "duration": "1 minute",
+        "description": "Vous créez un son ou l'image d'un objet, qui perdure pendant la durée du sort. L'illusion disparaît si vous la dissipez ou si vous relancez ce sort. Une créature qui étudie l'illusion peut l'identifier par un test d'Investigation contre le DD de sauvegarde de vos sorts."
       }
     ],
     "spellsKnown": [
@@ -187,6 +199,16 @@
         "duration": "Concentration, jusqu'à 10 minutes",
         "description": "Des ténèbres magiques s'étendent d'un point de votre choix dans un rayon de 4,5 mètres. Aucune vision, même la vision dans le noir, ne peut percer ces ténèbres.",
         "concentration": true
+      },
+      {
+        "name": "Pas voilé",
+        "level": 2,
+        "school": "conjuration",
+        "castingTime": "1 action bonus",
+        "range": "Personnelle",
+        "components": "V",
+        "duration": "Instantanée",
+        "description": "Nimbé d'une brume argentée, vous vous téléportez jusqu'à 9 mètres vers un espace inoccupé que vous pouvez voir."
       }
     ]
   },

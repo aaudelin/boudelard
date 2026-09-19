@@ -1,7 +1,7 @@
 {
   "id": "ginny-bezley",
   "name": "Ginny Bezley",
-  "level": 3,
+  "level": 4,
   "class": "cleric",
   "subclass": "war",
   "race": "Humain",
@@ -13,13 +13,13 @@
   "armorClass": 16,
   "initiative": 0,
   "speed": 9,
-  "passivePerception": 13,
+  "passivePerception": 14,
   "hitPoints": {
-    "maximum": 24,
-    "current": 24,
+    "maximum": 31,
+    "current": 31,
     "temporary": 0,
-    "hitDice": "3d8",
-    "hitDiceRemaining": 3
+    "hitDice": "4d8",
+    "hitDiceRemaining": 4
   },
   "abilities": {
     "strength": {
@@ -39,8 +39,8 @@
       "modifier": 0
     },
     "wisdom": {
-      "value": 16,
-      "modifier": 3
+      "value": 18,
+      "modifier": 4
     },
     "charisma": {
       "value": 10,
@@ -66,7 +66,7 @@
     },
     "wisdom": {
       "proficient": true,
-      "modifier": 5
+      "modifier": 6
     },
     "charisma": {
       "proficient": true,
@@ -80,7 +80,7 @@
     },
     "animalHandling": {
       "proficient": false,
-      "modifier": 3
+      "modifier": 4
     },
     "arcana": {
       "proficient": false,
@@ -100,7 +100,7 @@
     },
     "insight": {
       "proficient": true,
-      "modifier": 5
+      "modifier": 6
     },
     "intimidation": {
       "proficient": false,
@@ -112,7 +112,7 @@
     },
     "medicine": {
       "proficient": false,
-      "modifier": 3
+      "modifier": 4
     },
     "nature": {
       "proficient": false,
@@ -120,7 +120,7 @@
     },
     "perception": {
       "proficient": false,
-      "modifier": 3
+      "modifier": 4
     },
     "performance": {
       "proficient": false,
@@ -144,7 +144,7 @@
     },
     "survival": {
       "proficient": false,
-      "modifier": 3
+      "modifier": 4
     }
   },
   "proficiencies": {
@@ -170,7 +170,8 @@
     "items": [
       "Masse d'armes",
       "Chemise de mailles",
-      "Bouclier"
+      "Bouclier",
+      "Bras Mécanique de Mécania (prothèse — bras droit, forgée par Formeus)"
     ],
     "currency": {
       "copper": 0,
@@ -192,9 +193,9 @@
     {
       "name": "Prêtre de guerre",
       "source": "Clerc (Guerre)",
-      "description": "Quand vous utilisez l'action Attaquer, vous pouvez effectuer une attaque d'arme par une action bonus. Vous pouvez utiliser cette capacité un nombre de fois égal à votre modificateur de Sagesse (3/repos long).",
+      "description": "Quand vous utilisez l'action Attaquer, vous pouvez effectuer une attaque d'arme par une action bonus. Vous pouvez utiliser cette capacité un nombre de fois égal à votre modificateur de Sagesse (4/repos long).",
       "uses": {
-        "maximum": 3,
+        "maximum": 4,
         "expended": 0,
         "recovery": "long"
       }
@@ -225,12 +226,22 @@
       "name": "Abri du fidèle",
       "source": "Acolyte",
       "description": "Vous et vos compagnons pouvez vous attendre à recevoir des soins gratuits dans un temple de votre foi."
+    },
+    {
+      "name": "Seringue Réparatrice",
+      "source": "Bras Mécanique de Mécania",
+      "description": "Prothèse du bras droit, forgée par Formeus dans le métal d'Axe Musk pour remplacer le bras arraché lors de l'explosion de l'usine. Elle renferme un module de soin. 1×/repos court, Ginny touche une créature (y compris elle-même) pour lui injecter un sérum réparateur : la cible récupère 1d8 + 2 PV. Le bras est un membre mécanique : insensible à la douleur, impossible à désarmer de cette main, et confère un avantage narratif sur les interactions avec la technologie d'Axe Musk (Goths, drones, mécanismes).",
+      "uses": {
+        "maximum": 1,
+        "expended": 0,
+        "recovery": "short"
+      }
     }
   ],
   "spellcasting": {
     "spellcastingAbility": "wisdom",
-    "spellSaveDC": 13,
-    "spellAttackBonus": 5,
+    "spellSaveDC": 14,
+    "spellAttackBonus": 6,
     "spellSlots": [
       {
         "level": 1,
@@ -239,7 +250,7 @@
       },
       {
         "level": 2,
-        "total": 2,
+        "total": 3,
         "expended": 0
       }
     ],
@@ -274,6 +285,16 @@
         "components": "V, S",
         "duration": "Instantanée",
         "description": "Vous touchez une créature vivante qui a 0 point de vie. La créature est stabilisée."
+      },
+      {
+        "name": "Flamme sacrée",
+        "level": 0,
+        "school": "evocation",
+        "castingTime": "1 action",
+        "range": "18 mètres",
+        "components": "V, S",
+        "duration": "Instantanée",
+        "description": "Une flamme évoquant la lumière du soleil descend sur une créature à portée. La cible effectue un JS de Dextérité, subissant 1d8 dégâts radiants en cas d'échec. La cible ne tire aucun bénéfice d'un abri pour cette sauvegarde."
       }
     ],
     "spellsKnown": [
@@ -380,6 +401,17 @@
         "components": "V, S",
         "duration": "1 minute",
         "description": "Sort de domaine (toujours préparé). Vous créez une arme spectrale flottante à portée. Vous pouvez effectuer une attaque de sort au corps à corps contre une créature à 1,5 mètre de l'arme, infligeant 1d8 + modificateur de Sagesse dégâts de force."
+      },
+      {
+        "name": "Bénédiction",
+        "level": 1,
+        "school": "enchantment",
+        "castingTime": "1 action",
+        "range": "9 mètres",
+        "components": "V, S, M",
+        "duration": "Concentration, jusqu'à 1 minute",
+        "description": "Vous bénissez jusqu'à trois créatures à portée. Chaque fois qu'une cible effectue un jet d'attaque ou un JS avant la fin du sort, elle peut lancer 1d4 et ajouter le résultat.",
+        "concentration": true
       }
     ]
   },
@@ -388,5 +420,6 @@
   "bonds": "",
   "flaws": "",
   "backstory": "Acolyte",
+  "appearance": "Bras droit arraché lors de l'explosion d'Axe Musk, remplacé par une prothèse mécanique (Bras Mécanique de Mécania) aux circuits bleus lumineux. Elle prend l'habitude de compter ses doigts.",
   "image": "/ginny-profile.jpeg"
 }
