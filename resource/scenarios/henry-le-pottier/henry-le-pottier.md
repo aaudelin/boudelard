@@ -60,6 +60,31 @@ Cette session fait avancer **les trois** porteurs, chacun à un stade différent
 
 ---
 
+## 🕯️ LA VÉRITÉ COMPLÈTE — MJ SEUL
+
+> **Rien de cette section ne se joue cette session.** C'est le socle de la campagne : lisez-la pour savoir *comment* jouer Henry, pas pour la dire.
+
+**1. Il y a 47 ans, quatre élèves de troisième année.** Henry Le Pottier et trois camarades, dont **Lunar Loufoca**. Trois quêtes à rendre. Un vieux monsieur très bienveillant dans un grand bureau. **Exactement ce que vivent les aventuriers en ce moment.**
+
+**2. Ils ont perdu — et le rituel a coupé les âmes en deux.** Pas tuées : **fendues**. Chacun en deux moitiés. *(C'est déjà écrit dans `mecania.md` : l'IA contenait « **une partie** de l'âme d'un ancien aventurier ». La fente est canon depuis le scénario 2.)*
+
+**3. La moitié sombre d'Henry porte un nom : Vecna.** C'est elle qui a livré les trois autres pour ne pas mourir. Elle vit depuis, une année volée à la fois, sous le nom de **Vecna El Pottier** — c'est-à-dire **El Professor**. C'est ça, **VELP**.
+
+**4. L'autre moitié, c'est le garçon du Bureau 47.** Dix-sept ans pour toujours. La part qui a tout vu, qui n'a rien pu empêcher, et qui essaie de récupérer ses amis depuis 47 essais.
+
+> **Vecna est l'âme liée d'Henry.** Lui aussi porte quelqu'un. Il est simplement le seul à porter **sa propre trahison**.
+
+**5. Le cycle.** Chaque année, une nouvelle promotion de troisième année — avec des âmes **entières**, donc des réceptacles viables. Vecna les consomme : ce sont les **46 tombes numérotées** du cimetière brouillon et les **46 cartes encadrées** du Bureau 47. Henry, lui, essaie d'arriver avant. **Les deux moitiés courent après la même chose, pour des raisons opposées.**
+
+**6. Pourquoi Henry reste un ennemi.** Rendre un corps à ses amis, c'est **en prendre un**. Les demi-âmes que portent les aventuriers ne peuvent redevenir entières qu'en effaçant l'hôte. **Son salut, c'est leur disparition.** Il le sait depuis le début. C'est pour ça que sa voix casse au Sceau 3, et c'est pour ça qu'il n'a jamais pu finir le travail en 46 essais.
+
+**7. La sortie — à garder en réserve, mais elle est déjà en train de s'écrire.** Henry croit qu'il faut choisir : son amie **ou** l'hôte. **Les aventuriers sont en train de prouver le contraire.** Ginny a *invité* sa passagère. Germione a *prêté ses mains*. Deux âmes dans un corps, **par consentement** — personne n'avait fait ça en 46 essais, parce que personne n'avait jamais demandé. Si deux moitiés peuvent cohabiter, elles peuvent peut-être **se recoudre**. Et recoudre Henry à Vecna, c'est la fin du cycle.
+> ➡️ **Souder les liens n'est pas un sous-thème de la campagne : c'est la condition de victoire.**
+
+**8. Et Drogo ?** Son objet a été **pris**, pas perdu — préparé pour lui quand il était enfant. **Laquelle des deux moitiés l'a fait ?** Si c'est Henry, c'est de l'amour. Si c'est Vecna, c'est un piège. **Ne tranchez pas avant le scénario 3.**
+
+---
+
 ## 🔑 LE TWIST, EN DIX LIGNES (à lire en premier)
 
 1. **Mécania est une simulation.** Le village, l'usine, les Goths : tout a été « écrit » il y a 47 ans. Le livre *Aventures d'Outre-monde* signé VELP que les joueurs trimballent depuis l'Acte 1 n'est pas un mythe fondateur — **c'est le cahier des charges du monde**. Voilà pourquoi il raconte l'histoire des Goths avant qu'elle n'arrive.
@@ -800,6 +825,10 @@ Recommencez
 >
 > « Personne ne le lit jusqu'au bout. »
 
+> **🎭 Comment jouer Henry, maintenant que vous savez :** ce n'est pas un méchant qui se cache, c'est **un type qui a déjà perdu** et qui refait le même geste pour la quarante-septième fois. Pas de menace, pas de grandiloquence : de la **lassitude**, de la politesse, et par moments une gentillesse qui met très mal à l'aise. Il connaît la fin. Il y va quand même.
+>
+> Et quand il regarde l'amulette et le bras, ce n'est pas de la convoitise. C'est **du remords** — il regarde ce qu'il a vendu.
+
 ### Le dialogue d'avant (5 min, ne le sautez pas)
 
 Laissez-les parler. Belle répond — Belle, au début, avec la voix de Belle, et la fêlure qui grandit.
@@ -916,7 +945,11 @@ Formeus a été clair : *sortez votre amie de son corps avant.* Il y a un moyen,
 >
 > « Vous ne savez même pas ce que c'est. »
 
-> **🔒 MJ — ce qu'il ne dira PAS cette session** (gardez-le pour plus tard) : ses trois camarades de l'époque, il a lui-même enfermé leurs âmes dans des objets pour les soustraire à Vecna. L'amulette et le bras en sont deux. Le troisième court toujours. **Il n'est pas venu les tuer : il est venu récupérer ses amis.** Si les joueurs posent la question frontalement, il les regarde, ouvre la bouche... et transplane. *Rien n'est plus efficace qu'une réponse qui ne vient pas.*
+> **🔒 MJ — ce qu'il ne dira PAS cette session** (cf. « La vérité complète ») : l'initiale, c'est **la sienne**. Celui qui lui a appris, c'est sa **propre moitié sombre** — Vecna El Pottier, El Professor. Et ce qu'il cherche, ce sont les demi-âmes de ses trois camarades, logées dans l'amulette et dans le bras.
+>
+> **Il n'est pas venu les tuer : il est venu récupérer ses amis.** Sauf que rendre un corps à ses amis, **c'est en prendre un**. Son salut passe par leur effacement, il le sait depuis 47 essais, et c'est très exactement pour ça qu'il n'y arrive pas.
+>
+> Si les joueurs posent la question frontalement, il les regarde, ouvre la bouche... et transplane. *Rien n'est plus efficace qu'une réponse qui ne vient pas.*
 
 ---
 
@@ -1246,8 +1279,9 @@ Elle **garde** son pouvoir d'origine — *1×/repos long, remplacer un jet de d2
 ### Ce qu'on garde pour la suite
 
 1. **Drogo porte quelqu'un, et ne le sait pas.** Son objet a été **pris**, pas perdu — préparé pour lui depuis l'enfance. Le scénario 3 (la quête de M. Malaufoie, la dette du cuistot Philippe Etchtebaise) est le moment de le réveiller pour de bon : **c'est sa scène d'âme, et elle doit être la plus grosse des trois**, parce qu'il a attendu le plus longtemps. Question à garder sous le coude : *qui a mis la main sur un objet de son enfance, et quand ?*
-2. **Henry reviendra**, blessé, et il sait exactement où est l'Éclat.
-3. **El Professor**, ses mains, et la carte n°47 qui attend son cadre.
+2. **Henry reviendra**, blessé, et il sait exactement où est l'Éclat. **Il reste un ennemi** — pas parce qu'il est mauvais, mais parce que ce qu'il veut coûte trois vies. Les aventuriers peuvent le plaindre ; ils ne peuvent pas le laisser réussir.
+3. **El Professor**, ses mains, et la carte n°47 qui attend son cadre. **C'est l'autre moitié d'Henry** — et le jour où les joueurs comprendront qu'ils ont pris le thé avec elle, ce sera un très bon moment.
+7. **La troisième voie.** Henry croit qu'il faut choisir entre son amie et l'hôte. Les aventuriers sont en train d'inventer autre chose : la cohabitation par consentement. **C'est leur arme, et aucun des 46 groupes précédents ne l'a eue.** Faites-le-leur découvrir par l'usage, jamais par une explication.
 4. **Les trois portent désormais quelqu'un**, à trois stades différents : Germione parle au sien, Ginny a invité la sienne, Drogo ne sait rien. **Faites-les se parler entre eux.** Laissez venir la jalousie, la peur, la complicité — et ne tranchez rien.
 6. **Les trois passagers se connaissent.** Ils étaient quatre, il y a 47 tentatives. Le jour où deux d'entre eux parleront dans la même pièce, ça vaudra une session entière.
 5. **Les 41 Goths** ont besoin d'une terre. Quelqu'un va la leur proposer. Devinez qui.

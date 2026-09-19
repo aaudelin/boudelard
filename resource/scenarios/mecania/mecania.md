@@ -90,6 +90,8 @@ La seconde partie du scénario 2 reprend **exactement sur l'explosion** et répo
 >
 > *Ce que les joueurs ne savent pas :* Ce livre a aussi été écrit par quelqu'un signant "VELP" (Vecna El Pottier). Vecna a semé ce livre pour que quelqu'un crée les Goths... et donc Axe Musk. Tout est orchestré.
 
+> 🕯️ **Canon de campagne (MJ seul) :** **Vecna El Pottier est la moitié sombre de Henry Le Pottier**, séparée de lui il y a 47 ans, et c'est elle qui se fait appeler El Professor. Le rituel n'a pas tué les quatre aventuriers de l'époque : il a **fendu leurs âmes en deux** — d'où la formulation « une **partie** de l'âme » plus haut, qui était déjà juste. Détail complet dans `resource/scenarios/henry-le-pottier/henry-le-pottier.md`, section « La vérité complète ».
+
 ---
 
 ## 🎬 ACTE 2 : LE VILLAGE DES ROBOTS (45 min - 1h) ✅ JOUÉ (Session 2)
