@@ -21,6 +21,22 @@
 
 ---
 
+## ✅ À PRÉPARER AVANT DE COMMENCER
+
+- [ ] **Les 4 feuilles joueurs** (`enigmes-joueurs.md`) imprimées ou prêtes à l'écran : la fête · la forge · la porte · les chiffres du bras
+- [ ] **Les 5 cartes** (`cartes-et-prompts.md`) générées ou téléchargées, **à charger juste avant chaque scène** — changer l'image réinitialise les pions
+- [ ] **Un moyen de passer l'Acte 0 en privé à Drogo** (message, ou « bouchez-vous les oreilles »)
+- [ ] **Le merge de la branche prêt à déclencher à l'Acte 2** — c'est lui qui donne le niveau 4 aux trois fiches et le bras à Ginny
+- [ ] **Ne pas laisser Ginny ouvrir sa fiche avant l'Acte 2** (le bras y est déjà, la fiche a une session d'avance sur la fiction)
+- [ ] **Relire « Les sept moments où un joueur doit trouver des mots »** — c'est là que la session se gagne ou se plante
+- [ ] De quoi noter en jeu : **le nom que Ginny donne** · **l'objet que Ginny fond dans le bras** · **l'objet perdu de Drogo**
+
+### L'ordre de jeu, en une ligne
+
+> **Acte 0 (Drogo seul)** → **Fil C (Germione seule)** → **Acte 1 en alterné (A1 · B1 · A2 · B2 · combat · B3)** → **Acte 2** → **Acte 3** → **Acte 4** → **Épilogue**
+
+---
+
 ## 📍 OÙ ON S'EST ARRÊTÉ
 
 > Axe Musk détruite. **L'explosion a touché les aventuriers de plein fouet.**
@@ -127,6 +143,34 @@ La **trame des âmes liées** (Vecna, les anciens aventuriers enfermés dans des
 >
 > **3. Le monde ment, mais il ment mal.**
 > Chaque mensonge du décor laisse une trace : une boucle, une répétition, une couleur qui bave. Récompensez **toujours** le joueur qui dit « attends, c'est bizarre ça ».
+
+---
+
+## 🎤 LES SEPT MOMENTS OÙ UN JOUEUR DOIT TROUVER DES MOTS
+
+Cette session repose sur sept scènes où **le joueur doit dire quelque chose lui-même** — pas « je fais un jet de Persuasion », mais les vrais mots. C'est ce qui fait la session. C'est aussi ce qui la fait capoter si un joueur se fige.
+
+### La technique, une seule, valable pour les sept
+
+> **N'attendez jamais que le joueur devine ce que vous voulez entendre. Posez le creux, et il le remplit.**
+
+Personne ne devine spontanément qu'il faut « offrir un nom ». Mais si le PNJ dit *« je ne me rappelle plus comment on m'appelait »*, **n'importe qui enchaîne tout seul.** Votre travail n'est pas d'attendre : c'est de **montrer ce qui manque.**
+
+Et si ça se fige quand même : **sortez du personnage trente secondes.** C'est permis, ça ne casse rien, et c'est infiniment mieux qu'un silence gêné. *« Elle est pas là pour te faire du mal, elle est morte de trouille. Tu peux pas te battre. Qu'est-ce que tu peux lui donner ? »*
+
+### La liste, pour repérer les pièges à l'avance
+
+| # | Quand | Ce que le joueur doit produire | Le creux à poser |
+|---|---|---|---|
+| 1 | **Fil C** — Germione | Accepter l'aide du passager, **deux fois** | « Tu te bats comme quelqu'un qui n'a jamais eu besoin de personne. » |
+| 2 | **Fil B sc. 2** — Ginny | **Deux offres** : un nom, un souvenir, une promesse | « Ça fait 47 ans que personne n'a dit mon nom. » |
+| 3 | **Acte 2** — Ginny | Quel objet à elle elle accepte de fondre dans le bras | « Quelque chose à toi. Qui compte. Tu ne le reverras pas. » |
+| 4 | **Acte 2** — Ginny | La phrase qui invite la passagère dans le bras | « Un objet, ça ne se remplit pas de force. Ça s'ouvre. » |
+| 5 | **Acte 3** — Drogo | Quel objet il a perdu enfant | Question directe, hors personnage |
+| 6 | **Combat 2** — les trois | Un vrai souvenir chacun, à voix haute | Dobbix : « Dites-lui quelque chose de vrai ! » |
+| 7 | **Acte 4** — n'importe qui | Rappeler la vraie Belle par son nom / un souvenir d'elle | Sa voix à elle qui passe : « ...les gars... » |
+
+> **⚠️ Le piège récurrent :** les joueurs vont d'abord essayer la **force** ou la **négociation** — c'est normal, c'est ce que D&D leur a appris. **Ne bloquez pas, n'expliquez pas.** Laissez l'essai échouer en une phrase, puis **posez le creux tout de suite après.**
 
 ---
 
@@ -265,7 +309,19 @@ Laissez-le faire **un** jet, un seul, puis la scène se referme.
 >
 > « **Prête-moi tes mains.** »
 
-**Accepter est une action bonus.** Chaque acceptation se joue, et se décrit :
+**Accepter est une action bonus.** Mais **ce n'est pas un bouton à presser** : le passager demande, et Germione doit **répondre à voix haute**. Un « oui » suffit — encore faut-il qu'elle comprenne qu'on lui demande quelque chose.
+
+> ⚠️ **Le piège :** une magicienne à qui on dit « prête-moi tes mains » en plein combat va d'abord **ignorer la voix** et continuer à lancer ses sorts. C'est normal. **N'attendez pas** : à chaque round où elle n'a pas accepté, le passager **insiste, et devient plus concret.**
+
+| Round | Ce que dit le passager, de plus en plus clairement |
+|---|---|
+| **2** | « Tu te bats comme quelqu'un qui n'a jamais eu besoin de personne. **Prête-moi tes mains.** » |
+| **3** | « Tu vas perdre. Pas parce que tu es mauvaise — parce que tu es **seule**, et que ça, ici, ça se voit. » *(Et la Rature a grossi, elle le voit sur sa fiche.)* |
+| **4** | *Le passager agit **sans permission** : une main invisible dévie la griffe d'encre à dix centimètres de sa gorge.* « Pardon. Je ne recommencerai pas sans que tu le dises. » → **comptez ça comme la 1ʳᵉ acceptation** si vous voulez la sauver du hors-piste |
+
+**🎤 Si ça se fige quand même**, sortez du personnage : *« Il te demande un truc. Tu peux dire oui, ou pas. C'est toute la scène. »*
+
+Chaque acceptation se joue, et se décrit :
 
 | | Effet mécanique | Ce qu'elle ressent |
 |---|---|---|
@@ -412,15 +468,63 @@ Laissez-le faire **un** jet, un seul, puis la scène se referme.
 
 **⚠️ CE N'EST PAS UN COMBAT.** Ginny ne peut pas gagner par la force, et il faut que ça se voie. Si elle attaque, voir « La voie dure » plus bas.
 
-#### La voie juste : trois offres
+#### La voie juste : deux choses à donner
 
-Ginny reprend sa place en **offrant**, pas en chassant. Trois offres sont possibles ; **deux suffisent**. Le joueur doit les jouer, pas les annoncer — demandez-lui les mots exacts, puis faites un jet en soutien (jamais en obstacle) :
+**La situation, en une phrase :** quelqu'un a pris son corps. **Ginny est une voix sans corps** — elle ne peut ni frapper, ni lancer de sort, ni partir. **Elle ne peut que parler.** Et la scène ne se termine pas quand elle gagne : elle se termine quand **elle a donné deux choses**.
 
-| L'offre | Comment ça se joue | Jet de soutien |
+**Ce que vous attendez d'entendre — trois possibilités, deux suffisent :**
+
+| L'offre | À quoi ça ressemble dans sa bouche | **Le creux que VOUS posez pour la provoquer** |
 |---|---|---|
-| **Un nom** | Ginny donne le sien et demande le sien à l'autre. **L'autre ne s'en souvient plus.** C'est le premier vrai silence de la scène. Ginny peut lui en proposer un — *laissez le joueur inventer, notez-le, ça deviendra canon* | Persuasion ou Religion DD 12 |
-| **Un souvenir** | Ginny lui donne un souvenir à elle, vrai, précis, chaud. Un dimanche, une odeur, une engueulade. L'autre n'en a plus un seul | Rien à jeter — **jouez-le, point.** Le récit du joueur suffit |
-| **Une promesse** | « Je ne te remettrai pas dans une boîte. » Dit comme ça, ou autrement, mais dit | Persuasion DD 13, avantage si les deux autres offres sont passées |
+| **Un nom** | « Moi c'est Ginny. Et toi ? » — puis, quand l'autre ne sait plus : « Alors je t'appelle *[X]*. » | *Elle lève ta main devant ses yeux.* « Ça fait quarante-sept ans que personne n'a dit mon nom. Je ne sais même plus lequel c'était. » |
+| **Un souvenir** | Un vrai, précis, chaud. Un dimanche, une odeur, une engueulade | « Toi tu as des dimanches, des odeurs, des gens. Moi j'ai le noir et un bruit de ventilateur. Pendant quarante-sept ans. » |
+| **Une promesse** | « Je ne te remettrai pas dans une boîte. » Dit comme ça, ou autrement, mais **dit** | « Et si je te la rends, il se passe quoi ? On me remet dans une boîte ? » |
+
+> ⚠️ **Ce n'est pas un menu dans lequel la joueuse choisit.** Ce sont les trois choses que **vous** attendez d'entendre. Elle ne peut pas les deviner — **c'est vous qui ouvrez la porte à chaque fois**, en montrant ce qui manque. Dès qu'elle en dit une, vous cochez.
+
+#### 🎤 Si la joueuse se fige
+
+Sortez du personnage trente secondes, c'est permis :
+
+> « Elle est pas là pour te faire du mal, elle est morte de trouille. Tu peux pas te battre — t'as pas de corps. **Qu'est-ce que tu peux lui donner ?** »
+
+Et si vraiment rien ne vient, **la passagère demande directement**, et là il n'y a plus moyen de se tromper :
+
+> « Raconte-moi quelque chose. N'importe quoi. Un truc vrai. S'il te plaît. »
+
+#### Le jet de dés : vous pouvez vous en passer
+
+Le dé **ne décide jamais si l'offre marche**. Elle marche. Il décide seulement si ça passe tout de suite ou si la passagère rechigne un tour de plus.
+
+- **Réussite** (Persuasion ou Religion DD 12) → elle accepte, visiblement remuée.
+- **Échec** → elle balance une pique (*« Tu crois que ça m'achète ? »*) et **la joueuse réessaie immédiatement** — même offre reformulée, ou une autre. **Ça ne bloque rien, jamais.**
+
+Le dé n'est là que pour la joueuse qui n'aime pas improviser et veut quelque chose à lancer. **Si ça coule tout seul, ne lancez rien.**
+
+#### Comment ça sonne en vrai
+
+> **MJ** *(avec la voix de Ginny)* — « Celui-là, il est chaud. Je le garde. »
+> **GINNY** — « Rends-moi mon corps. »
+> **MJ** — *Elle rit. Ça fait un drôle de bruit dans ta gorge.* « Non. »
+>
+> *→ Elle a tenté la force. **Ne bloquez pas, ne commentez pas** : enchaînez en posant le premier creux.*
+>
+> **MJ** — *Elle lève ta main devant ses yeux, l'ouvre, la referme.* « Ça fait quarante-sept ans que personne n'a dit mon nom. Je ne sais même plus lequel c'était. »
+> **GINNY** — « ... Moi c'est Ginny. Ginny Bezley. »
+> **MJ** — *Silence. Ton corps s'arrête complètement.* « Ginny. » *Elle le répète, comme on goûte quelque chose.* « Ça ne m'aide pas. Moi je ne sais plus. »
+> **GINNY** — « Alors je t'appelle Alba. Voilà. T'es Alba maintenant. »
+>
+> ✅ **Offre 1 cochée.** *(Notez le nom. Il est canon pour toute la campagne.)*
+>
+> **MJ** — *Elle ne répond pas tout de suite.* « On ne donne pas un nom aux gens comme ça. » *Un temps.* « ... Redis-le. »
+>
+> *→ Deuxième creux, enchaîné :*
+>
+> **MJ** — « Toi tu as des dimanches, des odeurs, des gens. Moi j'ai le noir et un bruit de ventilateur. Pendant quarante-sept ans. »
+> **GINNY** — « Ma mère ratait le pain tous les dimanches. Tout le monde disait que c'était bon. Personne n'a jamais rien dit. Pendant douze ans. »
+> **MJ** — *Ton corps s'assoit sur un lit. Lentement.*
+>
+> ✅ **Offre 2 cochée → lisez le texte de résolution ci-dessous.**
 
 **À la deuxième offre acceptée :**
 
@@ -484,11 +588,28 @@ Renvoi des morts-vivants, Injonction, une bonne droite : **laissez-la faire, ça
 | **Mysteria** (alliée) | 1 | `mysteria` |
 
 **Ce n'est pas un combat qu'on gagne : c'est un combat dont on sort.**
-- Les Figurants sont faibles (9 PV) mais **ils se recopient** (1d6 à chaque mort, 5-6 = un nouveau entre par le bord). C'est une marée. Faites-le sentir dès le round 2.
-- **Objectif : atteindre le puits** — celui qui déborde sans bruit. Si les joueurs ne le voient pas venir, Mysteria hurle au round 2 :
+
+### Le dispositif, en chiffres
+
+| | |
+|---|---|
+| **Départ** | Au centre de la place. **Le puits est à 15 m** (10 cases), en diagonale |
+| **Le corps de Ginny** | Dans une charrette fleurie, **à 6 m d'eux**, à l'opposé du puits. Il faut aller la chercher **avant** de fuir |
+| **Porter Ginny** | **Vitesse réduite de moitié** (4,5 m/round) et **une main prise** : pas de composante somatique sans lâcher son arme |
+| **Les Figurants** | 8, répartis tout autour, **entre eux et le puits**. Vitesse 9 m |
+| **Durée réelle** | **3 à 4 rounds.** Ne la rallongez pas |
+| **Fin du combat** | **Quand tout le monde a sauté dans le puits.** Jamais quand les Figurants sont morts — il en arrive toujours d'autres |
+
+### Ce qu'il faut faire sentir
+
+- Ils sont **faibles** (9 PV, CA 12, 1d6+1 de dégâts) mais **ils se recopient** : 1d6 à chaque mort, sur 5-6 un nouveau entre par un bord. **Lancez ce dé à voix haute et devant eux.** C'est ça qui fait comprendre qu'on ne gagne pas.
+- Ils **n'essaient pas de tuer** : ils **agrippent**. Décrivez des mains qui attrapent les manches, les cheveux, les chevilles. Un joueur agrippé se dégage avec un test d'Athlétisme ou d'Acrobaties DD 11. C'est une foule, pas une armée — et c'est bien plus angoissant.
+- **Si les joueurs ne pensent pas au puits**, Mysteria hurle au round 2 :
   > « Le puits ! Le puits est faux ! C'est un trou, un VRAI trou ! SAUTEZ ! »
-- **Germione doit porter Ginny** (ou Drogo, ou les deux) : le corps de Ginny est sur la place, dans une charrette décorée de fleurs, au milieu de la mêlée. **Ça change tout le combat** : vitesse réduite de moitié pour qui la porte, pas de sorts à deux mains. Excellent.
+- **Mysteria ne saute pas.** Elle reste sur la place pour couvrir, et leur crie de partir. *(Ne la tuez pas : on la retrouve vivante à l'épilogue.)* Si un joueur veut la sauver, laissez-le essayer — et laissez-la refuser.
 - Une fois, une seule : un joueur frappe un Figurant en pleine tête et voit, une demi-seconde, le visage du **vrai villageois d'il y a 47 ans**, qui hurle.
+
+> **⚠️ Le vrai risque de cette scène, c'est qu'elle s'éternise.** Si au round 4 ils ne sont pas au puits, **arrêtez de lancer les dés** : la marée les pousse, ils tombent dedans, on enchaîne. Personne ne s'en plaindra.
 
 **Sortie :** ils sautent dans le puits. Chute de 3m (1d6 contondant, annulé par Acrobaties DD 10). En bas, ce n'est pas de l'eau : c'est un couloir qui n'a jamais été fini. Sol gris uni, murs en quadrillage vert, lumière sans source.
 
@@ -567,7 +688,15 @@ Formeus peut forger la prothèse **cette nuit**. Il lui faut trois choses, et il
 |---|---|---|
 | **1. L'os** | Du métal d'Axe Musk. Pas n'importe lequel : de la **carcasse de l'Avatar**, celle qui a bougé, pas celle qui a servi de mur | Dans leurs sacs, ou Dobbix va le chercher dans les ruines (5 min, une scène) |
 | **2. Le cœur** | Un cristal qui a **contenu quelque chose**. Le *Fragment de code d'Axe Musk* ou le *Cristal de communication Goth* rapportés de la session 2 font l'affaire | Ils l'ont déjà. S'ils ont tout vendu : un éclat du Serveur, récupérable dans les ruines |
-| **3. Le lien** | *« Quelque chose à toi. Qui compte. Tu ne le reverras pas. »* — un objet personnel de Ginny, fondu dans le métal | **À faire jouer.** Demandez à la joueuse quel objet, et pourquoi. C'est le vrai prix de la scène |
+| **3. Le lien** | *« Quelque chose à toi. Qui compte. Tu ne le reverras pas. »* — un objet personnel de Ginny, fondu dans le métal | **À faire jouer.** C'est le vrai prix de la scène → voir juste en dessous |
+
+> **🎤 Le troisième composant, concrètement.** Ne demandez pas « tu as quoi dans ton sac ? » — sa fiche ne contient qu'une masse d'armes et une chemise de mailles. **Posez le creux :**
+>
+> *Formeus ne lève pas les yeux de l'établi.* « Le métal, je l'ai. Le cristal, je l'ai. Il manque la seule pièce que je ne peux pas fabriquer. »
+> *Il tend la main, paume ouverte, sans regarder.*
+> « **Quelque chose à toi.** Pas quelque chose de précieux — quelque chose qui **compte**. Ce n'est pas pareil, et tu sais très bien lequel des deux j'attends. »
+>
+> **Si la joueuse sèche**, proposez-lui trois pistes et laissez-la choisir ou inventer mieux : *le symbole sacré qu'elle a depuis son entrée à Boudelard* · *une lettre qu'elle n'a jamais renvoyée* · *quelque chose qui appartenait à quelqu'un de sa famille*. Puis **demandez « pourquoi celui-là ? »** — c'est cette réponse-là qui vaut la scène, pas l'objet.
 
 Puis vient l'étalonnage, et là, Formeus ne peut pas le faire à leur place :
 
@@ -603,6 +732,14 @@ Puis vient l'étalonnage, et là, Formeus ne peut pas le faire à leur place :
 > « **Invite-la.** Un objet, ça ne se remplit pas de force. Ça s'ouvre. »
 
 **Demandez la phrase à la joueuse.** Pas un jet : une phrase. Elle invite sa passagère à emménager.
+
+> **🎤 Si elle se fige** — et c'est le moment le plus probable de toute la session, parce que la table la regarde :
+>
+> *Formeus, sans lever les yeux :* « Pas de formule. Il n'y en a pas. Tu lui dis juste que c'est chez elle. »
+>
+> Et si ça ne vient toujours pas, **donnez-lui une phrase à répéter** — c'est mieux qu'un blanc : *« Entre. C'est à toi aussi. »* Elle la redira avec ses mots, ou pas, et ça marchera pareil.
+>
+> ⚠️ **Ne faites JAMAIS jeter un dé ici.** Il n'y a rien à rater.
 
 > *Le bras se dresse tout seul sur l'établi — pas comme une machine : comme quelqu'un qui se lève. Il se pose contre l'épaule droite de Ginny, et le métal entre dans la chair sans une goutte de sang et sans une seconde de douleur. Juste une chaleur, qui remonte jusqu'à la nuque.*
 >
@@ -727,6 +864,15 @@ Dobbix sait. Dobbix a toujours su, il attendait juste qu'on lui demande :
 - Le **Désencodeur** est la vraie menace : il mange les souvenirs. **Sa faiblesse est du théâtre, pas un jet** : un aventurier qui raconte à voix haute un vrai souvenir de sa vie d'avant Mécania le fait fuir (JS SAG DD 13). **Annoncez la règle en jeu**, par Dobbix, au round 1 :
   > « Il ne supporte pas les vrais ! Dites-lui quelque chose de vrai ! Dobbix n'a rien de vrai à dire, Dobbix est désolé ! »
 - Un même souvenir ne marche qu'une fois. Donc les trois joueurs doivent chacun en donner un. **C'est le meilleur moment de roleplay de la session, et il est déguisé en combat.** Ne le bâclez pas.
+
+> **🎤 Ce qui compte, c'est « vrai », pas « beau ».** Les joueurs vont chercher un souvenir épique. Coupez-leur ça tout de suite, par Dobbix : *« Pas une histoire ! Un **truc** ! Une odeur ! Un mot que quelqu'un a dit ! »*
+>
+> **Si un joueur sèche**, posez-lui une question fermée au lieu d'attendre un récit — ça débloque à tous les coups :
+> - **Germione** — « C'était quoi, ton premier jour à Boudelard ? Pas ce que tu as fait : ce que tu as **senti** en passant la porte. »
+> - **Ginny** — « Qui t'a appris à prier ? Il disait quoi, exactement ? »
+> - **Drogo** — « La première fois que tu as joué devant des gens. Combien ils étaient ? »
+>
+> **Deux phrases suffisent.** N'exigez pas de monologue — le Désencodeur recule sur du concret, pas sur de la performance.
 
 **Butin :** rien. Ils ne laissent rien. C'est un peu le problème avec les gommes.
 
@@ -858,10 +1004,22 @@ Laissez-les parler. Belle répond — Belle, au début, avec la voix de Belle, e
 
 Formeus a été clair : *sortez votre amie de son corps avant.* Il y a un moyen, et il n'est pas dans les dés.
 
-- **Action :** un personnage appelle la vraie Belle. Pas « je fais un jet de Persuasion » : **le joueur dit les mots.** Un souvenir d'elle, son nom, la blague qu'elle a faite dans la cave. Puis **Persuasion, Perspicacité ou Religion DD 14** (avantage si l'argument est vraiment personnel — soyez généreux).
+- **Action :** un personnage appelle la vraie Belle. Pas « je fais un jet de Persuasion » : **le joueur dit les mots.** Puis **Persuasion, Perspicacité ou Religion DD 14** (avantage si l'argument est vraiment personnel — soyez généreux).
 - **1ʳᵉ réussite :** Belle-avatar perd sa réaction et son bonus de meneuse jusqu'à la fin de son prochain tour. Le bras droit de Belle s'arrête de bouger : **il lui résiste**.
 - **2ᵉ réussite :** Henry est expulsé de force. **Passez immédiatement en Phase 2**, quels que soient les PV restants — et **la vraie Belle s'effondre vivante et entière** (PNJ `belle-liberee`).
 - **S'ils ne le font jamais :** le masque se fend tout seul quand Belle-avatar passe sous **22 PV**... mais la vraie Belle tombe à **5 PV, inconsciente et mourante**. Il faudra la stabiliser en plein combat. *(Un beau moment pour la toute première Seringue Réparatrice de Ginny.)*
+
+> **💰 Le coût, et il est réel :** appeler Belle **prend l'action du personnage**. Une tentative par personnage et par round. Pendant qu'ils l'appellent, ils ne tapent pas — et Belle-avatar, elle, frappe deux fois par tour. **C'est le dilemme de la phase**, et il est volontaire : sauver Belle coûte des dégâts.
+
+> **🎤 Attention, piège de préparation :** ils n'ont passé qu'**une seule scène** avec Belle, à la session précédente, dans la cave sous le bar. Ils n'ont peut-être aucun souvenir précis d'elle à ressortir. **C'est à vous de leur en fabriquer un**, en jouant la fêlure — chaque fois qu'ils la touchent, sa vraie voix passe une seconde, et elle **leur rappelle elle-même** ce qu'ils ont vécu ensemble :
+>
+> - *« ...vous m'aviez dit que vous reviendriez... »*
+> - *« ...la cave... on a bu ce truc infect... »*
+> - *« ...je vous ai dit qu'on avait l'air bizarres, vous vous rappelez ?... »*
+>
+> **Ce sont des perches.** Un joueur qui en rattrape une et la lui renvoie — « Belle ! La cave ! Le truc infect ! » — **a réussi l'action**, jet ou pas.
+>
+> **🎤 Si personne ne bouge**, faites parler Dobbix, qui pleure dans un coin : *« Elle est dedans ! Dobbix l'entend ! Dobbix vous en supplie, **appelez-la** ! »*
 
 #### La fêlure
 
