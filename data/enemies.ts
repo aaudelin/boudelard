@@ -551,6 +551,54 @@ export const enemies: Enemy[] = [
       "Contondant, perforant et tranchant non magiques",
     ],
   },
+  {
+    id: "rature",
+    name: "La Rature",
+    hp: 26,
+    ac: 13,
+    // Calibrée pour UN magicien de niveau 4 tout seul : elle doit faire peur
+    // sans pouvoir le tuer avant 4 rounds
+    powerLevel: "1/2",
+    speed: "9m",
+    initiativeBonus: 2,
+    // Une silhouette faite de mots barrés. Petite cousine de l'Effaceur :
+    // c'est exprès, elle annonce l'Acte 3
+    abilityScores: { str: 12, dex: 14, con: 12, int: 10, wis: 12, cha: 8 },
+    skills: [{ name: "Discrétion", bonus: 4 }],
+    attacks: [
+      {
+        name: "Griffe d'encre",
+        bonus: 4,
+        damage: "1d8+2",
+        damageType: "psychique",
+        range: "1,5m",
+      },
+    ],
+    abilities: [
+      {
+        name: "Elle efface les mots",
+        description:
+          "Sur un coup au but, la cible ne peut pas relancer le même sort à son prochain tour",
+      },
+      {
+        name: "Elle grossit du silence",
+        description:
+          "À la fin de chaque round où la cible n'a pas accepté l'aide de son passager, la Rature gagne 5 PV temporaires et +1 à ses jets d'attaque (cumulatif)",
+      },
+      {
+        name: "Faite de silence",
+        description:
+          "47 ans sans que personne écoute, ça finit par prendre une forme. Elle ne parle pas, elle rature",
+      },
+      {
+        name: "Ce n'est qu'un rêve",
+        description:
+          "Si la cible tombe à 0 PV, elle ne meurt pas : elle se réveille en sursaut et l'épreuve est ratée (cf. scénario, Acte 1 Fil C)",
+      },
+    ],
+    immunities: ["Charme", "Peur", "Psychique"],
+    resistances: ["Contondant, perforant et tranchant non magiques"],
+  },
 ];
 
 export function getEnemyById(id: string): Enemy | undefined {

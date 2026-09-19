@@ -9,10 +9,10 @@
 |------|--------|
 | **Durée** | 3h - 3h30 |
 | **Niveau conseillé** | 4 — ✅ **déjà appliqué sur les trois fiches** (cf. « La montée au niveau 4 » en fin de doc) |
-| **Combats** | 4 (dont 1 boss en 2 phases, et 1 entièrement évitable) |
+| **Combats** | 5 (dont 1 solo, 1 boss en 2 phases, et 1 entièrement évitable) |
 | **Énigmes** | 3 + 1 contournement de combat |
-| **Joueur vedette** | Ginny (le coma, l'âme, le bras) — avec une ouverture solo forte pour Drogo |
-| **Récompense** | Bras Mécanique de Mécania, Éclat Souverain, la vérité |
+| **Structure** | **Une scène solo par joueur** — Drogo à l'Acte 0, Germione en ouverture de l'Acte 1, Ginny sur tout l'Acte 1 |
+| **Récompense** | Bras Mécanique de Mécania, Amulette éveillée, l'objet de Drogo, Éclat Souverain, la vérité |
 | **Fin de session** | Retour au château de Boudelard |
 
 **En une phrase :** En tuant Axe Musk, les aventuriers n'ont pas libéré Mécania — ils ont crocheté la serrure d'une simulation, et Belle, qui n'a jamais été Belle, vient de récupérer la clé.
@@ -29,6 +29,34 @@
 > - **Germione** : soufflée. **Dans le coma.**
 > - **Belle** : à terre, immobile.
 > - **Drogo** : indemne. Le seul debout. Le seul témoin.
+
+> ⚠️ **Deux PNJ de ce scénario sont des inconnus pour eux.** La session 2 s'est jouée sans eux — ils ont trouvé la trappe du bar tout seuls et n'ont rencontré que Belle.
+>
+> | PNJ | Ce qu'ils en savent | Comment l'introduire |
+> |---|---|---|
+> | **Mysteria** | **Rien.** | Elle se présente comme celle qui les a veillés pendant trois jours. Une inconnue beaucoup trop familière dans un monde beaucoup trop parfait : **c'est une huitième anomalie gratuite.** Si un joueur tique dessus, offrez-lui l'inspiration |
+> | **Formeus** | **Rien.** Juste un nom lâché par Mysteria à l'Acte 1 | Tant mieux : à l'Acte 2, ils entrent chez un vieil inconnu qui sait déjà leurs noms, qui les attendait, et qui parle à l'épaule droite de Ginny. **Ne le présentez pas comme un allié : laissez-les décider s'ils lui font confiance.** Il gagne sa crédibilité en réveillant Ginny, pas avant |
+>
+> Mysteria ne saute pas dans le puits avec eux à la fin du Combat 1 : elle reste sur la place, encerclée, et leur crie de partir. **On la retrouve vivante parmi les 41 Goths à l'épilogue.**
+
+---
+
+## 🧿 L'ARC DES TROIS ÂMES (la colonne vertébrale de la session)
+
+Cette session fait avancer **les trois** porteurs, chacun à un stade différent. C'est elle qui transforme « la quête de Ginny » en affaire de groupe.
+
+| | Au début de la session | À la fin |
+|---|---|---|
+| **Germione** | Porte une âme depuis le scénario 1, mais **elle ne lui a jamais parlé**. Une présence, pas une alliée | **Liée.** L'épreuve du Fil C scelle le lien, l'amulette s'éveille et le passager parle |
+| **Ginny** | Une âme est entrée en elle **de force**. Deux dans un corps : le coma | **Liée.** Réconciliation (Acte 1), puis elle *invite* la passagère dans le bras (Acte 2) |
+| **Drogo** | **Rien.** Il est le seul « non accroché » — et c'est ce qui l'a sauvé à l'Acte 0 | **Il récupère une âme, sans encore la lier.** Un objet à lui, retrouvé à l'Acte 3, qui se réveille à l'épilogue. Le lien, ce sera pour le scénario 3 |
+
+> **🎭 Les trois scènes se répondent, et c'est voulu :**
+> - **Germione doit faire confiance** — laisser quelqu'un d'autre agir à travers elle (*deux acceptations*).
+> - **Ginny doit accueillir** — offrir plutôt que chasser (*deux offres*).
+> - **Drogo n'a rien à faire.** Il ramasse un objet. Il ne se passe rien. **C'est exprès** — et c'est ce qui rendra sa scène énorme la prochaine fois.
+
+> **🤫 Rappel :** rien de tout ça ne se dit à voix haute. Les joueurs vont voir le motif se dessiner tout seuls. **Ne le nommez jamais.**
 
 ---
 
@@ -82,11 +110,13 @@ La **trame des âmes liées** (Vecna, les anciens aventuriers enfermés dans des
 | Acte | Qui joue | Contenu | Durée |
 |---|---|---|---|
 | **0** | Drogo seul | Le vol du Noyau. Le témoin. | 15 min |
-| **1** | Drogo + Germione, **et Ginny en parallèle** | Le Monde Neuf, Énigme 1, Combat 1 — intercalé avec les 3 scènes de coma de Ginny | 50 min |
+| **1** | **Germione en ouverture (solo)**, puis Drogo + Germione, **et Ginny en parallèle** | L'épreuve de l'Amulette, le Monde Neuf, Énigme 1, Combat 1 — intercalé avec les 3 scènes de coma de Ginny | 65 min |
 | **2** | Tous | Le Sanctuaire, la réconciliation, Énigme 2, la forge du bras | 45 min |
-| **3** | Tous | Les Terres Non Rendues, Combat 2, Touffu 2.0, Énigme 3 | 45 min |
+| **3** | Tous | Les Terres Non Rendues (**dont l'objet de Drogo**), Combat 2, Touffu 2.0, Énigme 3 | 45 min |
 | **4** | Tous | Belle → Henry. Boss, 3 Sceaux, 3 vérités. | 45 min |
-| **Épilogue** | Tous | Le vrai Mécania. Retour au château. | 15 min |
+| **Épilogue** | Tous | Le vrai Mécania, **l'objet de Drogo se réveille**, retour au château. | 20 min |
+
+> ⏱️ **Ça fait une session pleine (~3h45).** Si vous êtes serrés, coupez dans cet ordre : un des trois fragments de l'Acte 3 → le Désencodeur du Combat 2 (gardez les 3 Effaceurs) → Touffu résolu uniquement à la berceuse, sans option de combat. **Ne coupez jamais dans les trois scènes d'âmes : c'est la session.**
 
 ---
 
@@ -146,11 +176,101 @@ Laissez-le faire **un** jet, un seul, puis la scène se referme.
 
 ## 🎬 ACTE 1 : LE MONDE NEUF (50 min)
 
-> **🎬 Comment mener cet acte :** deux fils en parallèle, en montage alterné.
+> **🎬 Comment mener cet acte :** trois fils, en montage alterné.
+> - **Fil C — Germione toute seule**, dans son sommeil : l'épreuve de l'Amulette. **Ça ouvre l'acte**, ça dure 15 min, et ça se joue avant tout le reste.
 > - **Fil A — Drogo et Germione** dans le faux village (l'énigme, puis le combat).
 > - **Fil B — Ginny toute seule**, dans son coma, en trois scènes de 4-5 minutes.
 >
-> Coupez de l'un à l'autre : **A1 → B1 → A2 → B2 → A3 (combat) → B3**. Personne ne reste assis à rien faire, et quand Ginny se réveillera à l'Acte 2, les trois joueurs auront vécu quelque chose de différent. C'est là-dessus que se joue la session.
+> Ordre de coupe : **C → A1 → B1 → A2 → B2 → A3 (combat) → B3**.
+>
+> Personne ne reste assis à rien faire, et quand Ginny se réveillera à l'Acte 2, les trois joueurs auront vécu trois choses différentes et incommunicables. **C'est là-dessus que se joue la session.**
+
+---
+
+### 🅲 FIL C — L'ÉPREUVE DE L'AMULETTE *(Germione, en solo, 15 min)*
+
+> **⚠️ Ça se joue AVANT tout le reste de l'acte**, pendant que Drogo et Ginny se bouchent les oreilles. Germione dort encore : trois jours qu'elle ne se réveille pas, et personne ne sait pourquoi.
+>
+> **Le vrai sujet de la scène :** depuis le scénario 1, elle *porte* quelqu'un sans jamais lui avoir parlé. Ce soir, elle apprend à lui **faire confiance** — et c'est un verbe différent de celui de Ginny, qui elle doit apprendre à **accueillir**.
+
+#### La bibliothèque
+
+> *Germione. Tu es dans la bibliothèque de Boudelard.*
+>
+> *C'est la nuit, les lampes basses sont allumées, il y a l'odeur de colle et de vieux papier que tu aimes. Tu es bien. Tu es chez toi.*
+>
+> *Sauf que quand tu ouvres un livre, il est **vide**. Pas abîmé, pas effacé : vide. Du papier blanc relié en cuir. Tu en ouvres un deuxième. Un troisième. Une étagère entière.*
+>
+> *Toute la bibliothèque est vide.*
+>
+> *Et à la dernière table, au fond, sous la dernière lampe, quelqu'un est assis. De dos. En tenue d'aventurier — du cuir usé, une cape, de la boue sèche. Cette personne lit un livre blanc, page après page, très attentivement.*
+>
+> *Elle ne se retourne pas.*
+
+**Si Germione parle, s'approche, crie :** rien. Aucune réaction. *(Perspicacité DD 12 : ce n'est pas qu'on l'ignore. C'est qu'on **ne l'entend pas.** Quelqu'un lit dans une pièce insonorisée depuis très, très longtemps.)*
+
+#### La Rature
+
+> *Une lampe s'éteint. Puis la suivante. Puis celle d'après, en se rapprochant.*
+>
+> *Et dans l'allée centrale, quelque chose se lève du sol. Ce n'est pas une créature : c'est un **paquet de ratures**. Des mots barrés, des lignes biffées, de l'encre passée en travers d'un texte — empilés jusqu'à faire une silhouette haute comme un homme.*
+>
+> *Elle n'a pas de visage. Elle a une méthode.*
+>
+> *Elle avance vers la table du fond. Vers la personne qui lit.*
+
+**⚔️ COMBAT SOLO — Germione seule contre la Rature** (fiche `rature` — 26 PV, CA 13)
+
+- **L'enjeu n'est pas sa survie : c'est la table du fond.** La Rature ignore Germione et marche vers le liseur. Si elle l'atteint, la dernière lampe s'éteint. **Germione doit s'interposer.**
+- La Rature frappe à 1d8+2 psychique et, sur un coup, **empêche de relancer le même sort au tour suivant** — elle l'oblige à varier, donc à puiser.
+- **Elle grossit du silence :** à la fin de chaque round où Germione n'a **pas** accepté l'aide, la Rature gagne 5 PV temporaires et +1 à l'attaque. Le message est clair : *seule, tu perds lentement.*
+- **Si Germione tombe à 0 PV :** elle ne meurt pas. Elle se réveille en sursaut. Voir « Si elle refuse » plus bas.
+
+> 💡 **Ses ressources :** elle a tout son kit. **Dites-lui après coup** que rien n'a été dépensé — c'était un rêve. Pendant le combat, laissez-la croire que ça compte. C'est toute la tension de la scène.
+
+#### 🔑 « Prête-moi tes mains » — le cœur de l'épreuve
+
+**Au début du round 2**, pour la première fois en deux scénarios, le passager parle. D'abord dans une langue qu'elle ne connaît pas. Puis :
+
+> *La personne à la table n'a toujours pas levé les yeux de son livre blanc. Mais tu l'entends, très clairement, à l'intérieur de ton propre crâne :*
+>
+> « Tu te bats comme quelqu'un qui n'a jamais eu besoin de personne. »
+>
+> *Un temps.*
+>
+> « **Prête-moi tes mains.** »
+
+**Accepter est une action bonus.** Chaque acceptation se joue, et se décrit :
+
+| | Effet mécanique | Ce qu'elle ressent |
+|---|---|---|
+| **1ʳᵉ fois** | **+2 CA** et **avantage à son prochain jet d'attaque de sort**, jusqu'à la fin de son prochain tour | Ses mains bougent une demi-seconde avant elle. Le geste d'incantation n'est pas le sien — il est **plus vieux**, plus économe, et il marche mieux |
+| **2ᵉ fois** | Son prochain sort qui touche inflige **+3d6 dégâts radiants** | Elle lance quelque chose qu'elle n'a jamais appris. Elle ne saura pas le refaire demain |
+
+**✅ Deux acceptations = le lien se forge.** Quel que soit l'état du combat, la Rature se défait à la fin de ce round — l'encre retombe en flaque et sèche.
+
+> *Les lampes se rallument, une par une, dans l'ordre inverse.*
+>
+> *Et la personne à la table **se retourne enfin**.*
+>
+> *Tu ne retiens pas son visage — tu le vois très bien, et à la seconde où tu clignes des yeux, tu ne sais plus. Mais tu vois qu'elle a l'air soulagée. Et très, très fatiguée.*
+>
+> *Elle repose son livre blanc. Et pour la première fois depuis quarante-sept ans, quelqu'un lui répond, alors elle dit le seul mot qui lui vient :*
+>
+> « **Merci.** »
+>
+> *L'amulette contre ta poitrine devient brûlante. Tu te réveilles.*
+
+**➡️ L'Amulette de Certitude est éveillée.** Elle garde son pouvoir et en gagne deux (cf. Récompenses).
+**Côté fiche :** les deux nouvelles capacités sont **déjà dans `data/characters/germione-hangar.json`** — elles apparaîtront au merge de l'Acte 2, soit un acte après qu'elle les a gagnées. Annoncez-les de vive voix ici, elles se matérialiseront sur l'écran au sanctuaire. Enchaînez immédiatement sur le Fil A : son réveil, c'est ce réveil-là.
+
+#### Si elle refuse jusqu'au bout
+
+**C'est un choix valable, pas une erreur de joueuse.** Laissez-la faire.
+
+- **Si elle gagne seule** (c'est possible, la Rature n'a que 26 PV) : l'encre retombe, les lampes se rallument... et **la personne à la table ne se retourne pas.** Elle reprend sa lecture. L'amulette reste ce qu'elle est. Germione se réveille avec le sentiment très net d'avoir raté quelque chose sans savoir quoi.
+- **Si elle tombe à 0 PV** : elle se réveille en sursaut, en nage. La dernière lampe s'est éteinte. **Elle ne se souvient de rien**, sauf du bruit d'une page qu'on tourne.
+- **Dans les deux cas** : l'épreuve reviendra. Le passager a attendu 47 ans, il peut attendre une session de plus. Ne dites rien, ne soupirez pas — **notez-le et ressortez-le au scénario 3.**
 
 ---
 
@@ -172,12 +292,9 @@ Laissez-le faire **un** jet, un seul, puis la scène se referme.
 >
 > « LES HÉROS DE MÉCANIA ! »
 
-> **🎭 Moment Germione (en privé, deux phrases) :**
-> *Tu te réveilles parce que ton amulette est **brûlante**. Pas chaude : brûlante, au point que tu as une marque ronde sur le sternum. Et pendant que tu ouvres les yeux, tu as l'impression très nette que quelqu'un, quelque part, vient de crier un nom. Pas le tien.*
+> **🎭 Moment Germione :** elle se réveille **au sortir du Fil C**, avec une marque ronde et brûlante sur le sternum. Enchaînez directement — le réveil de Germione, c'est la dernière image de son épreuve.
 >
-> *L'amulette refroidit d'un coup. Le silence revient.*
->
-> *(Elle ne saura rien de plus. C'est tout. Ne développez pas.)*
+> *Et pendant que tu ouvres les yeux, tu as l'impression très nette que quelqu'un, quelque part, vient de crier un nom. Pas le tien.*
 
 **Ce qu'on répond aux joueurs sur Ginny :** Mysteria et Belle sont désolées, sincèrement. « Formeus est venu la voir. Il a dit qu'il ne pouvait rien faire *ici*. Il a dit qu'il attendait. » Personne ne sait ce que ça veut dire. **Belle change de sujet.**
 
@@ -528,13 +645,45 @@ Dobbix sait. Dobbix a toujours su, il attendait juste qu'on lui demande :
 >
 > *Et très loin, au bout, une tour. Une seule. Trop haute pour le morceau de terrain sur lequel elle est posée.*
 
-**Trois choses à faire vivre pendant la traversée (5 min chacune, piochez-en deux) :**
+**Trois fragments. Le troisième est OBLIGATOIRE** *(c'est la scène de Drogo)* — piochez un des deux autres si le temps presse.
 
 | Fragment | Ce qu'il y a dedans |
 |---|---|
 | **La classe recopiée** | Une salle de cours de Boudelard, recopiée trente fois côte à côte. Dans chacune, la même élève de dos, qui écrit la même ligne au tableau : *« je ne dois pas compter »*. Si on lui touche l'épaule, elle se retourne : elle n'a pas de visage, et elle s'excuse |
 | **Le cimetière brouillon** | Des tombes sans nom, avec juste des numéros. La plus récente porte le **46**. Il y a un trou creusé à côté, prêt, et pas encore de pierre. *(Germione : son amulette redevient froide ici. Une seule phrase, pas plus.)* |
-| **Le bureau des objets perdus** | Une étagère infinie de choses que les joueurs ont perdues dans leur vie. **L'objet que Ginny a fondu dans le bras y est**, intact. Si elle le reprend, le bras s'éteint pendant 1 heure. Cruel. Parfait |
+| **Le bureau des objets perdus** ⭐ | Une étagère infinie de choses que les joueurs ont perdues dans leur vie. **L'objet que Ginny a fondu dans le bras y est**, intact — si elle le reprend, le bras s'éteint pendant 1 heure. Cruel. Parfait. **Et c'est ici que Drogo trouve le sien** → voir ci-dessous |
+
+#### ⭐ LA SCÈNE DE DROGO — ce qu'il a perdu
+
+> **⚠️ Ne l'annoncez pas comme un moment important. C'est tout l'effet.** Il ramasse un truc, on passe à autre chose. Ça ne se réveillera qu'à l'épilogue.
+
+**Étape 1 — demandez-lui.** Sortez du texte et posez la question à voix haute, à la joueuse ou au joueur :
+
+> « Drogo. Quand tu étais gamin, tu as perdu quelque chose. Un objet. Quelque chose que tu as cherché longtemps, et que tu n'as jamais retrouvé, et dont tu n'as jamais reparlé à personne.
+>
+> **C'est quoi ?** »
+
+**Prenez ce qu'il donne, tel quel.** Un instrument, une bague de famille, un jouet, une lettre, un masque de scène, le premier truc qu'il ait jamais volé — **tout marche**, et son choix vaut mieux que le mien.
+
+**Étape 2 — il est sur l'étagère.**
+
+> *Il est là. À hauteur d'yeux, comme si on l'avait posé pour toi.*
+>
+> *Pas une copie. **Le tien.** Avec l'éclat que tu lui avais fait, et la marque que tu avais mise dessus pour qu'on sache qu'il était à toi.*
+>
+> *Il n'a pas pris un jour.*
+
+**Étape 3 — le détail qui cloche.** Un seul, glissé sans insister :
+
+> *Sur l'étagère, il y a une fine couche de poussière. Partout.*
+>
+> *Sauf **autour** de ton objet. Là, c'est propre. Un rectangle net, comme si on l'avait pris, tenu, reposé. Souvent.*
+>
+> *Quelqu'un vient le voir.*
+
+**Étape 4 — rien.** Il le prend, il le met dans sa poche, et **il ne se passe absolument rien**. Pas de lumière, pas de voix, pas de frisson. Passez à la suite sans commenter.
+
+> **🔒 MJ :** l'objet n'a pas été perdu. Il a été **pris** — parce qu'il fallait un contenant qui compte pour Drogo, et qu'on préparait ça depuis qu'il est enfant. Ce qui est dedans dort encore. **Ne le dites jamais cette session.**
 
 ---
 
@@ -843,6 +992,32 @@ Faites-en une petite séquence : porter Belle, compter les Goths, revenir cherch
 >
 > *Sauf les quarante et une personnes qui se tiennent derrière vous dans le champ, qui grelottent, et qui n'ont jamais vu d'étoiles.*
 
+### ⭐ L'objet de Drogo se réveille
+
+**À placer dans le champ, dans le noir, pendant que tout le monde compte les Goths.** En privé si vous pouvez.
+
+> *Drogo. Tu as froid à la cuisse.*
+>
+> *Pas au vent : à un endroit précis. Ta poche. Le truc que tu as ramassé sur l'étagère est **glacé** — au point que ça te brûle à travers le tissu.*
+>
+> *Tu le sors. Dans ta paume, il est couvert de givre. En pleine fin d'été.*
+>
+> *Et pendant que tu le regardes, tu entends quelqu'un **reprendre son souffle**. Juste à côté de ton oreille. Une inspiration, courte, comme quelqu'un qui remonte à la surface après être resté trop longtemps en dessous.*
+>
+> *Tu te retournes. Il n'y a personne.*
+>
+> *Le givre fond. L'objet redevient tiède.*
+>
+> *Et à trois mètres de toi, dans le noir, **le bras de Ginny s'allume tout seul**. Une fois. Comme quelqu'un qui lève la main pour dire « je suis là ».*
+>
+> *Puis il s'éteint.*
+
+**C'est tout.** Il n'y a pas de voix, pas de nom, pas d'explication. **S'il pose une question, l'objet ne répond pas** — et c'est la différence avec Ginny, qui elle a été invitée à parler.
+
+**Il gagne quand même quelque chose** (cf. Récompenses) : un objet froid qui le rattrape quand il tombe, sans qu'il sache pourquoi.
+
+> **🎭 Le vrai cadeau, c'est la tête des deux autres.** Germione a un passager qui parle. Ginny a un bras qui a un prénom. Drogo a un caillou froid qui respire et qui ne dit rien. **Il est le troisième, et il est le seul à ne pas savoir qui il porte.** Laissez-le avec ça jusqu'au scénario 3.
+
 **Le dernier plan sur Belle** (`belle-liberee`) : elle est vivante, elle est vidée, elle ne dit pas merci. Elle regarde ses propres mains pendant très longtemps. Puis elle demande, d'une voix normale :
 
 > « Il est resté combien de temps, dedans ? »
@@ -898,6 +1073,42 @@ Forgé par Formeus, en métal d'Axe Musk, étalonné par le groupe.
 - Elle **compte cinq doigts**. Toujours cinq. C'est devenu sa façon de vérifier qu'elle est dans le vrai monde.
 - La nuit, le bras bouge parfois tout seul. Comme s'il rêvait.
 - **Une phrase par session**, pas plus : la passagère commente. Sèchement, drôlement, ou pas du tout selon la façon dont la réconciliation s'est passée.
+
+### Amulette de Certitude — **éveillée** *(Germione)*
+> *Le même œil en argent. Sauf qu'il ne cligne plus « parfois » : il cligne **quand vous parlez**.*
+
+Elle **garde** son pouvoir d'origine — *1×/repos long, remplacer un jet de d20 par un 10, décidé avant de lancer* — et en gagne deux, acquis au Fil C :
+
+- **« Prête-moi tes mains » — 1×/repos long, action bonus.** Le passager reprend la main : Germione gagne **+2 CA** et **l'avantage à ses jets d'attaque de sort** jusqu'à la fin de son prochain tour. C'est exactement le geste appris dans la bibliothèque.
+- **« Il se souvient » — 1×/repos long.** Germione pose à voix haute **une question sur un événement antérieur à sa naissance**. Le MJ répond **vrai, mais fragmentaire** — un souvenir, pas une encyclopédie. *(Outil narratif, zéro coût d'équilibrage, et un cadeau empoisonné : le passager se souvient de Boudelard il y a 47 ans.)*
+
+> **🔒 MJ :** le passager ne donne toujours pas son nom. Il ne sait plus. **Une phrase par session**, comme pour Ginny — mais lui est poli, précis, et un peu solennel. Là où la passagère de Ginny est sèche, celui-ci est **un vieil ami très bien élevé**.
+
+### L'objet de Drogo
+> *L'objet qu'il a perdu enfant et retrouvé sur une étagère, dans un monde qui n'existait pas. Il est tiède. Parfois il ne l'est plus.*
+
+**Forme :** celle que le joueur a donnée à l'Acte 3. **Notez-la, elle est canon.**
+
+- **« Il y a quelqu'un » — passif.** L'objet devient **froid** quand une âme logée dans un objet se trouve à moins de 30 m. *(Aujourd'hui : l'amulette de Germione et le bras de Ginny. Demain : autre chose.)* Il ne dit pas où, ni qui. Il refroidit, c'est tout.
+- **« Quelqu'un te rattrape » — 1×/repos long.** Quand Drogo **rate un jet de sauvegarde**, il peut le relancer et doit garder le nouveau résultat. Il n'a rien fait pour. Il ne sait pas pourquoi ça marche.
+
+> **⚠️ Ce n'est PAS un lien.** L'objet ne parle pas, n'a pas de nom, ne répond à aucune question, et ne commente jamais. **Résistez à la tentation de lui donner une voix cette session** — tout l'intérêt de sa scène au scénario 3 tient à ce silence-là.
+
+> **📋 À coller dans `data/characters/drogo-malaufoie.json` APRÈS la session** — pas avant : la fiche de Drogo est volontairement restée vierge, sinon il verrait l'objet dans son équipement **avant de le trouver** à l'Acte 3. Et de toute façon sa forme est choisie par le joueur en jeu.
+>
+> Dans `featuresAndTraits` :
+>
+> ```json
+> {
+>   "name": "Quelqu'un te rattrape",
+>   "source": "<l'objet retrouvé>",
+>   "description": "L'objet que Drogo avait perdu enfant, retrouvé dans un monde qui n'existait pas. 1×/repos long, quand Drogo rate un jet de sauvegarde, il peut le relancer et doit garder le nouveau résultat. Il n'a rien fait pour. Il ne sait pas pourquoi ça marche. L'objet devient aussi glacé quand quelque chose d'endormi se trouve à moins de 30 mètres.",
+>   "uses": { "maximum": 1, "expended": 0, "recovery": "long" }
+> }
+> ```
+>
+> Et dans `equipment.items` : `"<l'objet retrouvé> (perdu dans l'enfance, retrouvé à Mécania)"`.
+> Remplacez `<l'objet retrouvé>` par ce que le joueur aura inventé.
 
 ### Éclat Souverain
 > *Un éclat noir, de la taille d'un ongle de pouce, tiède. Il ne renvoie aucune lumière — c'est un petit trou découpé dans le monde.*
@@ -1007,6 +1218,9 @@ Forgé par Formeus, en métal d'Axe Musk, étalonné par le groupe.
 | Ils bloquent sur l'Énigme 1 | Le bras fantôme de Ginny se met à compter ses doigts à voix haute, tout seul. Ou : le boulanger recommence sa blague **pendant** qu'on lui parle |
 | Le Fil B (coma) traîne | Coupez sur « Bouge. C'est mon tour. » — c'est le meilleur point de rupture de la scène |
 | Ginny refuse la prothèse | **Respectez-le.** Formeus loge la passagère dans un autre objet (un gantelet, un pendentif, la masse d'armes). Le bras viendra une autre fois. La Seringue fonctionne pareil |
+| Germione refuse l'aide au Fil C | **Respectez-le.** Elle gagne ou elle se réveille en sursaut, l'amulette reste en l'état, et l'épreuve reviendra au scénario 3. Ne soupirez pas, notez-le |
+| Le Fil C tourne mal (elle va mourir) | Elle ne peut pas mourir : à 0 PV elle se réveille. Mais **au round 4, le passager agit sans permission** — il pare un coup, et elle le sent. Ça vaut une 1ʳᵉ acceptation gratuite si vous voulez la sauver du hors-piste |
+| Drogo trouve sa scène décevante | **C'est le but, tenez bon.** Rappelez-vous qu'il a eu l'Acte 0 en solo — il n'est pas en manque de spotlight. Son paiement, c'est le scénario 3 |
 | Combat 1 s'éternise | Les Figurants cessent d'attaquer et se contentent d'**agripper** (entrave). C'est une foule, pas une armée |
 | Ils veulent tuer Belle en Phase 1 | Le dernier coup ne tue pas : il fend le masque. Enchaînez sur la Phase 2, et Belle est mourante. Ils vivront avec |
 | Le boss est trop dur | Supprimez un Sceau, ou les Aurors n'arrivent jamais |
@@ -1016,21 +1230,26 @@ Forgé par Formeus, en métal d'Axe Musk, étalonné par le groupe.
 
 ### Les ficelles à ne pas oublier
 
+- ☐ **Mysteria et Formeus sont des inconnus** — jouez-les comme tels
 - ☐ **Drogo est le seul témoin** de l'Acte 0 → personne ne le croit pendant tout l'Acte 1
+- ☐ **Le Fil C ouvre l'Acte 1**, avant tout le reste, et Germione se réveille dedans
+- ☐ **Demander à Drogo quel objet il a perdu enfant** — et le noter
 - ☐ **Chaque anomalie trouvée** est nommée à voix haute par le MJ, avec les félicitations qui vont avec
 - ☐ **Le nom que Ginny donne à sa passagère** est noté et devient canon
 - ☐ **Formeus regarde l'amulette de Germione une seconde de trop** — et se tait
 - ☐ **L'avertissement de Formeus** est donné mot pour mot avant l'Acte 3
 - ☐ **Les trois souvenirs vrais** du Combat 2 : un par joueur, et on prend le temps
 - ☐ **Le nom est prononcé par un joueur** à la porte, pas par le MJ
+- ☐ **L'objet de Drogo se réveille à l'épilogue**, dans le noir, et **le bras de Ginny lui répond**
 - ☐ **« Regardez ses mains »** est la dernière phrase d'Henry, et la dernière image de la session
 
 ### Ce qu'on garde pour la suite
 
-1. **Drogo n'a toujours pas de passagère.** Il est le seul « non accroché », et c'est ce qui l'a sauvé à l'Acte 0. Le scénario 3 (la quête de M. Malaufoie, la dette du cuistot Philippe Etchtebaise dans un autre monde) est le moment de corriger ça.
+1. **Drogo porte quelqu'un, et ne le sait pas.** Son objet a été **pris**, pas perdu — préparé pour lui depuis l'enfance. Le scénario 3 (la quête de M. Malaufoie, la dette du cuistot Philippe Etchtebaise) est le moment de le réveiller pour de bon : **c'est sa scène d'âme, et elle doit être la plus grosse des trois**, parce qu'il a attendu le plus longtemps. Question à garder sous le coude : *qui a mis la main sur un objet de son enfance, et quand ?*
 2. **Henry reviendra**, blessé, et il sait exactement où est l'Éclat.
 3. **El Professor**, ses mains, et la carte n°47 qui attend son cadre.
-4. **Germione et Ginny** portent chacune quelqu'un. Faites-les se parler. Laissez venir la jalousie, la peur, la complicité — et ne tranchez rien.
+4. **Les trois portent désormais quelqu'un**, à trois stades différents : Germione parle au sien, Ginny a invité la sienne, Drogo ne sait rien. **Faites-les se parler entre eux.** Laissez venir la jalousie, la peur, la complicité — et ne tranchez rien.
+6. **Les trois passagers se connaissent.** Ils étaient quatre, il y a 47 tentatives. Le jour où deux d'entre eux parleront dans la même pièce, ça vaudra une session entière.
 5. **Les 41 Goths** ont besoin d'une terre. Quelqu'un va la leur proposer. Devinez qui.
 
 ---

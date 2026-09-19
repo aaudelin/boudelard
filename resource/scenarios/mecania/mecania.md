@@ -72,7 +72,8 @@ La seconde partie du scénario 2 reprend **exactement sur l'explosion** et répo
 | Le livre *Aventures d'Outre-monde* et VELP | Acte 4 — première vérité, et une piste vers El Professor |
 | Le cycle des 47 ans | Acte 4 — 47 n'est pas un nombre d'années |
 | Germione ↔ Ginny, les deux porteuses | Acte 2 — le silence de Formeus, et rien de plus |
-| Drogo, 3ᵉ porteur | **Volontairement laissé ouvert** pour le scénario 3 : il est « non accroché », et c'est ce qui l'a sauvé |
+| **Germione, son âme** | **Acte 1, Fil C — épreuve solo : le lien se forge pour de bon** |
+| Drogo, 3ᵉ porteur | Acte 3 + Épilogue — il **récupère** une âme (un objet perdu dans son enfance), mais **le lien n'est pas encore forgé** : c'est la scène du scénario 3 |
 
 ---
 

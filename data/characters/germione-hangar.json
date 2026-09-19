@@ -118,7 +118,19 @@
     {
       "name": "Amulette de Certitude",
       "source": "Objet magique",
-      "description": "Un œil en argent avec une pupille noire. Parfois, on jurerait qu'il cligne. 1×/repos long, remplacer n'importe quel jet de d20 par un 10 (décider AVANT de lancer).",
+      "description": "Un œil en argent avec une pupille noire. Depuis l'épreuve de la bibliothèque, il ne cligne plus « parfois » : il cligne quand on lui parle. 1×/repos long, remplacer n'importe quel jet de d20 par un 10 (décider AVANT de lancer).",
+      "uses": { "maximum": 1, "expended": 0, "recovery": "long" }
+    },
+    {
+      "name": "Prête-moi tes mains",
+      "source": "Amulette de Certitude (éveillée)",
+      "description": "Le passager reprend la main. 1×/repos long, par une action bonus, Germione gagne +2 à la CA et l'avantage à ses jets d'attaque de sort jusqu'à la fin de son prochain tour. Ses gestes d'incantation ne sont alors plus tout à fait les siens : ils sont plus vieux, plus économes, et ils marchent mieux.",
+      "uses": { "maximum": 1, "expended": 0, "recovery": "long" }
+    },
+    {
+      "name": "Il se souvient",
+      "source": "Amulette de Certitude (éveillée)",
+      "description": "1×/repos long, Germione pose à voix haute une question sur un événement antérieur à sa naissance. Le passager répond — vrai, mais fragmentaire : un souvenir, pas une encyclopédie. Il ne se rappelle pas son propre nom.",
       "uses": { "maximum": 1, "expended": 0, "recovery": "long" }
     }
   ],
